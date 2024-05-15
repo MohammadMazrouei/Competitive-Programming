@@ -11,6 +11,7 @@ debug2
 #Math#
 mint
 comb
+matrix
 sieve
 segmented_sieve
 miller_rabin
@@ -87,8 +88,8 @@ template <typename T> using pql = priority_queue<T, vector<T>, greater<T>>;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-template<typename T> bool cmin(T &a, const T &b) { return b < a ? a = b, 1 : 0; }
-template<typename T> bool cmax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
+template <typename T> bool cmin(T &a, const T &b) { return b < a ? a = b, 1 : 0; }
+template <typename T> bool cmax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
 
 #ifdef DEBUG
 #include "/home/mohammad/code/debug.h"
@@ -137,8 +138,8 @@ using ld = long double;
 template <typename T> using pqg = priority_queue<T>;
 template <typename T> using pql = priority_queue<T, vector<T>, greater<T>>;
 
-template<typename T> bool cmin(T &a, const T &b) { return b < a ? a = b, 1 : 0; }
-template<typename T> bool cmax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
+template <typename T> bool cmin(T &a, const T &b) { return b < a ? a = b, 1 : 0; }
+template <typename T> bool cmax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
 
 #ifdef DEBUG
 #include "/home/mohammad/code/debug.h"
@@ -409,7 +410,7 @@ void __print(const char *x) { cerr << '\"' << x << '\"'; }
 void __print(const string &x) { cerr << '\"' << x << '\"'; }
 void __print(bool x) { cerr << (x ? 'T' : 'F'); } 
 
-template<typename T, typename V>
+template <typename T, typename V>
 void __print(const pair<T, V> &x) {
     cerr << '{'; 
     __print(x.first); 
@@ -418,7 +419,7 @@ void __print(const pair<T, V> &x) {
     cerr << '}';
 }
 
-template<typename T>
+template <typename T>
 void __print(const T &x) {
     int f = 0; 
     cerr << '{'; 
@@ -463,64 +464,64 @@ snippet mint "Struct Modular"
 constexpr int MOD = 1000000007;
 
 struct mint {
-    ll v; 
-    explicit operator ll() const { return v; }
-    explicit operator int() const { return v; }
-    mint() { v = 0; }
-    mint(ll _v) {
-        v = (-MOD < _v && _v < MOD) ? _v : _v % MOD;
-        if (v < 0) v += MOD;
-    }
+	ll v; 
+	explicit operator ll() const { return v; }
+	explicit operator int() const { return v; }
+	mint() { v = 0; }
+	mint(ll _v) {
+		v = (-MOD < _v && _v < MOD) ? _v : _v % MOD;
+		if (v < 0) v += MOD;
+	}
 
-    friend bool operator==(const mint &a, const mint &b) { return a.v == b.v; }
-    friend bool operator!=(const mint &a, const mint &b) { return !(a == b); }
-    friend bool operator<(const mint &a, const mint &b) { return a.v < b.v; }
-    friend bool operator>(const mint &a, const mint &b) { return a.v > b.v; }
-    friend bool operator<=(const mint &a, const mint &b) { return a.v <= b.v; }
-    friend bool operator>=(const mint &a, const mint &b) { return a.v >= b.v; }
-    
-    friend mint operator+(mint a, const mint &b) { return a += b; }
-    friend mint operator-(mint a, const mint &b) { return a -= b; }
-    friend mint operator*(mint a, const mint &b) { return a *= b; }
-    friend mint operator/(mint a, const mint &b) { return a /= b; }
-    mint& operator+=(const mint &m) { if ((v += m.v) >= MOD) v -= MOD; return *this; }
-    mint& operator-=(const mint &m) { if ((v -= m.v) < 0) v += MOD; return *this; }
-    mint& operator*=(const mint &m) { v = v * m.v % MOD; return *this; }
-    mint& operator/=(const mint &m) { return (*this) *= inv(m); }
-    
-    mint operator-() const { return mint(-v); }
-    mint& operator++() { return *this += 1; }
-    mint& operator--() { return *this -= 1; }
-    mint operator++(int) { mint temp; temp.v = v++; return temp; }
-    mint operator--(int) { mint temp; temp.v = v--; return temp; }
+	friend bool operator==(const mint &a, const mint &b) { return a.v == b.v; }
+	friend bool operator!=(const mint &a, const mint &b) { return !(a == b); }
+	friend bool operator<(const mint &a, const mint &b) { return a.v < b.v; }
+	friend bool operator>(const mint &a, const mint &b) { return a.v > b.v; }
+	friend bool operator<=(const mint &a, const mint &b) { return a.v <= b.v; }
+	friend bool operator>=(const mint &a, const mint &b) { return a.v >= b.v; }
 
-    friend mint pw(mint a, ll b) {
-        assert(b >= 0);
-        mint res = 1;
-        while (b) {
-            if (b & 1) {
-                res *= a;
-            }
-            a *= a;
-            b >>= 1;
-        }
-        return res;
-    }
-    friend mint inv(const mint &a) {
-        assert(a.v != 0);
-        return pow(a, MOD - 2);
-    }
-    
-    friend ostream& operator<<(ostream &os, const mint &m) {
-        os << m.v; 
-        return os;
-    }
-    friend istream& operator>>(istream &is, mint &m) {
-        ll x; 
-        is >> x;
-        m.v = x;
-        return is;
-    }
+	friend mint operator+(mint a, const mint &b) { return a += b; }
+	friend mint operator-(mint a, const mint &b) { return a -= b; }
+	friend mint operator*(mint a, const mint &b) { return a *= b; }
+	friend mint operator/(mint a, const mint &b) { return a /= b; }
+	mint& operator+=(const mint &m) { if ((v += m.v) >= MOD) v -= MOD; return *this; }
+	mint& operator-=(const mint &m) { if ((v -= m.v) < 0) v += MOD; return *this; }
+	mint& operator*=(const mint &m) { v = v * m.v % MOD; return *this; }
+	mint& operator/=(const mint &m) { return (*this) *= inv(m); }
+
+	mint operator-() const { return mint(-v); }
+	mint& operator++() { return *this += 1; }
+	mint& operator--() { return *this -= 1; }
+	mint operator++(int) { mint temp; temp.v = v++; return temp; }
+	mint operator--(int) { mint temp; temp.v = v--; return temp; }
+
+	friend mint pow(mint a, ll b) {
+		assert(b >= 0);
+		mint res = 1;
+		while (b) {
+			if (b & 1) {
+				res *= a;
+			}
+			a *= a;
+			b >>= 1;
+		}
+		return res;
+	}
+	friend mint inv(const mint &a) {
+		assert(a.v != 0);
+		return pow(a, MOD - 2);
+	}
+
+	friend ostream& operator<<(ostream &os, const mint &m) {
+		os << m.v; 
+		return os;
+	}
+	friend istream& operator>>(istream &is, mint &m) {
+		ll x; 
+		is >> x;
+		m.v = x;
+		return is;
+	}
 };
 void print(mint x) { cerr << x; }
 $0
@@ -532,29 +533,117 @@ mint fact[N];
 mint fact_inv[N];
 
 void init_fact(int n) {
-    fact[0] = 1;
-    for (int i = 1; i < n; i++) {
-        fact[i] = fact[i - 1] * i;
-    }
-    fact_inv[n - 1] = inv(fact[n - 1]);
-    for (int i = n - 2; i >= 0; i--) {
-        fact_inv[i] = fact_inv[i + 1] * (i + 1);
-    }
+	fact[0] = 1;
+	for (int i = 1; i < n; i++) {
+		fact[i] = fact[i - 1] * i;
+	}
+	fact_inv[n - 1] = inv(fact[n - 1]);
+	for (int i = n - 2; i >= 0; i--) {
+		fact_inv[i] = fact_inv[i + 1] * (i + 1);
+	}
 }
 
 mint comb(int n, int k) {
-    if (k < 0 || k > n) {
-        return 0;
-    }
-    return fact[n] * fact_inv[k] * fact_inv[n - k];
+	if (k < 0 || k > n) {
+		return 0;
+	}
+	return fact[n] * fact_inv[k] * fact_inv[n - k];
 }
 
 mint perm(int n, int k) {
-    if (k < 0 || k > n) {
-        return 0;
-    }
-    return fact[n] * fact_inv[n - k];
+	if (k < 0 || k > n) {
+		return 0;
+	}
+	return fact[n] * fact_inv[n - k];
 }
+$0
+endsnippet
+
+
+snippet matrix "Struct Matrix" 
+template <typename T>
+struct matrix {
+    int n, m;
+    vector<vector<T>> mat;
+
+    matrix() : n(0), m(0) {}
+    matrix(int _n, int _m) {
+        n = _n; 
+        m = _m; 
+        mat.assign(n, vector<T>(m, 0));
+    }
+    matrix(int _n, int _m, const T &val) {
+        n = _n; 
+        m = _m; 
+        mat.assign(n, vector<T>(m, val));
+    }
+    matrix(vector<vector<T>> v) {
+        n = v.size(); 
+        m = v[0].size();
+        mat = v;
+    }
+
+    inline void make_unit() {
+        assert(n == m);
+        for (int i = 0; i < n; i++)  {
+            for (int j = 0; j < n; j++) {
+                mat[i][j] = (i == j);
+            }
+        }
+    }
+
+    inline matrix operator + (const matrix &b) {
+        assert(n == b.n && m == b.m);
+        matrix res = (n, m);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                res.mat[i][j] = mat[i][j] + b.mat[i][j];
+            }
+        }
+        return res; 
+    } 
+    inline matrix operator - (const matrix &b) {
+        assert(n == b.n && m == b.m);
+        matrix res = matrix(n, m);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                res.mat[i][j] = mat[i][j] - b.mat[i][j];
+            }
+        }
+        return res;
+    }
+    inline matrix operator * (const matrix &b) {
+        assert(m == b.n);
+        matrix res = matrix(n, b.m);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < b.m; j++) {
+                for(int k = 0; k < m; k++) {
+                    res.mat[i][j] += mat[i][k] * b.mat[k][j];
+                }
+            }
+        }
+        return res;
+    }
+    inline matrix pow(matrix a, ll b) {
+        assert(n == m);
+        matrix res(n, n); 
+        res.make_unit();
+        while (b) {
+            if (b & 1) {
+                res *= a;
+            }
+            a *= a;
+            b >>= 1;
+        }
+        return res;
+    }
+
+    inline matrix& operator += (const matrix &b) { return *this = (*this) + b; }
+    inline matrix& operator -= (const matrix &b) { return *this = (*this) - b; }
+    inline matrix& operator *= (const matrix &b) { return *this = (*this) * b; }
+    inline bool operator == (const matrix &b) { return mat == b.mat; }
+    inline bool operator != (const matrix &b) { return mat != b.mat; }
+};
 $0
 endsnippet
 
@@ -1225,55 +1314,66 @@ endsnippet
 
 snippet kruskal "Kruskal MST" 
 struct Edge {
-	int u, v, w;
-	bool operator< (Edge const& other) {
-		return w < other.w;
-	}
+    int u, v, w;
+    bool operator< (Edge const& other) {
+        return w < other.w;
+    }
 } edges[N]; 
 vector<Edge> result;
 
 struct DSU {
-	int parent[N], rnk[N];
+    int parent[N], rnk[N];
 
-	void make(int u) {
-		parent[u] = u;
-		rnk[u] = 0;
-	}
+    void make(int u) {
+        parent[u] = u;
+        rnk[u] = 0;
+    }
 
-	int find(int u) {
-		return (parent[u] == u ? u : (parent[u] = find(parent[u])));
-	}
+    int find(int u) {
+        return (parent[u] == u ? u : (parent[u] = find(parent[u])));
+    }
 
-	void merge(int a, int b) {
-		if ((a = find(a)) != (b = find(b))) {
-			if (rnk[b] > rnk[a]) swap(a, b);
-			parent[b] = a;
-			if (rnk[a] == rnk[b]) rnk[a]++;
-		}
-	}
+    void merge(int a, int b) {
+        if ((a = find(a)) != (b = find(b))) {
+            if (rnk[b] > rnk[a]) {
+                swap(a, b);
+            }
+            parent[b] = a;
+            if (rnk[a] == rnk[b]) {
+                rnk[a]++;
+            }
+        }
+    }
 };
 
 // O(m*log(n))
-ll kruskal(int n) {
-	result.clear();
-	ll total_weight = 0;
-	sort(edges, edges+n);
+ll kruskal(int n, int m) {
+    result.clear();
+    ll total_weight = 0;
+    sort(edges, edges + m);
 
-	DSU dsu;
-	for (int i = 0; i < n; i++) dsu.make(i); 
-	
-	int nodes = 0;
-	for (Edge e : edges) {
-		if (dsu.find(e.u) != dsu.find(e.v)) {
-			total_weight += e.w;
-			result.push_back(e);
-			dsu.merge(e.u, e.v);
-			nodes++;
-		}
-		if (nodes == n-1) break;
-	}
+    DSU dsu;
+    for (int i = 0; i < n; i++) {
+        dsu.make(i); 
+    }
+    
+    int nodes = 0;
+    for (auto &e : edges) {
+        if (dsu.find(e.u) != dsu.find(e.v)) {
+            total_weight += e.w;
+            result.push_back(e);
+            dsu.merge(e.u, e.v);
+            nodes++;
+        }
+        if (nodes == n - 1) {
+            break;
+        }
+    }
 
-	return total_weight;
+    if (nodes != n - 1) {
+        return -1;
+    }
+    return total_weight;
 }
 $0
 endsnippet
@@ -1282,7 +1382,7 @@ endsnippet
 snippet ordered_set "Set With Index"
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
-template<typename T>
+template <typename T>
 using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 // ordered_set<ll> s;
 // s.order_of_key(element) -> index of element;
@@ -1292,7 +1392,7 @@ endsnippet
 
 
 snippet mstack "Min/Max Stack" 
-template<typename T>
+template <typename T>
 struct mstack {
     stack<pair<T, T>> st;
     
@@ -1321,7 +1421,7 @@ endsnippet
 
 
 snippet mqueue "Min/Max Queue" 
-template<typename T>
+template <typename T>
 struct mqueue {
     stack<pair<T, T>> st1, st2;
     
