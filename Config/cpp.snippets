@@ -25,8 +25,8 @@ dcycle
 ucycle
 bridges
 art_points
-dij
 floyd
+dij
 bellman
 spfa
 prim
@@ -36,11 +36,10 @@ kruskal
 ordered_set
 mstack
 mqueue
-sp
-sp2
-bit
-bit2
 dsu
+fenwick_tree
+fenwick_tree2
+sparse_table
 segtree
 segtree_lazy
 segtree_2d
@@ -473,27 +472,27 @@ struct mint {
 		if (v < 0) v += MOD;
 	}
 
-	friend bool operator==(const mint &a, const mint &b) { return a.v == b.v; }
-	friend bool operator!=(const mint &a, const mint &b) { return !(a == b); }
-	friend bool operator<(const mint &a, const mint &b) { return a.v < b.v; }
-	friend bool operator>(const mint &a, const mint &b) { return a.v > b.v; }
-	friend bool operator<=(const mint &a, const mint &b) { return a.v <= b.v; }
-	friend bool operator>=(const mint &a, const mint &b) { return a.v >= b.v; }
+	friend bool operator == (const mint &a, const mint &b) { return a.v == b.v; }
+	friend bool operator != (const mint &a, const mint &b) { return !(a == b); }
+	friend bool operator < (const mint &a, const mint &b) { return a.v < b.v; }
+	friend bool operator > (const mint &a, const mint &b) { return a.v > b.v; }
+	friend bool operator <= (const mint &a, const mint &b) { return a.v <= b.v; }
+	friend bool operator >= (const mint &a, const mint &b) { return a.v >= b.v; }
 
-	friend mint operator+(mint a, const mint &b) { return a += b; }
-	friend mint operator-(mint a, const mint &b) { return a -= b; }
-	friend mint operator*(mint a, const mint &b) { return a *= b; }
-	friend mint operator/(mint a, const mint &b) { return a /= b; }
-	mint& operator+=(const mint &m) { if ((v += m.v) >= MOD) v -= MOD; return *this; }
-	mint& operator-=(const mint &m) { if ((v -= m.v) < 0) v += MOD; return *this; }
-	mint& operator*=(const mint &m) { v = v * m.v % MOD; return *this; }
-	mint& operator/=(const mint &m) { return (*this) *= inv(m); }
+	friend mint operator + (mint a, const mint &b) { return a += b; }
+	friend mint operator - (mint a, const mint &b) { return a -= b; }
+	friend mint operator * (mint a, const mint &b) { return a *= b; }
+	friend mint operator / (mint a, const mint &b) { return a /= b; }
+	mint& operator += (const mint &m) { if ((v += m.v) >= MOD) v -= MOD; return *this; }
+	mint& operator -= (const mint &m) { if ((v -= m.v) < 0) v += MOD; return *this; }
+	mint& operator *= (const mint &m) { v = v * m.v % MOD; return *this; }
+	mint& operator /= (const mint &m) { return (*this) *= inv(m); }
 
-	mint operator-() const { return mint(-v); }
-	mint& operator++() { return *this += 1; }
-	mint& operator--() { return *this -= 1; }
-	mint operator++(int) { mint temp; temp.v = v++; return temp; }
-	mint operator--(int) { mint temp; temp.v = v--; return temp; }
+	mint operator - () const { return mint(-v); }
+	mint& operator ++ () { return *this += 1; }
+	mint& operator -- () { return *this -= 1; }
+	mint operator ++ (int) { mint temp; temp.v = v++; return temp; }
+	mint operator -- (int) { mint temp; temp.v = v--; return temp; }
 
 	friend mint pow(mint a, ll b) {
 		assert(b >= 0);
@@ -512,11 +511,11 @@ struct mint {
 		return pow(a, MOD - 2);
 	}
 
-	friend ostream& operator<<(ostream &os, const mint &m) {
+	friend ostream& operator << (ostream &os, const mint &m) {
 		os << m.v; 
 		return os;
 	}
-	friend istream& operator>>(istream &is, mint &m) {
+	friend istream& operator >> (istream &is, mint &m) {
 		ll x; 
 		is >> x;
 		m.v = x;
@@ -1131,9 +1130,9 @@ endsnippet
 
 
 snippet floyd "Floyd Warshall (Find All Shortest Path)" 
-const ll INF = 4e18;
 // adj[N][N] -> fill with INF
 // O(n^3) , graph can has negative weight 
+const ll INF = 4e18;
 void floyd_warshall(int n) {
     for (int k = 0; k < n; k++) {
         for (int i = 0; i < n; i++) {
@@ -1163,16 +1162,14 @@ void dij(int s, int n) { // O(m*log(n))
     d[s] = 0;
     cnt[s] = 1;
     while (!q.empty()) {
-        ll u = q.top().second;
-        ll d_u = q.top().first;
+        auto [d_u, u] = q.top();
         q.pop();
         if (d_u != d[u]) {
             continue;
         }
 
-        for (auto e : adj[u]) {
-            ll v = e.first;
-            ll w = e.second;
+        for (auto &e : adj[u]) {
+            auto [v, w] = e;
 
             if (d[u] + w < d[v]) {
                 d[v] = d[u] + w;
@@ -1181,7 +1178,7 @@ void dij(int s, int n) { // O(m*log(n))
                 q.push({d[v], v});
             }
             else if (d[u] + w == d[v]) {
-                cnt[v] = (cnt[v] + cnt[u]) % MOD;
+                cnt[v] = (cnt[v] + cnt[u]);
             }
         }
     }
@@ -1200,6 +1197,7 @@ vector<Edge> edges;
 vector<int> neg_path;
 ll d[N], p[N];
 
+// false -> exist negative cycle 
 bool bellman_ford(int s, int n) { // O(n*m)  
     fill(d, d + n, INF);
     fill(p, p + n, -1);
@@ -1209,16 +1207,17 @@ bool bellman_ford(int s, int n) { // O(n*m)
     int x = -1;
     for (int i = 0; i < n; i++) {
         x = -1;
-        for (Edge e : edges) {
-            if (d[e.u] < INF)
+        for (auto &e : edges) {
+            if (d[e.u] < INF) {
                 if (d[e.v] > d[e.u] + e.w) {
                     d[e.v] = max(-INF, d[e.u] + e.w);
                     p[e.v] = e.u;
                     x = e.v;
                 }
+            }
         }
         if (x == -1) {
-            return true;
+            return false;
         }
     }
 
@@ -1234,7 +1233,7 @@ bool bellman_ford(int s, int n) { // O(n*m)
     }
     reverse(neg_path.begin(), neg_path.end());
 
-    return false;
+    return true;
 }
 $0
 endsnippet
@@ -1245,37 +1244,38 @@ const ll INF = 4e18;
 ll d[N], cnt[N];
 bool inq[N];
 
-// O(n*m)
-bool spfa(int s, int n) {
-	fill(d, d+n, INF);
-	fill(cnt, cnt+n, 0);
-	fill(inq, inq+n, 0);
+// false -> exist negative cycle
+bool spfa(int s, int n) { // O(n*m)
+    fill(d, d + n, INF);
+    fill(cnt, cnt + n, 0);
+    fill(inq, inq + n, 0);
 
-	queue<int> q;
-	q.push(s);
-	d[s] = 0;
-	inq[s] = true;
-	while (!q.empty()) {
-		int u = q.front();
-		q.pop();
-		inq[u] = false;
+    queue<int> q;
+    q.push(s);
+    d[s] = 0;
+    inq[s] = true;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        inq[u] = false;
 
-		for (auto e : adj[u]) {
-			int v = e.first;
-			int w = e.second;
+        for (auto &e : adj[u]) {
+            auto [v, w] = e.first;
 
-			if (d[u] + w < d[v]) {
-				d[v] = d[u] + w;
-				if (!inq[v]) {
-					q.push(v);
-					inq[v] = true;
-					cnt[v]++;
-					if (cnt[v] > n) return false;  // negative cycle
-				}
-			}
-		}
-	}
-	return true;
+            if (d[u] + w < d[v]) {
+                d[v] = d[u] + w;
+                if (!inq[v]) {
+                    q.push(v);
+                    inq[v] = true;
+                    cnt[v]++;
+                    if (cnt[v] > n) {
+                        return false; 
+                    }
+                }
+            }
+        }
+    }
+    return true;
 }
 $0
 endsnippet
@@ -1283,30 +1283,42 @@ endsnippet
 
 snippet prim "Prim MST" 
 const int INF = 1e9;
-int w[N], to[N];
+struct Edge {
+    int w = INF;
+    int to = -1;
+};
+
 bool used[N];
+Edge mst[N];
 
-// O(n^2)
-ll prim(int n) {
-	fill(used, used+n, 0);
-	fill(w, w+n, INF);
-	fill(to, to+n, -1);
+// complete graph, -1 -> not exist mst
+ll prim(int n) { // O(n^2)
+    fill(used, used + n, 0);
 
-	ll total_weight = 0;
-	w[0] = 0;
-	for (int i = 0; i < n; i++) {
-		int u = -1;
-		for (int j = 0; j < n; j++) 
-			if (!used[j] && (u == -1 || w[j] < w[u])) u = j;
-		if (w[u] == INF) return -1;
+    ll total_weight = 0;
+    mst[0].w = 0;
+    for (int i = 0; i < n; i++) {
+        int u = -1;
+        for (int j = 0; j < n; j++) {
+            if (!used[j] && (u == -1 || mst[j].w < mst[u].w)) {
+                u = j;
+            }
+        }
+        if (mst[u].w == INF) {
+            return -1;
+        }
 
-		used[u] = true;
-		total_weight += w[u];
-		for (int v = 0; v < n; v++)
-			if (adj[u][v] < w[v]) to[v] = u, w[v] = adj[u][v];
-	}
-	
-	return total_weight;
+        used[u] = true;
+        total_weight += mst[u].w;
+        for (int v = 0; v < n; v++) {
+            if (adj[u][v] < mst[v].w) {
+                mst[v].to = u; 
+                mst[v].w = adj[u][v];
+            }
+        }
+    }
+    
+    return total_weight;
 }
 $0
 endsnippet
@@ -1315,54 +1327,57 @@ endsnippet
 snippet kruskal "Kruskal MST" 
 struct Edge {
     int u, v, w;
-    bool operator< (Edge const& other) {
+    bool operator < (Edge const &other) {
         return w < other.w;
     }
 } edges[N]; 
 vector<Edge> result;
 
-struct DSU {
-    int parent[N], rnk[N];
+struct dsu {
+    vector<int> parent, sz;
 
-    void make(int u) {
-        parent[u] = u;
-        rnk[u] = 0;
+    dsu(int n) {
+        parent.resize(n); sz.resize(n);;
+        for (int i = 0; i < n; i++) {
+            make(i);
+        }
     }
 
-    int find(int u) {
-        return (parent[u] == u ? u : (parent[u] = find(parent[u])));
+    void make(int a) {
+        parent[a] = a;
+        sz[a] = 1;
     }
-
+    int find(int a) {
+        return (parent[a] == a ? a : (parent[a] = find(parent[a])));
+    }
+    bool same(int a, int b) {
+        return find(a) == find(b);
+    }
     void merge(int a, int b) {
         if ((a = find(a)) != (b = find(b))) {
-            if (rnk[b] > rnk[a]) {
+            if (sz[a] > sz[b]) {
                 swap(a, b);
             }
-            parent[b] = a;
-            if (rnk[a] == rnk[b]) {
-                rnk[a]++;
-            }
+            parent[a] = b;
+            sz[b] += sz[a];
         }
     }
 };
 
-// O(m*log(n))
-ll kruskal(int n, int m) {
+// -1 -> not exitst mst
+ll kruskal(int n, int m) { // O(m*log(n))
     result.clear();
     ll total_weight = 0;
     sort(edges, edges + m);
 
-    DSU dsu;
-    for (int i = 0; i < n; i++) {
-        dsu.make(i); 
-    }
+    dsu d(n);
     
     int nodes = 0;
     for (auto &e : edges) {
-        if (dsu.find(e.u) != dsu.find(e.v)) {
+        if (!d.same(e.u, e.v)) {
             total_weight += e.w;
             result.push_back(e);
-            dsu.merge(e.u, e.v);
+            d.merge(e.u, e.v);
             nodes++;
         }
         if (nodes == n - 1) {
@@ -1384,7 +1399,7 @@ snippet ordered_set "Set With Index"
 using namespace __gnu_pbds;
 template <typename T>
 using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-// ordered_set<ll> s;
+// ordered_set<int> s;
 // s.order_of_key(element) -> index of element;
 // s.find_by_order(index) -> s[index]
 $0
@@ -1397,7 +1412,7 @@ struct mstack {
     stack<pair<T, T>> st;
     
     void push(T element) {
-        T minimum = st.empty() ? element : ${1: min}(element, st.top().second);
+        T minimum = st.empty() ? element : min(element, st.top().second);
         st.push({element, minimum});
     }
     void pop() {
@@ -1426,7 +1441,7 @@ struct mqueue {
     stack<pair<T, T>> st1, st2;
     
     void push(T element) {
-        T minimum = st1.empty() ? element : ${1: min}(element, st1.top().second);
+        T minimum = st1.empty() ? element : min(element, st1.top().second);
         st1.push({element, minimum});
     }
     void pop() {
@@ -1468,165 +1483,143 @@ $0
 endsnippet
 
 
-snippet sp "Sparse Table(Min)" 
-int sp[N][LG];
-struct SP {
-    SP(int a[], int n) {
-        for(int i = 0; i < n; ++i) sp[i][0] = a[i];
-        for(int k = 1; k < LG; ++k) {
-            for(int i = 0; i + (1 << k) - 1 < n; ++i) {
-                sp[i][k] = ${1: min}(sp[i][k - 1], sp[i + (1 << (k - 1))][k - 1]);
-            }
-        }
-    }
-    int query(int l, int r) {  // [l, r)
-        int k = __builtin_clz(1) - __builtin_clz(r - l);  // __builtin_clzll(long long)
-        return $1(sp[l][k], sp[r - (1 << k)][k]);
-    }
-};
-$0
-endsnippet
-
-
-snippet sp2 "Sparse Table(Sum)" 
-int sp[N][LG];
-struct SP {
-    SP(int a[], int n) {
-        for(int i = 0; i < n; ++i) sp[i][0] = a[i];
-        for(int k = 1; k < LG; ++k) {
-            for(int i = 0; i + (1 << k) - 1 < n; ++i) {
-                sp[i][k] = sp[i][k - 1] ${1: +} sp[i + (1 << (k - 1))][k - 1];
-            }
-        }
-    }
-    int query(int l, int r) {  // [l, r)
-        int k = __builtin_clzll(1) - __builtin_clzll(r - l);  // __builtin_clzll(long long)
-        int ans = 0;
-        for (int i = k; i >= 0; i--) {
-            if ((1 << i) <= r - l) {
-                ans $1= sp[l][i];
-                l += 1 << i;
-            }
-        }
-        return ans;
-    }
-};
-$0
-endsnippet
-
-
-snippet bit "BIT(point_update, range_query + range_update, point_query)"
-//point_update + range_query  //range_update + point_query
-//0-indexed _ range[l, r]
-template <typename T> 
-struct BIT { 
-    vector<T> bit;
-    int n;
-    
-    BIT(int n) {
-        this->n = n;
-        bit.assign(n, 0);
-    }
-    BIT(T const a[], int n) : BIT(n) {  //for point update -> O(n)
-        for (int i = 0; i < n; i++) {
-            bit[i] += a[i];
-            int r = i | (i + 1);
-            if (r < n) bit[r] += bit[i];
-        }
-    }
-    void upd(int i, T val) {
-        if (i < 0) return;
-        for (; i < n; i = i | (i + 1)) bit[i] += val;
-    }
-    void upd(int l, int r, T val) {
-        upd(l, val);
-        upd(r + 1, -val);
-    }
-    T query(int r) {
-        T ret = 0;
-        for (; r >= 0; r = (r & (r + 1)) - 1) ret += bit[r];
-        return ret;
-    }
-    T query(int l, int r) {
-        return query(r) - query(l - 1);
-    }
-};
-$0
-endsnippet
-
-
-snippet bit2 "BIT(range_update, range_query)" 
-//range_update + range_query
-//0-indexed _ range[l, r]
-struct BIT {
-    ll B1[N], B2[N];
-    
-    BIT() {
-        memset(B1, 0, sizeof B1);
-        memset(B2, 0, sizeof B2);
-    }
-    void update(int i, ll mul, ll add) {
-        for (; i < N; i = i | (i + 1)) {
-            B1[i] += mul;
-            B2[i] += add;
-        }
-    }
-    void upd(int l, int r, ll x) {
-        update(l, x, -x * (l - 1));
-        update(r, -x, x * r);
-    }
-    long long query(int i) {
-        ll mul = 0, add = 0;
-        int st = i;
-        for (; i >= 0; i = (i & (i + 1)) - 1) {
-            mul += B1[i];
-            add += B2[i];
-        }
-        return (mul * st + add);
-    }
-    ll query(int l, int r) {
-        return query(r) - query(l - 1);
-    }
-};
-$0
-endsnippet
-
-
 snippet dsu "Struct DSU" 
-struct DSU {
-    vector<int> parent, rnk, sz;
+struct dsu {
+    vector<int> parent, sz;
     int c; //connected components
     
-    DSU(int n) : c(0) {
-		parent.resize(n); rnk.resize(n); sz.resize(n);
-        for (int i = 0; i < n; i++) make(i);
+    dsu(int n) : c(0) {
+        parent.resize(n); sz.resize(n);
+        for (int i = 0; i < n; i++) {
+            make(i);
+        }
     }
 
-    void make(int i) {
-        parent[i] = i;
-        sz[i] = 1;
+    void make(int a) {
+        parent[a] = a;
+        sz[a] = 1;
         c++;
     }
-    int find(int i) {
-        return (parent[i] == i ? i : (parent[i] = find(parent[i])));
+    int find(int a) {
+        return (parent[a] == a ? a : (parent[a] = find(parent[a])));
     }
-    bool same(int i, int j) {
-        return find(i) == find(j);
+    bool same(int a, int b) {
+        return find(a) == find(b);
     }
-    int get_size(int i) {
-        return sz[find(i)];
+    int get_size(int a) {
+        return sz[find(a)];
     }
     int count() {
         return c;
     }
-    void merge(int i, int j) {
-        if ((i = find(i)) != (j = find(j))) {
+    void merge(int a, int b) {
+        if ((a = find(a)) != (b = find(b))) {
             c--;
-            if (rnk[i] > rnk[j]) swap(i, j);
-            parent[i] = j;
-            sz[j] += sz[i];
-            if (rnk[i] == rnk[j]) rnk[j]++;
+            if (sz[a] > sz[b]) {
+                swap(a, b);
+            }
+            parent[a] = b;
+            sz[b] += sz[a];
         }
+    }
+};
+$0
+endsnippet
+
+
+snippet fenwick_tree "Fenwick Tree (range_update, point_query)"
+// range_update + point_query
+// 0-indexed _ range[l, r]
+struct fenwick_tree { 
+    int n;
+    vector<ll> f;
+    
+    fenwick_tree(int _n) : n(_n) {
+        f.resize(n, 0);
+    }
+    void modify(int s, ll val) {
+        if (s < 0) {
+            return;
+        }
+        for (int i = s; i < n; i = i | (i + 1)) {
+            f[i] += val;
+        }
+    }
+
+    void modify(int l, int r, ll val) {
+        modify(l, val);
+        modify(r + 1, -val);
+    }
+    ll get(int x) {
+        ll res = 0;
+        for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
+            res += f[i];
+        }
+        return res;
+    }
+};
+$0
+endsnippet
+
+
+snippet fenwick_tree2 "Fenwick Tree (range_update, range_query)" 
+// range_update + range_query
+// 0-indexed _ range[l, r]
+struct fenwick_tree {
+    int n;
+    vector<ll> f1, f2;
+    
+    fenwick_tree(int _n) : n(_n) {
+        f1.resize(n, 0);
+        f2.resize(n, 0);
+    }
+    void modify(int s, ll mul, ll add) {
+        for (int i = s; i < n; i = i | (i + 1)) {
+            f1[i] += mul;
+            f2[i] += add;
+        }
+    }
+    ll get(int s) {
+        ll mul = 0, add = 0;
+        for (int i = s; i >= 0; i = (i & (i + 1)) - 1) {
+            mul += f1[i];
+            add += f2[i];
+        }
+        return (mul * s + add);
+    }
+
+    void modify(int l, int r, ll x) {
+        modify(l, x, -x * (l - 1));
+        modify(r, -x, x * r);
+    }
+    ll get(int l, int r) {
+        return get(r) - get(l - 1);
+    }
+};
+$0
+endsnippet
+
+
+snippet sparse_table "Sparse Table (Min)" 
+int sp[N][LG];
+// 0-indexed _ range[l, r)
+struct sparse_table {
+    sparse_table(vector<int> &v) {
+        int n = v.size();
+
+        for (int i = 0; i < n; i++) {
+            sp[i][0] = v[i];
+        }
+        for (int k = 1; k < LG; k++) {
+            for (int i = 0; i + (1 << k) - 1 < n; i++) {
+                sp[i][k] = min(sp[i][k - 1], sp[i + (1 << (k - 1))][k - 1]);
+            }
+        }
+    }
+
+    int get(int l, int r) { 
+        int k = __builtin_clz(1) - __builtin_clz(r - l + 1);  // __builtin_clzll(long long)
+        return min(sp[l][k], sp[r - (1 << k) + 1][k]);
     }
 };
 $0
