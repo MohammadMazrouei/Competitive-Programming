@@ -1529,7 +1529,7 @@ endsnippet
 
 snippet fenwick_tree "Fenwick Tree (range_update, point_query)"
 // range_update + point_query
-// 0-indexed _ range[l, r]
+// 0-base _ range[l, r]
 struct fenwick_tree { 
     int n;
     vector<ll> f;
@@ -1550,9 +1550,9 @@ struct fenwick_tree {
         modify(l, val);
         modify(r + 1, -val);
     }
-    ll get(int x) {
+    ll get(int p) {
         ll res = 0;
-        for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
+        for (int i = p; i >= 0; i = (i & (i + 1)) - 1) {
             res += f[i];
         }
         return res;
@@ -1564,7 +1564,7 @@ endsnippet
 
 snippet fenwick_tree2 "Fenwick Tree (range_update, range_query)" 
 // range_update + range_query
-// 0-indexed _ range[l, r]
+// 0-base _ range[l, r]
 struct fenwick_tree {
     int n;
     vector<ll> f1, f2;
@@ -1579,13 +1579,13 @@ struct fenwick_tree {
             f2[i] += add;
         }
     }
-    ll get(int s) {
+    ll get(int p) {
         ll mul = 0, add = 0;
-        for (int i = s; i >= 0; i = (i & (i + 1)) - 1) {
+        for (int i = p; i >= 0; i = (i & (i + 1)) - 1) {
             mul += f1[i];
             add += f2[i];
         }
-        return (mul * s + add);
+        return (mul * p + add);
     }
 
     void modify(int l, int r, ll x) {
@@ -1602,7 +1602,7 @@ endsnippet
 
 snippet sparse_table "Sparse Table (Min)" 
 int sp[N][LG];
-// 0-indexed _ range[l, r)
+// 0-base _ range[l, r)
 struct sparse_table {
     sparse_table(vector<int> &v) {
         int n = v.size();
@@ -1627,7 +1627,7 @@ endsnippet
 
 
 snippet segtree "Segment Tree" 
-// 0-base - interval[l, r]
+// 0-base - range[l, r]
 class segtree {
 public:
     struct node {
@@ -1816,14 +1816,14 @@ $0
 endsnippet
 
 snippet segtree_lazy "Segment Tree with Lazy Propagation" 
-// 0-base - interval[l, r]
+// 0-base - range[l, r]
 class segtree {
 public:
     struct node {
         ll sum = 0;
         int mn = 0;
-        int add = 0;
         int cnt = 1;
+        int add = 0;
 
         template <typename M>
         void apply(int l, int r, const M &v) {
@@ -2039,7 +2039,7 @@ $0
 endsnippet
 
 snippet segtree_2d "Segment Tree 2D"
-// 0-base - interval[lx, rx][ly, ry]
+// 0-base - range[lx, rx][ly, ry]
 class segtree_2d {
 public:
     struct node {
@@ -2224,13 +2224,13 @@ endsnippet
 
 
 snippet split "Split String" 
-vector<string> split(string s) {
-    vector<string> sp;
+vector<string> split(string s, char ch = ' ') {
     int n = s.size();
+    vector<string> sp;
 
     string tmp = "";
     for (int i = 0; i < n; i++) {
-        if (s[i] != ' ') {
+        if (s[i] != ch) {
             tmp += s[i];
         }
         else if (tmp != "") {
@@ -2249,37 +2249,38 @@ endsnippet
 
 
 snippet table "Geometry Movement" 
-int dx[] = {-1, 1, 0, 0, -1, -1, 1, 1};
-int dy[] = {0, 0, -1, 1, -1, 1, -1, 1};
+int dx[] = {-1, 1, 0, 0, -1, -1, 1, 1, 0};
+int dy[] = {0, 0, -1, 1, -1, 1, -1, 1, 0};
 int n, m; // DON'T MAKE THEM IN MAIN
  
 bool check(int x, int y) {
     return x >= 0 && x < n && y >= 0 && y < m;
 }
+$0
 endsnippet
 
 
 snippet geo2d "Geometry 2D"
-const double inf = 1e100;
-const double eps = 1e-9;
-const double PI = acos(double(-1.0));
+const ld inf = 1e100;
+const ld eps = 1e-9;
+const ld PI = acos(ld(-1.0));
 
-int sign(double x) {
+int sign(ld x) {
     return (x > eps) - (x < -eps);
 }
 
 struct PT {
-    double x, y;
+    ld x, y;
 
-    PT() { x = 0, y = 0; }
-    PT(double x, double y) : x(x), y(y) {}
+    PT() : x(0), y(0) {}
+    PT(ld x, ld y) : x(x), y(y) {}
     PT(const PT &p) : x(p.x), y(p.y) {}
 
     PT operator + (const PT &p) const { return PT(x + p.x, y + p.y); }
     PT operator - (const PT &p) const { return PT(x - p.x, y - p.y); }
-    PT operator * (const double a) const { return PT(x * a, y * a); }
-    friend PT operator * (const double &a, const PT &p) { return PT(a * p.x, a * p.y); }
-    PT operator / (const double a) { return PT(x / a, y / a); }
+    PT operator * (const ld a) const { return PT(x * a, y * a); }
+    friend PT operator * (const ld &a, const PT &p) { return PT(a * p.x, a * p.y); }
+    PT operator / (const ld a) { return PT(x / a, y / a); }
 
     bool operator == (PT p) const { return sign(p.x - x) == 0 && sign(p.y - y) == 0; }
     bool operator != (PT p) const { return !(*this == p); }
@@ -2288,14 +2289,14 @@ struct PT {
     bool operator <= (PT p) const { return (*this < p) || (*this == p); }
     bool operator >= (PT p) const { return (*this > p) || (*this == p); }
 
-    double norm() { return sqrt(x * x + y * y); }
-    double norm2() { return x * x + y * y; }
+    ld norm() { return sqrt(x * x + y * y); }
+    ld norm2() { return x * x + y * y; }
 
     PT perp() { return PT(-y, x); }
-    double arg() { return atan2(y, x); }
+    ld arg() { return atan2(y, x); }
 
-    PT truncate(double r) { // returns a vector with norm r and having same direction
-        double k = norm();
+    PT truncate(ld r) { // returns a vector with norm r and having same direction
+        ld k = norm();
         if (!sign(k)) return *this;
         r /= k;
         return PT(x * r, y * r);
@@ -2305,25 +2306,25 @@ struct PT {
 istream &operator >> (istream &in, PT &p) { return in >> p.x >> p.y; }
 ostream &operator << (ostream &out, PT &p) { return out << "(" << p.x << "," << p.y << ")"; }
 
-inline double dot(PT a, PT b) { return a.x * b.x + a.y * b.y; }
-inline double dist(PT a, PT b) { return sqrt(dot(a - b, a - b)); }
-inline double dist2(PT a, PT b) { return dot(a - b, a - b); }
-inline double cross(PT a, PT b) { return a.x * b.y - a.y * b.x; }
-inline double cross2(PT a, PT b, PT c) { return cross(b - a, c - a); }
+inline ld dot(PT a, PT b) { return a.x * b.x + a.y * b.y; }
+inline ld dist(PT a, PT b) { return sqrt(dot(a - b, a - b)); }
+inline ld dist2(PT a, PT b) { return dot(a - b, a - b); }
+inline ld cross(PT a, PT b) { return a.x * b.y - a.y * b.x; }
+inline ld cross2(PT a, PT b, PT c) { return cross(b - a, c - a); }
 inline int orientation(PT a, PT b, PT c) { return sign(cross(b - a, c - a)); }
 
 PT perp(PT a) { return PT(-a.y, a.x); }
 PT rotateccw90(PT a) { return PT(-a.y, a.x); }
 PT rotatecw90(PT a) { return PT(a.y, -a.x); }
-PT rotateccw(PT a, double t) { return PT(a.x * cos(t) - a.y * sin(t), a.x * sin(t) + a.y * cos(t)); }
-PT rotatecw(PT a, double t) { return PT(a.x * cos(t) + a.y * sin(t), -a.x * sin(t) + a.y * cos(t)); }
-double SQ(double x) { return x * x; }
-double rad_to_deg(double r) { return (r * 180.0 / PI); }
-double deg_to_rad(double d) { return (d * PI / 180.0); }
+PT rotateccw(PT a, ld t) { return PT(a.x * cos(t) - a.y * sin(t), a.x * sin(t) + a.y * cos(t)); }
+PT rotatecw(PT a, ld t) { return PT(a.x * cos(t) + a.y * sin(t), -a.x * sin(t) + a.y * cos(t)); }
+ld SQ(ld x) { return x * x; }
+ld rad_to_deg(ld r) { return (r * 180.0 / PI); }
+ld deg_to_rad(ld d) { return (d * PI / 180.0); }
 
-double get_angle(PT a, PT b) {
-    double costheta = dot(a, b) / a.norm() / b.norm();
-    return acos(max((double)-1.0, min((double)1.0, costheta)));
+ld get_angle(PT a, PT b) {
+    ld costheta = dot(a, b) / a.norm() / b.norm();
+    return acos(max((ld)-1.0, min((ld)1.0, costheta)));
 }
 
 bool is_point_in_angle(PT b, PT a, PT c, PT p) { // does point p lie in angle <bac
@@ -2350,25 +2351,25 @@ void polar_sort(vector<PT> &v, PT o) { // sort points in counterclockwise with r
 
 struct line {
     PT a, b; // goes through points a and b
-    PT v; double c;  //line form: direction vec [cross] (x, y) = c 
+    PT v; ld c;  //line form: direction vec [cross] (x, y) = c 
 
     line() {}
     //direction vector v and offset c
-	line(PT v, double c) : v(v), c(c) {
+    line(PT v, ld c) : v(v), c(c) {
         auto p = get_points();
         a = p.first; b = p.second;
-	}
-	// equation ax + by + c = 0
-	line(double _a, double _b, double _c) : v({_b, -_a}), c(-_c) {
-		auto p = get_points();
+    }
+    // equation ax + by + c = 0
+    line(ld _a, ld _b, ld _c) : v({_b, -_a}), c(-_c) {
+        auto p = get_points();
         a = p.first; b = p.second;
-	}
-	// goes through points p and q
-	line(PT p, PT q) : v(q - p), c(cross(v, p)), a(p), b(q) {}
+    }
+    // goes through points p and q
+    line(PT p, PT q) : v(q - p), c(cross(v, p)), a(p), b(q) {}
 
     //extract any two points from this line
     pair<PT, PT> get_points() {
-        PT p, q; double a = -v.y, b = v.x; // ax + by = c
+        PT p, q; ld a = -v.y, b = v.x; // ax + by = c
         if (sign(a) == 0) {
             p = PT(0, c / b);
             q = PT(1, c / b);
@@ -2385,8 +2386,8 @@ struct line {
     }
 
     // ax + by + c = 0
-    array<double, 3> get_abc() {
-        double a = -v.y, b = v.x;
+    array<ld, 3> get_abc() {
+        ld a = -v.y, b = v.x;
         return {a, b, -c};
     }
 
@@ -2403,14 +2404,14 @@ struct line {
     // a projection point comes before another if it comes first according to vector v
     bool cmp_by_projection(PT p, PT q) { return dot(v, p) < dot(v, q); }
 
-	line shift_left(double d) {
-		PT z = v.perp().truncate(d);
-		return line(a + z, b + z);
-	}
+    line shift_left(ld d) {
+        PT z = v.perp().truncate(d);
+        return line(a + z, b + z);
+    }
 };
 
 // find a point from a through b with distance d
-PT point_along_line(PT a, PT b, double d) {
+PT point_along_line(PT a, PT b, ld d) {
     assert(a != b);
     return a + (((b - a) / (b - a).norm()) * d);
 }
@@ -2427,7 +2428,7 @@ PT reflection_from_point_to_line(PT a, PT b, PT c) {
 }
 
 // minimum distance from point c to line through a and b
-double dist_from_point_to_line(PT a, PT b, PT c) {
+ld dist_from_point_to_line(PT a, PT b, PT c) {
     return fabs(cross(b - a, c - a) / (b - a).norm());
 }
 
@@ -2443,7 +2444,7 @@ bool is_point_on_seg(PT a, PT b, PT p) {
 
 // minimum distance point from point c to segment ab that lies on segment ab
 PT project_from_point_to_seg(PT a, PT b, PT c) {
-    double r = dist2(a, b);
+    ld r = dist2(a, b);
     if (sign(r) == 0) return a;
     r = dot(c - a, b - a) / r;
     if (r < 0) return a;
@@ -2452,13 +2453,13 @@ PT project_from_point_to_seg(PT a, PT b, PT c) {
 }
 
 // minimum distance from point c to segment ab
-double dist_from_point_to_seg(PT a, PT b, PT c) {
+ld dist_from_point_to_seg(PT a, PT b, PT c) {
     return dist(c, project_from_point_to_seg(a, b, c));
 }
 
 // 0 if not parallel, 1 if parallel, 2 if collinear
 int is_parallel(PT a, PT b, PT c, PT d) {
-    double k = fabs(cross(b - a, d - c));
+    ld k = fabs(cross(b - a, d - c));
     if (k < eps){
         if (fabs(cross(a - b, a - c)) < eps && fabs(cross(c - d, c - a)) < eps) return 2;
         else return 1;
@@ -2488,9 +2489,9 @@ int point_line_relation(PT a, PT b, PT p) {
 
 // intersection point between ab and cd assuming unique intersection exists
 bool line_line_intersection(PT a, PT b, PT c, PT d, PT &ans) {
-    double a1 = a.y - b.y, b1 = b.x - a.x, c1 = cross(a, b);
-    double a2 = c.y - d.y, b2 = d.x - c.x, c2 = cross(c, d);
-    double det = a1 * b2 - a2 * b1;
+    ld a1 = a.y - b.y, b1 = b.x - a.x, c1 = cross(a, b);
+    ld a2 = c.y - d.y, b2 = d.x - c.x, c2 = cross(c, d);
+    ld det = a1 * b2 - a2 * b1;
     if (det == 0) return 0;
     ans = PT((b1 * c2 - b2 * c1) / det, (c1 * a2 - a1 * c2) / det);
     return 1;
@@ -2498,8 +2499,8 @@ bool line_line_intersection(PT a, PT b, PT c, PT d, PT &ans) {
 
 // intersection point between segment ab and segment cd assuming unique intersection exists
 bool seg_seg_intersection(PT a, PT b, PT c, PT d, PT &ans) {
-    double oa = cross2(c, d, a), ob = cross2(c, d, b);
-    double oc = cross2(a, b, c), od = cross2(a, b, d);
+    ld oa = cross2(c, d, a), ob = cross2(c, d, b);
+    ld oc = cross2(a, b, c), od = cross2(a, b, d);
     if (oa * ob < 0 && oc * od < 0){
         ans = (a * ob - b * oa) / (ob - oa);
         return 1;
@@ -2525,8 +2526,8 @@ set<PT> seg_seg_intersection_inside(PT a,  PT b,  PT c,  PT d) {
 // intersection  between segment ab and line cd
 // 0 if do not intersect, 1 if proper intersect, 2 if segment intersect
 int seg_line_relation(PT a, PT b, PT c, PT d) {
-    double p = cross2(c, d, a);
-    double q = cross2(c, d, b);
+    ld p = cross2(c, d, a);
+    ld q = cross2(c, d, b);
     if (sign(p) == 0 && sign(q) == 0) return 2;
     else if (p * q < 0) return 1;
     else return 0;
@@ -2541,7 +2542,7 @@ bool seg_line_intersection(PT a, PT b, PT c, PT d, PT &ans) {
 }
 
 // minimum distance from segment ab to segment cd
-double dist_from_seg_to_seg(PT a, PT b, PT c, PT d) {
+ld dist_from_seg_to_seg(PT a, PT b, PT c, PT d) {
     PT dummy;
     if (seg_seg_intersection(a, b, c, d, dummy)) return 0.0;
     else return min({dist_from_point_to_seg(a, b, c), dist_from_point_to_seg(a, b, d), 
@@ -2549,30 +2550,29 @@ double dist_from_seg_to_seg(PT a, PT b, PT c, PT d) {
 }
 
 // minimum distance from point c to ray (starting point a and direction vector b)
-double dist_from_point_to_ray(PT a, PT b, PT c) {
+ld dist_from_point_to_ray(PT a, PT b, PT c) {
     b = a + b;
-    double r = dot(c - a, b - a);
+    ld r = dot(c - a, b - a);
     if (r < 0.0) return dist(c, a);
     return dist_from_point_to_line(a, b, c);
 }
 
 // starting point as and direction vector ad
 bool ray_ray_intersection(PT as, PT ad, PT bs, PT bd) {
-    double dx = bs.x - as.x, dy = bs.y - as.y;
-    double det = bd.x * ad.y - bd.y * ad.x;
+    ld dx = bs.x - as.x, dy = bs.y - as.y;
+    ld det = bd.x * ad.y - bd.y * ad.x;
     if (fabs(det) < eps) return 0;
-    double u = (dy * bd.x - dx * bd.y) / det;
-    double v = (dy * ad.x - dx * ad.y) / det;
+    ld u = (dy * bd.x - dx * bd.y) / det;
+    ld v = (dy * ad.x - dx * ad.y) / det;
     if (sign(u) >= 0 && sign(v) >= 0) return 1;
     else return 0;
 }
 
-double ray_ray_distance(PT as, PT ad, PT bs, PT bd) {
+ld ray_ray_distance(PT as, PT ad, PT bs, PT bd) {
     if (ray_ray_intersection(as, ad, bs, bd)) return 0.0;
-    double ans = dist_from_point_to_ray(as, ad, bs);
+    ld ans = dist_from_point_to_ray(as, ad, bs);
     ans = min(ans, dist_from_point_to_ray(bs, bd, as));
     return ans;
 }
 $0
 endsnippet
-
