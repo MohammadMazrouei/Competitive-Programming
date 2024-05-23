@@ -114,25 +114,28 @@ autocmd filetype python nnoremap <space>3 :w <bar> bel vert term ++shell ++cols=
 autocmd filetype python nnoremap <space>4 :w <bar> bel vert term ++shell ++cols=50 python3 "%"<cr>
 autocmd filetype cpp,python nnoremap <space>5 :Test<cr>
 
-autocmd filetype vhdl nnoremap <space>9 :w <bar> bel vert term ++shell ++cols=50 ghdl -s %:r.vhdl && ghdl -a %:r.vhdl<cr>
-autocmd filetype vhdl nnoremap <space>3 :!ghdl -e %:r && ghdl -r %:r --vcd=%:r.vcd && gtkwave %:r.vcd<cr>
-
 set belloff=all
 autocmd Vimleave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel -ib")
 
 
 " plugins 
-" TODO use vim-plug instead vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'Vundlevim/vundle.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'tpope/vim-dispatch'
-Plugin 'Sirver/ultisnips'
-Plugin 'searleser97/cpbooster.vim'
-Plugin 'KarimElghamry/vim-auto-comment'
-call vundle#end()
+" curl -fLo ~/.vim/autoload/plug.vim && https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" PlugInstall, PlugUpdate, PlugClean
+
+call plug#begin()
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'tpope/vim-dispatch'
+Plug 'Sirver/ultisnips'
+Plug 'searleser97/cpbooster.vim'
+Plug 'KarimElghamry/vim-auto-comment'
+call plug#end()
+
 filetype plugin indent on
+
+"theme
+colorscheme dracula
+
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 "let g:ultisnipsjumpforwardtrigger='<c-b>'
@@ -140,8 +143,6 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 "let g:ultisnipsjumpbackwardtrigger='<c-z>'
 let g:UltiSnipsEditSplit='vertical'
 
-"theme
-colorscheme dracula
 
 "run this command -> git clone git@github.com:vim-scripts/errormarker.vim.git
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
