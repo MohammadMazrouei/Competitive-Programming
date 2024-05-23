@@ -102,26 +102,28 @@ nnoremap <Leader>; :2wincmd c<CR>
 
 
 " autocmds
-" compile and run
 set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -Wall\ -Wextra\ -O2\ -std=c++20\ -o\ %:r\ %
 " set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -O2\ -std=c++20\ -o\ %:r\ %
-autocmd filetype cpp nnoremap <space>9 :w <bar> Make <cr>
-autocmd filetype cpp nnoremap <space>2 :!xsel -b > in<cr><cr>
-autocmd filetype cpp nnoremap <space>3 :bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<cr>  
-autocmd filetype cpp nnoremap <space>4 :bel vert term ++shell ++cols=50 ./%:r<cr>
-autocmd filetype python nnoremap <space>2 :!xsel -b > in <cr>
-autocmd filetype python nnoremap <space>3 :w <bar> bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<cr>
-autocmd filetype python nnoremap <space>4 :w <bar> bel vert term ++shell ++cols=50 python3 "%"<cr>
-autocmd filetype cpp,python nnoremap <space>5 :Test<cr>
+
+autocmd filetype cpp nnoremap <space>9 :w <bar> Make <CR>
+autocmd filetype cpp nnoremap <space>2 :!xsel -b > in<CR><CR>
+autocmd filetype cpp nnoremap <space>3 :bel vert term ++shell ++cols=60 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<CR>  
+autocmd filetype cpp nnoremap <space>4 :bel vert term ++shell ++cols=60 ./%:r<CR>
+
+autocmd filetype python nnoremap <space>2 :!xsel -b > in <CR><CR>
+autocmd filetype python nnoremap <space>3 :w <bar> bel vert term ++shell ++cols=60 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<CR>
+autocmd filetype python nnoremap <space>4 :w <bar> bel vert term ++shell ++cols=60 python3 "%"<CR>
+
+autocmd filetype cpp,python nnoremap <space>5 :Test<CR>
 
 set belloff=all
 autocmd Vimleave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel -ib")
 
 
 " plugins 
+
 " curl -fLo ~/.vim/autoload/plug.vim && https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " PlugInstall, PlugUpdate, PlugClean
-
 call plug#begin()
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -131,11 +133,13 @@ Plug 'searleser97/cpbooster.vim'
 Plug 'KarimElghamry/vim-auto-comment'
 call plug#end()
 
-filetype plugin indent on
+" cd ~/.vim/bundle && git clone git@github.com:vim-scripts/errormarker.vim.git
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
-"theme
+" dracula theme
 colorscheme dracula
 
+" ultisnips
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 "let g:ultisnipsjumpforwardtrigger='<c-b>'
@@ -143,16 +147,11 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 "let g:ultisnipsjumpbackwardtrigger='<c-z>'
 let g:UltiSnipsEditSplit='vertical'
 
-
-"run this command -> git clone git@github.com:vim-scripts/errormarker.vim.git
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
-
-"inline comment mapping
+" inline comment mapping
 execute "set <M-a>=\ea"
-vnoremap <silent><M-a> :AutoInlineComment<CR>
 nnoremap <silent><M-a> :AutoInlineComment<CR>
-"block comment mapping
+vnoremap <silent><M-a> :AutoInlineComment<CR>
+" block comment mapping
 execute "set <M-o>=\eo"
-vnoremap <silent><M-o> :AutoBlockComment<CR>
 nnoremap <silent><M-o> :AutoBlockComment<CR>
-
+vnoremap <silent><M-o> :AutoBlockComment<CR>
