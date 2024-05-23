@@ -1,127 +1,156 @@
-"General editor settings
-set nocompatible
-set tabstop=4
+" options
+set number
+set relativenumber
+set scrolloff=10
+
 set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+
 set autoindent
 set smartindent
-set expandtab
-set mouse=a
-set ruler
-set showcmd
+
+set ignorecase
+set smartcase
+
+set nohlsearch
 set incsearch
-set shellslash
-setlocal number
-setlocal relativenumber
-set cino+=L0 
+
+set splitkeep=screen
+set splitright
+set splitbelow
+
+set noswapfile
+
+set updatetime=50
+set timeoutlen=300
+
+" highlight the line number of the cursor
+set cursorline
+set cursorlineopt=number
+
+" disable cursor-styling
+set guicursor=""
+set mouse=a
+
 set termguicolors
+
+set ruler
+
+set cino+=(s 
+
+set nocompatible
+
 syntax on
-filetype indent on
-filetype off
-setlocal indentkeys-=:
+filetype indent on 
 
-execute pathogen#infect()
 
-"Theme (requires Solarized Dark terminal theme to work properly)
-"let g:solarized_termcolors=256
-"set background=dark
-"colorscheme solarized
-"hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
+" mappings
+let mapleader = ' '
+let maplocalleader = ' '
 
-"Theme Dracula
-colorscheme dracula
+" better up/down
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-b> <C-b>zz
+nnoremap <C-f> <C-f>zz
 
-"keybindings for { completion, "jk" for escape, ctrl-a to select all
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {}    {}
-imap jk    <Esc>
-"imap kj    <Esc>
-map <C-a>	<esc>ggVG<CR>
-map <C-v> "+p
-vnoremap<C-c> "+y
-noremap Y "+y
-noremap P "+p
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-set belloff=all
-autocmd VimLeave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel -ib")
+" window movements
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-c> <C-w>c
 
-let mapleader = "\<Space>"
-noremap <Leader>q :q<CR>
-noremap <Leader>w :wq<CR>
-noremap <Leader>; :2wincmd c<CR>
-noremap <Leader>a ggVG
-noremap <Leader>o <C-O>
-noremap <Leader>i <C-I>
-noremap <Leader>r <C-R>
-noremap <Leader>y :%y+<CR> 
+" system clipboard
+nnoremap <Leader>y "+y
+vnoremap <Leader>y "+y
+nnoremap <Leader>Y "+y$
 
-"Move lines
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
-"nnoremap <M-j> :m .+1<CR>==
-"nnoremap <M-k> :m .-2<CR>==
-"inoremap <M-j> <Esc>:m .+1<CR>==gi
-"inoremap <M-k> <Esc>:m .-2<CR>==gi
+nnoremap <Leader>p "+p
+vnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>P "+P
 
-"Append template to new C++ files and go to line 66
-"autocmd BufNewFile *.cpp 0r /home/mohammad/Code/Library/Template.cpp | norm66G
-"
-"Compile and run
+" delete
+nnoremap <Leader>d "_d
+vnoremap <Leader>d "_d
+
+" line movement
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" personal
+inoremap jk <Esc>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>i <C-i>
+nnoremap <Leader>o <C-o>
+nnoremap <Leader>r <C-r>
+nnoremap <Leader>a ggVG
+inoremap {<CR> {<CR>}<Esc>O
+
+nnoremap J mzJ`z 
+nnoremap n nzzzv 
+nnoremap N Nzzzv 
+
+nnoremap - :Ex<CR>
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
+nnoremap <Leader>; :2wincmd c<CR>
+
+
+" autocmds
+" compile and run
 set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -Wall\ -Wextra\ -O2\ -std=c++20\ -o\ %:r\ %
-"set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -O2\ -std=c++20\ -o\ %:r\ %
-autocmd filetype cpp nnoremap <F9> :w <bar> Make <CR>
-autocmd filetype cpp nnoremap <F2> :!xsel -b > in<CR><CR>
-autocmd filetype cpp nnoremap <F3> :bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<CR>  
-autocmd filetype cpp nnoremap <F4> :bel vert term ++shell ++cols=50 ./%:r<CR>
-autocmd filetype python nnoremap <F2> :!xsel -b > in <CR>
-autocmd filetype python nnoremap <F3> :w <bar> bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<CR>
-autocmd filetype python nnoremap <F4> :w <bar> bel vert term ++shell ++cols=50 python3 "%"<CR>
-autocmd filetype cpp,python nnoremap <F5> :Test<CR>
+" set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -O2\ -std=c++20\ -o\ %:r\ %
+autocmd filetype cpp nnoremap <space>9 :w <bar> Make <cr>
+autocmd filetype cpp nnoremap <space>2 :!xsel -b > in<cr><cr>
+autocmd filetype cpp nnoremap <space>3 :bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<cr>  
+autocmd filetype cpp nnoremap <space>4 :bel vert term ++shell ++cols=50 ./%:r<cr>
+autocmd filetype python nnoremap <space>2 :!xsel -b > in <cr>
+autocmd filetype python nnoremap <space>3 :w <bar> bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<cr>
+autocmd filetype python nnoremap <space>4 :w <bar> bel vert term ++shell ++cols=50 python3 "%"<cr>
+autocmd filetype cpp,python nnoremap <space>5 :Test<cr>
 
-autocmd filetype cpp nnoremap <Space>9 :w <bar> Make <CR>
-autocmd filetype cpp nnoremap <Space>2 :!xsel -b > in<CR><CR>
-autocmd filetype cpp nnoremap <Space>3 :bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<CR>  
-autocmd filetype cpp nnoremap <Space>4 :bel vert term ++shell ++cols=50 ./%:r<CR>
-autocmd filetype python nnoremap <Space>2 :!xsel -b > in <CR>
-autocmd filetype python nnoremap <Space>3 :w <bar> bel vert term ++shell ++cols=50 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<CR>
-autocmd filetype python nnoremap <Space>4 :w <bar> bel vert term ++shell ++cols=50 python3 "%"<CR>
-autocmd filetype cpp,python nnoremap <Space>5 :Test<CR>
+autocmd filetype vhdl nnoremap <space>9 :w <bar> bel vert term ++shell ++cols=50 ghdl -s %:r.vhdl && ghdl -a %:r.vhdl<cr>
+autocmd filetype vhdl nnoremap <space>3 :!ghdl -e %:r && ghdl -r %:r --vcd=%:r.vcd && gtkwave %:r.vcd<cr>
 
-autocmd filetype vhdl nnoremap <F9> :w <bar> bel vert term ++shell ++cols=50 ghdl -s %:r.vhdl && ghdl -a %:r.vhdl<CR>
-autocmd filetype vhdl nnoremap <F3> :!ghdl -e %:r && ghdl -r %:r --vcd=%:r.vcd && gtkwave %:r.vcd<CR>
-autocmd filetype vhdl nnoremap <Space>9 :w <bar> bel vert term ++shell ++cols=50 ghdl -s %:r.vhdl && ghdl -a %:r.vhdl<CR>
-autocmd filetype vhdl nnoremap <Space>3 :!ghdl -e %:r && ghdl -r %:r --vcd=%:r.vcd && gtkwave %:r.vcd<CR>
+set belloff=all
+autocmd Vimleave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel -ib")
 
-"Plugin setup
+
+" plugins 
+" TODO use vim-plug instead vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'Vundlevim/vundle.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-dispatch'
-Plugin 'SirVer/ultisnips'
+Plugin 'Sirver/ultisnips'
 Plugin 'searleser97/cpbooster.vim'
 Plugin 'KarimElghamry/vim-auto-comment'
 call vundle#end()
 filetype plugin indent on
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
-"let g:UltiSnipsJumpForwardTrigger='<c-b>'
+"let g:ultisnipsjumpforwardtrigger='<c-b>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-"let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+"let g:ultisnipsjumpbackwardtrigger='<c-z>'
 let g:UltiSnipsEditSplit='vertical'
 
-"Run this command -> git clone git@github.com:vim-scripts/errormarker.vim.git
+"theme
+colorscheme dracula
+
+"run this command -> git clone git@github.com:vim-scripts/errormarker.vim.git
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
-"Inline comment mapping
+"inline comment mapping
 execute "set <M-a>=\ea"
 vnoremap <silent><M-a> :AutoInlineComment<CR>
 nnoremap <silent><M-a> :AutoInlineComment<CR>
-"Block comment mapping
+"block comment mapping
 execute "set <M-o>=\eo"
 vnoremap <silent><M-o> :AutoBlockComment<CR>
 nnoremap <silent><M-o> :AutoBlockComment<CR>
