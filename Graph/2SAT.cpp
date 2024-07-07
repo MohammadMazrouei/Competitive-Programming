@@ -22,10 +22,10 @@ struct TwoSat {
             for (auto v : e[u]) {
                 if (dfn[v] == -1) {
                     tarjan(v);
-                    low[u] = std::min(low[u], low[v]);
+                    low[u] = min(low[u], low[v]);
                 } 
                 else if (id[v] == -1) {
-                    low[u] = std::min(low[u], dfn[v]);
+                    low[u] = min(low[u], dfn[v]);
                 }
             }
             if (dfn[u] == low[u]) {
@@ -43,7 +43,7 @@ struct TwoSat {
                 tarjan(i);
             }
         }
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             if (id[2 * i] == id[2 * i + 1]) {
                 return false;
             }
@@ -51,7 +51,7 @@ struct TwoSat {
         }
         return true;
     }
-    std::vector<bool> answer() { 
+    vector<bool> answer() { 
         return ans;
     }
 };

@@ -15,16 +15,16 @@ void solve() {
     }
 
     vector<int> vis(n);
-    auto dfs = [&](int v, auto&& dfs) -> void {
+    auto dfs = [&](auto &&self, int v) -> void {
         vis[v] = 1;
         for (auto u : adj[v]) {
             if (!vis[u]) {
-                dfs(u, dfs);
+                self(self, u);
             }
         }
     };
 
-    dfs(0, dfs);
+    dfs(dfs, 0);
 }
 
 int32_t main() {
