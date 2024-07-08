@@ -16,7 +16,7 @@ void solve() {
 
     vector<int> vis(n);
     auto dfs = [&](auto &&self, int v) -> void {
-        vis[v] = 1;
+        vis[v] = true;
         for (auto u : adj[v]) {
             if (!vis[u]) {
                 self(self, u);
