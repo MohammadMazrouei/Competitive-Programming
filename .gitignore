@@ -1,6 +1,13 @@
+Data_Structure/Fenwick
+
 Graph/DFS
 Graph/2SAT
+Graph/Bridges
+Graph/Euler_Tour
+Graph/EBCC
+Graph/HLD
 
 String/Split
 String/Strip
 String/Z_Function
+String/Manacher
