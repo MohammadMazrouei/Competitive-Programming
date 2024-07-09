@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string strip(string s, char ch = ' ') {
-    while (!s.empty() && s.back() == ch) {
-        s.pop_back();
+string strip(const string &s, const char ch = ' ') {
+    int n = s.size();
+    while (n > 0 && s[n - 1] == ch) {
+        n--;
     }
 
-    int n = s.size();
     string res = "";
     for (int i = 0; i < n; i++) {
         if (s[i] == ch) {
@@ -22,9 +22,9 @@ string strip(string s, char ch = ' ') {
 
 void solve() {
     string s;
-    cin >> s;
+    getline(cin, s);
 
-    s = string(s);
+    s = strip(s);
     cout << s << '\n';
 }
 

@@ -8,6 +8,7 @@ vector<int> manacher(const string &s) {
         t += c;
         t += '#';
     }
+
     int n = t.size();
     vector<int> r(n);
     for (int i = 0, j = 0; i < n; i++) {
@@ -15,7 +16,7 @@ vector<int> manacher(const string &s) {
             r[i] = min(r[2 * j - i], j + r[j] - i);
         }
         while (i - r[i] >= 0 && i + r[i] < n && t[i - r[i]] == t[i + r[i]]) {
-            r[i] += 1;
+            r[i]++;
         }
         if (i + r[i] > j + r[j]) {
             j = i;
