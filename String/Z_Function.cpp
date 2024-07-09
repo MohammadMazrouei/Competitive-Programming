@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Longest prefix start at index i that match with string s, O(n)
 vector<int> z_function(const string &s) {
     int n = s.size();
     vector<int> z(n);

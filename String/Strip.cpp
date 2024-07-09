@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Strip String, O(n)
 string strip(const string &s, const char ch = ' ') {
     int n = s.size();
     while (n > 0 && s[n - 1] == ch) {

@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Find all sub-palindrome, O(n)
 // r_even[i] = (r[2i] - 1) / 2, r_odd[i] = r[2i + 1] / 2
 vector<int> manacher(const string &s) {
     string t = "#";
@@ -29,7 +30,14 @@ void solve() {
     string s;
     cin >> s;
 
+    int odd, even;
+    cin >> odd >> even;
+
     vector<int> r = manacher(s);
+
+    int n_odd = r[2 * odd + 1] / 2;
+    int n_even = (r[2 * even] - 1) / 2;
+    cout << n_odd << ' ' << n_even << '\n'; 
 }
 
 int32_t main() {
