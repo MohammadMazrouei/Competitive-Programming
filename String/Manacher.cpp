@@ -30,14 +30,27 @@ void solve() {
     string s;
     cin >> s;
 
-    int odd, even;
-    cin >> odd >> even;
+    vector<int> m = manacher(s);
 
-    vector<int> r = manacher(s);
+    auto is_palindrome = [&](int l, int r) -> bool {
+        int len = r - l + 1, mid = l + r + 1;
+        return (m[mid] - (len % 2 == 0)) >= len;
+    };
 
-    int n_odd = r[2 * odd + 1] / 2;
-    int n_even = (r[2 * even] - 1) / 2;
-    cout << n_odd << ' ' << n_even << '\n'; 
+    int q;
+    cin >> q;
+    while (q--) {
+        int l, r;
+        cin >> l >> r;
+        l--, r--;
+
+        if (is_palindrome(l, r)) {
+            cout << "YES\n";
+        }
+        else {
+            cout << "NO\n";
+        }
+    }
 }
 
 int32_t main() {
