@@ -26,6 +26,10 @@ void solve() {
     cin >> s;
 
     vector<int> z = z_function(s);
+    for (auto x : z) {
+        cout << x << ' ';
+    }
+    cout << '\n';
 }
 
 int32_t main() {

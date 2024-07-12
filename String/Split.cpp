@@ -27,7 +27,7 @@ void solve() {
     getline(cin, s);
 
     vector<string> sp = split(s);
-    for (string &str : sp) {
+    for (auto str : sp) {
         cout << str << '\n';
     }
 }
