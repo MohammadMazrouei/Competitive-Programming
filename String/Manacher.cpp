@@ -34,7 +34,8 @@ void solve() {
 
     auto is_palindrome = [&](int l, int r) -> bool {
         int len = r - l + 1, mid = l + r + 1;
-        return (m[mid] - (len % 2 == 0)) >= len;
+        int num = (m[mid] - (len % 2 == 0)) / 2;
+        return (2 * num - len % 2) >= len;
     };
 
     int q;
