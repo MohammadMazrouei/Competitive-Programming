@@ -6,7 +6,7 @@ void solve() {
     cin >> n >> m;
 
     vector<vector<int>> adj(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < m; i++) {
         int u, v;
         cin >> u >> v;
         u--, v--;
@@ -14,14 +14,20 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    vector<int> vis(n);
+    // Depth First Search, O(n + m)
+    vector<bool> vis(n);
+    vector<int> in(n), out(n), order;
+    int timer = 0;
     auto dfs = [&](auto &&self, int v) -> void {
         vis[v] = true;
+        in[v] = timer++;
+        order.push_back(v);
         for (auto u : adj[v]) {
             if (!vis[u]) {
                 self(self, u);
             }
         }
+        out[v] = timer;
     };
 
     dfs(dfs, 0);
