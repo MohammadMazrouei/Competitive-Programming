@@ -31,6 +31,11 @@ void solve() {
     };
 
     dfs(dfs, 0);
+
+    int sz = (int)order.size();
+    for (int i = 0; i < sz; i++) {
+        cout << order[i] + 1 << " \n"[i == sz - 1];
+    }
 }
 
 int32_t main() {

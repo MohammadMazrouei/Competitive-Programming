@@ -39,6 +39,11 @@ void solve() {
     };
 
     bfs(0);
+
+    for (int i = 0; i < n; i++) {
+        int d = vis[i] ? dist[i] : -1;
+        cout << d << " \n"[i == n - 1]; 
+    }
 }
 
 int32_t main() {
