@@ -2,7 +2,7 @@
 using namespace std;
 
 // Find all sub-palindrome, O(n)
-// r_even[i] = (r[2i] - 1) / 2, r_odd[i] = r[2i + 1] / 2
+// m_even[i] = (m[2i] - 1) / 2, m_odd[i] = m[2i + 1] / 2
 vector<int> manacher(const string &s) {
     string t = "#";
     for (auto c : s) {
@@ -11,19 +11,19 @@ vector<int> manacher(const string &s) {
     }
 
     int n = t.size();
-    vector<int> r(n);
+    vector<int> m(n);
     for (int i = 0, j = 0; i < n; i++) {
-        if (2 * j - i >= 0 && j + r[j] > i) {
-            r[i] = min(r[2 * j - i], j + r[j] - i);
+        if (2 * j - i >= 0 && j + m[j] > i) {
+            m[i] = min(m[2 * j - i], j + m[j] - i);
         }
-        while (i - r[i] >= 0 && i + r[i] < n && t[i - r[i]] == t[i + r[i]]) {
-            r[i]++;
+        while (i - m[i] >= 0 && i + m[i] < n && t[i - m[i]] == t[i + m[i]]) {
+            m[i]++;
         }
-        if (i + r[i] > j + r[j]) {
+        if (i + m[i] > j + m[j]) {
             j = i;
         }
     }
-    return r;
+    return m;
 }
 
 void solve() {
