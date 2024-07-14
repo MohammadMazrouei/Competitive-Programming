@@ -4,6 +4,8 @@ Data_Structures/Segment_Tree_with_Lazy_Propagation
 Data_Structures/Segment_Tree
 
 Graph/DFS
+Graph/BFS
+Graph/Centroids
 Graph/2SAT
 Graph/Bridges
 Graph/Euler_Tour
@@ -14,3 +16,4 @@ String/Split
 String/Strip
 String/Z_Function
 String/Manacher
+String/Suffix_Array
