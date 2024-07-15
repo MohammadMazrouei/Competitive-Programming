@@ -6,9 +6,9 @@ template <typename T>
 struct MStack {
     stack<pair<T, T>> st;
     
-    void push(T element) {
-        T mn = st.empty() ? element : min(element, st.top().second);
-        st.push({element, mn});
+    void push(T v) {
+        T mn = st.empty() ? v : min(v, st.top().second);
+        st.push({v, mn});
     }
     void pop() {
         st.pop();
