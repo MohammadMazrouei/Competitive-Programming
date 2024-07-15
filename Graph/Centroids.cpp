@@ -27,7 +27,7 @@ void solve() {
             sz[v] += sz[u];
         }
     };
-    auto find_centroids = [&]() {
+    auto find_centroids = [&]() -> void {
         int v = 0;
         dfs(dfs, v, -1);
         while (true) {
