@@ -6,9 +6,10 @@ Data_Structures/Segment_Tree
 Graph/DFS
 Graph/BFS
 Graph/Centroids
-Graph/2SAT
-Graph/Bridges
 Graph/Euler_Tour
+Graph/Bridges
+Graph/Dijkstra
+Graph/2SAT
 Graph/EBCC
 Graph/HLD
 
