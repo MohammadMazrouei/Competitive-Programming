@@ -9,7 +9,8 @@ struct SparseTable {
     int n, lg;
     vector<vector<T>> t;
 
-    SparseTable(vector<T> &v) {
+    SparseTable() {}
+    SparseTable(const vector<T> &v) {
         n = v.size();
         lg = __lg(n) + 2;
         t.resize(n);
@@ -19,10 +20,10 @@ struct SparseTable {
         build(v);
     }
 
-    inline T f(const T &a, const T &b) {
+    inline T f(const T &a, const T &b) const {
         return min(a, b);
     }
-    void build(vector<T> &v) {
+    void build(const vector<T> &v) {
         for (int i = 0; i < n; i++) {
             t[i][0] = v[i];
         }
