@@ -6,6 +6,7 @@ Data_Structures/Segment_Tree
 Graph/DFS
 Graph/BFS
 Graph/Cycle_Detection_Directed_Graph
+Graph/Cycle_Detection_Undirected_Graph
 Graph/Centroids
 Graph/Euler_Tour
 Graph/Bridges
