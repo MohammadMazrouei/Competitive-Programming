@@ -11,12 +11,6 @@ struct SparseTable {
 
     SparseTable() {}
     SparseTable(const vector<T> &v) {
-        n = v.size();
-        lg = __lg(n) + 2;
-        t.resize(n);
-        for (int i = 0; i < n; i++) {
-            t[i].resize(lg);
-        }
         build(v);
     }
 
@@ -24,6 +18,13 @@ struct SparseTable {
         return min(a, b);
     }
     void build(const vector<T> &v) {
+        n = v.size();
+        lg = __lg(n) + 2;
+        t.resize(n);
+        for (int i = 0; i < n; i++) {
+            t[i].resize(lg);
+        }
+
         for (int i = 0; i < n; i++) {
             t[i][0] = v[i];
         }
