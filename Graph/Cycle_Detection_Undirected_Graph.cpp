@@ -21,7 +21,7 @@ void solve() {
     auto dfs = [&](auto &&self, int v, int p) -> bool {
         vis[v] = true;
         for (auto u : adj[v]) {
-            if(u == p) {
+            if (u == p) {
                 continue; 
             }
             if (vis[u]) {
