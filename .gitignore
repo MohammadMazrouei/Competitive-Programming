@@ -12,6 +12,7 @@ Graph/BFS
 Graph/Cycle_Detection_Directed_Graph
 Graph/Cycle_Detection_Undirected_Graph
 Graph/Articulation_Bridges
+Graph/Articulation_Points
 Graph/Centroids
 Graph/Euler_Tour
 Graph/Dijkstra
