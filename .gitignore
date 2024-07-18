@@ -4,8 +4,9 @@ Data_Structures/Sparse_Table
 Data_Structures/DSU
 Data_Structures/Ordered_Set
 Data_Structures/Fenwick_Tree
-Data_Structures/Segment_Tree_with_Lazy_Propagation
+Data_Structures/Fenwick_Tree_Range_Update_Range_Query
 Data_Structures/Segment_Tree
+Data_Structures/Segment_Tree_with_Lazy_Propagation
 
 Graph/DFS
 Graph/BFS
