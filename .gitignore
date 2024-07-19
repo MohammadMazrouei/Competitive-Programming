@@ -5,8 +5,6 @@ Data_Structures/DSU
 Data_Structures/Ordered_Set
 Data_Structures/Fenwick_Tree
 Data_Structures/Fenwick_Tree_Range_Update_Range_Query
-Data_Structures/Segment_Tree
-Data_Structures/Segment_Tree_with_Lazy_Propagation
 
 Graph/DFS
 Graph/BFS
@@ -15,11 +13,7 @@ Graph/Cycle_Detection_Undirected_Graph
 Graph/Articulation_Bridges
 Graph/Articulation_Points
 Graph/Centroids
-Graph/Euler_Tour
 Graph/Dijkstra
-Graph/2SAT
-Graph/EBCC
-Graph/HLD
 
 String/Split
 String/Strip
