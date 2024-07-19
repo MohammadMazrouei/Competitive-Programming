@@ -105,16 +105,16 @@ nnoremap <Leader>; :2wincmd c<CR>
 set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -Wall\ -Wextra\ -O2\ -std=c++20\ -o\ %:r\ %
 " set makeprg=g++\ -static\ -DDEBUG\ -lm\ -s\ -x\ c++\ -O2\ -std=c++20\ -o\ %:r\ %
 
-autocmd filetype cpp nnoremap <space>9 :w <bar> Make <CR>
-autocmd filetype cpp nnoremap <space>2 :!xsel -b > in<CR><CR>
-autocmd filetype cpp nnoremap <space>3 :bel vert term ++shell ++cols=60 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<CR>  
-autocmd filetype cpp nnoremap <space>4 :bel vert term ++shell ++cols=60 ./%:r<CR>
+autocmd filetype cpp nnoremap <Space>9 :w <bar> Make <CR>
+autocmd filetype cpp nnoremap <Space>2 :!xsel -b > in<CR><CR>
+autocmd filetype cpp nnoremap <Space>3 :bel vert term ++shell ++cols=60 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && ./%:r < in<CR>  
+autocmd filetype cpp nnoremap <Space>4 :bel vert term ++shell ++cols=60 ./%:r<CR>
 
-autocmd filetype python nnoremap <space>2 :!xsel -b > in <CR><CR>
-autocmd filetype python nnoremap <space>3 :w <bar> bel vert term ++shell ++cols=60 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<CR>
-autocmd filetype python nnoremap <space>4 :w <bar> bel vert term ++shell ++cols=60 python3 "%"<CR>
+autocmd filetype python nnoremap <Space>2 :!xsel -b > in <CR><CR>
+autocmd filetype python nnoremap <Space>3 :w <bar> bel vert term ++shell ++cols=60 printf '\e[1;32m' && cat in && printf '\n____________________\n\n\e[0m' && python3 "%" < in<CR>
+autocmd filetype python nnoremap <Space>4 :w <bar> bel vert term ++shell ++cols=60 python3 "%"<CR>
 
-autocmd filetype cpp,python nnoremap <space>5 :Test<CR>
+autocmd filetype cpp,python nnoremap <Space>5 :Test<CR>
 
 set belloff=all
 autocmd Vimleave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel -ib")

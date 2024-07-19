@@ -1,17 +1,15 @@
 #define dbg(...) cerr << __DEBUG_UTIL__::outer << __LINE__ << ": [", __DEBUG_UTIL__::printer(#__VA_ARGS__, __VA_ARGS__)
 #define dbgarr(...) cerr << __DEBUG_UTIL__::outer << __LINE__ << ": [", __DEBUG_UTIL__::printerArr(#__VA_ARGS__, __VA_ARGS__)
-#define LINE cerr << "\e[91m" << "____________________" << "\e[39m" << endl << endl;
-#define TIME cerr << "\e[91m" << "finished in " << clock() * 1.0 / CLOCKS_PER_SEC << " sec" << "\e[39m" << endl;
 mt19937 rnd(chrono::steady_clock::now().time_since_epoch().count());
 
 // #define cerr cout
 namespace __DEBUG_UTIL__
 {
-    bool I_want_colored_output = true; 
-    string white = I_want_colored_output ? "\033[0;m" : "";
-    string outer = I_want_colored_output ? "\033[0;31m" : "";    // red
-    string varName = I_want_colored_output ? "\033[1;34m" : "";  // blue
-    string varValue = I_want_colored_output ? "\033[1;32m" : ""; // green
+    bool colored_output = false; 
+    string white = colored_output ? "\033[0;m" : "";
+    string outer = colored_output ? "\033[0;31m" : "";     // red
+    string var_name = colored_output ? "\033[1;34m" : "";  // blue
+    string var_value = colored_output ? "\033[1;32m" : ""; // green
 
     template <typename T>
     concept is_iterable = requires(T &&x) { begin(x); } && !is_same_v<remove_cvref_t<T>, string>;
@@ -87,9 +85,9 @@ namespace __DEBUG_UTIL__
         else if constexpr (requires { get<0>(x); }) {
             /* Tuple */
             int f = 0;
-            cerr << '(', apply([&f](auto... args)
-                               { ((cerr << (f++ ? "," : ""), print(args)), ...); },
-                               x);
+            cerr << '(', apply([&f](auto... args) {
+                              ((cerr << (f++ ? "," : ""), print(args)), ...);
+                         }, x);
             cerr << ')';
         }
         else {
@@ -108,8 +106,8 @@ namespace __DEBUG_UTIL__
                 bracket--;
             }
         }
-        cerr << varName;
-        cerr.write(names, i) << outer << " = " << varValue;
+        cerr << var_name;
+        cerr.write(names, i) << outer << " = " << var_value;
         print(head);
         if constexpr (sizeof...(tail)) {
             cerr << outer << " ||", printer(names + i + 1, tail...);
@@ -122,12 +120,12 @@ namespace __DEBUG_UTIL__
     template <typename T, typename... V>
     void printerArr(const char *names, T arr[], size_t N, V... tail) {
         size_t i = 0;
-        cerr << varName;
+        cerr << var_name;
         for (; names[i] and names[i] != ','; i++) {
             cerr << names[i];
         }
         for (i++; names[i] and names[i] != ','; i++);
-        cerr << outer << " = " << varValue << "{";
+        cerr << outer << " = " << var_value << "{";
         for (size_t ind = 0; ind < N; ind++) {
             cerr << (ind ? "," : ""), print(arr[ind]);
         }
