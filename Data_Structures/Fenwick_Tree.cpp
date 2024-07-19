@@ -125,6 +125,11 @@ void solve() {
             l--, r--;
             cout << fen.get(l, r) << '\n';
         }
+        else if (t == 3) {
+            int k;
+            cin >> k;
+            cout << fen.select(k) << '\n';
+        }
     }
 }
 
