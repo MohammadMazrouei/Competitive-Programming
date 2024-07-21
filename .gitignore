@@ -8,6 +8,7 @@ Data_Structures/Fenwick_Tree_Range_Update_Range_Query
 
 Graph/DFS
 Graph/BFS
+Graph/Topological_Sorting
 Graph/Cycle_Detection_Directed_Graph
 Graph/Cycle_Detection_Undirected_Graph
 Graph/Articulation_Bridges
