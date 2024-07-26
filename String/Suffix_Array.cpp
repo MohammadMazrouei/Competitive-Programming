@@ -1,26 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// with global array is faster (1.9s vs 2.9s for n = 1e7)
+// constexpr n = 1e7, lg = 25; int t[n][lg];
+template <typename T>
+struct SparseTable {
+    int n, lg;
+    vector<vector<T>> t;
+
+    SparseTable() {}
+    SparseTable(const vector<T> &v) {
+        build(v);
+    }
+
+    inline T f(const T &a, const T &b) const {
+        return min(a, b);
+    }
+    void build(const vector<T> &v) {
+        n = v.size();
+        lg = __lg(n) + 2;
+        t.resize(n);
+        for (int i = 0; i < n; i++) {
+            t[i].resize(lg);
+        }
+
+        for (int i = 0; i < n; i++) {
+            t[i][0] = v[i];
+        }
+        for (int k = 1; k < lg; k++) {
+            for (int i = 0; i + (1 << k) - 1 < n; i++) {
+                t[i][k] = f(t[i][k - 1], t[i + (1 << (k - 1))][k - 1]);
+            }
+        }
+    }
+    T get(int l, int r) { 
+        assert(l >= 0 && l < n && r >= 0 && r < n);
+        //int k = __builtin_clzll(1) - __builtin_clzll(r - l + 1);
+        int k = __builtin_clz(1) - __builtin_clz(r - l + 1);
+        return f(t[l][k], t[r - (1 << k) + 1][k]);
+    }
+};
+
+// Suffix Array, build -> O(n*log(n)), lcp -> O(n)
+// Numbrer of differents substrings = (n^2 + n) / 2 - sum(lcp)
 struct SuffixArray {
     int n;
     string s;
     vector<int> sa, lcp, rnk;
-    //vector<int> lg;
-    //vector<vector<int>> t;
+    SparseTable<int> t;
 
     SuffixArray(const string &_s, const int char_bound = 256) {
         n = _s.size();
         s = _s;
         suffix_array(s + '$', char_bound);
         build_lcp(s, sa);
+        t.build(lcp);
     }
 
     void suffix_array(const string &s, const int char_bound) {
         int n = s.size();
         sa.resize(n);
-        if (n == 0) {
-            return;
-        }
 
         if (char_bound != -1) {
             vector<int> aux(char_bound, 0);
@@ -39,7 +78,9 @@ struct SuffixArray {
         } 
         else {
             iota(sa.begin(), sa.end(), 0);
-            sort(sa.begin(), sa.end(), [&s](int i, int j) { return s[i] < s[j]; });
+            sort(sa.begin(), sa.end(), [&s](int i, int j) { 
+                return s[i] < s[j]; 
+            });
         }
 
         vector<int> sorted_by_second(n);
@@ -112,6 +153,7 @@ struct SuffixArray {
         }
     }   
 
+    // O(|t|*log(n))
     int lower_bound(const string &t) {
         int l = 0, h = n - 1, ind = n;
         while (l <= h) {
@@ -167,50 +209,34 @@ struct SuffixArray {
         return ind;
     }
 
-    /*
-    void build() {
-        int LG = 20;
-    int sz = n - 1;
-    t.resize(sz);
-    for (int i = 0; i < sz; i++) {
-      t[i].resize(LG);
-      t[i][0] = lcp[i];
-    }
-    for (int k = 1; k < LG; ++k) {
-      for (int i = 0; i + (1 << k) - 1 < sz; ++i) {
-        t[i][k] = min(t[i][k - 1], t[i + (1 << (k - 1))][k - 1]);
-      }
-    }
-  }
-    void prec() {
-        lg.resize(n, 0);
-        for (int i = 2; i < n; i++) lg[i] = lg[i / 2] + 1;
-    }
-
-    int query(int l, int r) { // minimum of lcp[l], ..., lcp[r]
-        int k = lg[r - l + 1];
-        return min(t[l][k], t[r - (1 << k) + 1][k]);
-    }
-
-    // occurrences of s[p, ..., p + len - 1]
+    // Occurrences of s[p, ..., p + len - 1], O(log(n))
     pair<int, int> find_occurrence(int p, int len) {
         p = rnk[p];
         pair<int, int> ans = {p, p};
         int l = 0, r = p - 1;
         while (l <= r) {
-            int mid = (l + r) / 2;
-            if (query(mid, p - 1) >= len) ans.first = mid, r = mid - 1;
-            else l = mid + 1;
+            int mid = (l + r) >> 1;
+            if (t.get(mid, p - 1) >= len) {
+                ans.first = mid; 
+                r = mid - 1;
+            }
+            else {
+                l = mid + 1;
+            }
         }
         l = p + 1, r = n - 1;
         while (l <= r) {
-            int mid = (l + r) / 2;
-            if (query(p, mid - 1) >= len) ans.second = mid, l = mid + 1;
-            else r = mid - 1;
+            int mid = (l + r) >> 1;
+            if (t.get(p, mid - 1) >= len) {
+                ans.second = mid; 
+                l = mid + 1;
+            }
+            else {
+                r = mid - 1;
+            }
         }
         return ans;
     }
-    */
 };
 
 void solve() {
@@ -218,6 +244,14 @@ void solve() {
     cin >> s;
 
     SuffixArray sa(s);
+
+    int n = s.size();
+    for (int i = 0; i < n; i++) {
+        cout << sa.sa[i] << " \n"[i == n - 1];
+    }
+    for (int i = 0; i < n - 1; i++) {
+        cout << sa.lcp[i] <<  " \n"[i == n - 2];
+    }
 
     int q;
     cin >> q;
@@ -227,6 +261,16 @@ void solve() {
 
         int num = sa.upper_bound(t) - sa.lower_bound(t);
         cout << num << '\n';
+    }
+
+    cin >> q;
+    while (q--) {
+        int p, len;
+        cin >> p >> len;
+        p--;
+
+        pair<int, int> num = sa.find_occurrence(p, len);
+        cout << num.second - num.first + 1 << '\n';
     }
 }
 
