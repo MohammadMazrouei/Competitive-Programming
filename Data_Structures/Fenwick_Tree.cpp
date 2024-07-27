@@ -38,7 +38,7 @@ struct FenwickTree {
         return ans;
     }
     T get(int l, int r) {
-        assert(l >= 0 && l < n && r >= 0 && r < n);
+        assert(l >= 0 && l <= r && r < n);
         return get(r) - get(l - 1);
     }
     // Return kth largest element
@@ -85,7 +85,7 @@ struct FenwickTree2 {
         }
     }
     void add(int l, int r, T v) {
-        assert(l >= 0 && l < n && r >= 0 && r < n);
+        assert(l >= 0 && l <= r && r < n);
         add(l, v);
         add(r + 1, -v);
     }

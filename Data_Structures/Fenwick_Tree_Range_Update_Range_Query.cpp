@@ -28,7 +28,7 @@ struct FenwickTree {
         }
     }
     void add(int l, int r, T v) {
-        assert(l >= 0 && l < n && r >= 0 && r < n);
+        assert(l >= 0 && l <= r && r < n);
         modify(l, v, -v * (l - 1));
         modify(r, -v, v * r);
     }
@@ -41,7 +41,7 @@ struct FenwickTree {
         return mul * x + add;
     }
     T get(int l, int r) {
-        assert(l >= 0 && l < n && r >= 0 && r < n);
+        assert(l >= 0 && l <= r && r < n);
         return get(r) - get(l - 1);
     }
 };
