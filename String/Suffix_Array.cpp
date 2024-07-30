@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// with global array is faster (1.9s vs 2.9s for n = 1e7)
+// with global array is faster (2s vs 3s for n = 1e7)
 // constexpr n = 1e7, lg = 25; int t[n][lg];
 template <typename T>
 struct SparseTable {
@@ -19,10 +19,7 @@ struct SparseTable {
     void build(const vector<T> &v) {
         n = v.size();
         lg = __lg(n) + 2;
-        t.resize(n);
-        for (int i = 0; i < n; i++) {
-            t[i].resize(lg);
-        }
+        t.assign(n, vector<T>(lg));
 
         for (int i = 0; i < n; i++) {
             t[i][0] = v[i];
@@ -34,9 +31,9 @@ struct SparseTable {
         }
     }
     T get(int l, int r) { 
-        assert(l >= 0 && l < n && r >= 0 && r < n);
-        //int k = __builtin_clzll(1) - __builtin_clzll(r - l + 1);
+        assert(l >= 0 && l <= r && r < n);
         int k = __builtin_clz(1) - __builtin_clz(r - l + 1);
+        //int k = __builtin_clzll(1) - __builtin_clzll(r - l + 1);
         return f(t[l][k], t[r - (1 << k) + 1][k]);
     }
 };
@@ -258,7 +255,6 @@ void solve() {
     while (q--) {
         string t;
         cin >> t;
-
         int num = sa.upper_bound(t) - sa.lower_bound(t);
         cout << num << '\n';
     }
@@ -268,7 +264,6 @@ void solve() {
         int p, len;
         cin >> p >> len;
         p--;
-
         pair<int, int> num = sa.find_occurrence(p, len);
         cout << num.second - num.first + 1 << '\n';
     }
