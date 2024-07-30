@@ -17,8 +17,8 @@ Graph/BFS
 Graph/Topological_Sorting
 Graph/Cycle_Detection_Directed_Graph
 Graph/Cycle_Detection_Undirected_Graph
-Graph/Articulation_Bridges
 Graph/Articulation_Points
+Graph/Articulation_Bridges
 Graph/Centroids
 Graph/Floyd_Warshall
 Graph/Dijkstra
