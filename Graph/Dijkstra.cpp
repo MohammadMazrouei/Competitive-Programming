@@ -52,7 +52,6 @@ void solve() {
         int64_t d = dist[i] != INF ? dist[i] : -1;
         cout << d << " \n"[i == n - 1];
     }
-
 }
 
 int32_t main() {
