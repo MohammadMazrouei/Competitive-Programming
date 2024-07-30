@@ -9,8 +9,7 @@ struct SegmentTree {
 
         template <typename M>
         void init(const M &v) {
-            sum = v;
-            mn = v;
+            sum = mn = v;
             cnt = 1;
         }
     };
