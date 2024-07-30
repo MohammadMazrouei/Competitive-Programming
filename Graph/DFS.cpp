@@ -30,11 +30,14 @@ void solve() {
         out[v] = timer;
     };
 
-    dfs(dfs, 0);
+    for (int v = 0; v < n; v++) {
+        if (!vis[v]) {
+            dfs(dfs, v);
+        }
+    }
 
-    int sz = (int)order.size();
-    for (int i = 0; i < sz; i++) {
-        cout << order[i] + 1 << " \n"[i == sz - 1];
+    for (int i = 0; i < n; i++) {
+        cout << order[i] + 1 << " \n"[i == n - 1];
     }
 }
 
