@@ -50,7 +50,7 @@ void solve() {
     int sz = bridges.size();
     cout << sz << '\n';
     for (int i = 0; i < sz; i++) {
-        cout << bridges[i][0] + 1 << ' ' << bridges[i][0] + 1 << '\n';
+        cout << bridges[i][0] + 1 << ' ' << bridges[i][1] + 1 << '\n';
     }
 }
 
