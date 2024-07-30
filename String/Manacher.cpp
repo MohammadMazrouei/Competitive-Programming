@@ -4,10 +4,10 @@ using namespace std;
 // Find all sub-palindrome, O(n)
 // m_even[i] = (m[2i] - 1) / 2, m_odd[i] = m[2i + 1] / 2
 vector<int> manacher(const string &s) {
-    string t = "$";
+    string t = "#";
     for (auto c : s) {
         t += c;
-        t += '$';
+        t += '#';
     }
 
     int n = t.size();
@@ -44,7 +44,6 @@ void solve() {
         int l, r;
         cin >> l >> r;
         l--, r--;
-
         if (is_palindrome(l, r)) {
             cout << "YES\n";
         }
