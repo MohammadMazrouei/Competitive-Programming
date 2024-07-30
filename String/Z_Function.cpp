@@ -25,11 +25,11 @@ void solve() {
     string s;
     cin >> s;
 
+    int n = s.size();
     vector<int> z = z_function(s);
-    for (auto x : z) {
-        cout << x << ' ';
+    for (int i = 0; i < n; i++) {
+        cout << z[i] << " \n"[i == n - 1];
     }
-    cout << '\n';
 }
 
 int32_t main() {
