@@ -14,6 +14,7 @@ Data_Structures/Ordered_Set
 
 Graph/DFS
 Graph/BFS
+Graph/Bipartite_Checking
 Graph/Topological_Sorting
 Graph/Cycle_Detection_Directed_Graph
 Graph/Cycle_Detection_Undirected_Graph
