@@ -2,10 +2,10 @@ Data_Structures/Minimum_Stack
 Data_Structures/Minimum_Queue
 Data_Structures/Sparse_Table
 Data_Structures/DSU
-Data_Structures/Ordered_Set
 Data_Structures/Fenwick_Tree
 Data_Structures/Fenwick_Tree_Range_Update_Range_Query
 Data_Structures/Segment_Tree
+Data_Structures/Ordered_Set
 
 Graph/DFS
 Graph/BFS
