@@ -8,7 +8,7 @@ struct MStack {
     
     void push(T v) {
         T mn = st.empty() ? v : min(v, st.top().second);
-        st.push({v, mn});
+        st.emplace(v, mn);
     }
     void pop() {
         st.pop();

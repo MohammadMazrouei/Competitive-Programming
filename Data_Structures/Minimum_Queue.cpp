@@ -8,7 +8,7 @@ struct MQueue {
     
     void push(T v) {
         T mn = st1.empty() ? v : min(v, st1.top().second);
-        st1.push({v, mn});
+        st1.emplace(v, mn);
     }
     void pop() {
         if (st2.empty()) {
@@ -16,7 +16,7 @@ struct MQueue {
                 T v = st1.top().first;
                 T mn = st2.empty() ? v : min(v, st2.top().second);
                 st1.pop();
-                st2.push({v, mn});
+                st2.emplace(v, mn);
             }
         }
         st2.pop();
@@ -27,7 +27,7 @@ struct MQueue {
                 T v = st1.top().first;
                 T mn = st2.empty() ? v : min(v, st2.top().second);
                 st1.pop();
-                st2.push({v, mn});
+                st2.emplace(v, mn);
             }
         }
         return st2.top().first;
