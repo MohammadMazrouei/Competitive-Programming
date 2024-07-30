@@ -2,7 +2,7 @@
 using namespace std;
 
 // RMQ, build -> O(n*log(n)), query -> O(1)
-// with global array is faster (1.9s vs 2.9s for n = 1e7)
+// with global array is faster (2s vs 3s for n = 1e7)
 // constexpr n = 1e7, lg = 25; int t[n][lg];
 template <typename T>
 struct SparseTable {
@@ -20,10 +20,7 @@ struct SparseTable {
     void build(const vector<T> &v) {
         n = v.size();
         lg = __lg(n) + 2;
-        t.resize(n);
-        for (int i = 0; i < n; i++) {
-            t[i].resize(lg);
-        }
+        t.assign(n, vector<T>(lg));
 
         for (int i = 0; i < n; i++) {
             t[i][0] = v[i];
@@ -36,8 +33,8 @@ struct SparseTable {
     }
     T get(int l, int r) { 
         assert(l >= 0 && l <= r && r < n);
-        //int k = __builtin_clzll(1) - __builtin_clzll(r - l + 1);
         int k = __builtin_clz(1) - __builtin_clz(r - l + 1);
+        //int k = __builtin_clzll(1) - __builtin_clzll(r - l + 1);
         return f(t[l][k], t[r - (1 << k) + 1][k]);
     }
 };
