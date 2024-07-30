@@ -15,7 +15,7 @@ void solve() {
     }
 
     // Find The Centroids of a Tree, O(n + m)
-    // a node such that when the tree is rooted at it, no other nodes have a subtree of size greater than n/2
+    // A node such that when the tree is rooted at it, no other nodes have a subtree of size greater than n/2
     vector<int> sz(n), centroids;
     auto dfs = [&](auto &&self, int v, int p) -> void {
         sz[v] = 1;
