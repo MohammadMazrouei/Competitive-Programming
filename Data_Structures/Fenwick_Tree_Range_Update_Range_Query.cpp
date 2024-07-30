@@ -17,20 +17,20 @@ struct FenwickTree {
         f1.assign(n, T{});
         f2.assign(n, T{});
         for (int i = 0; i < n; i++) {
-            add(i, i, v[i]);
+            modify(i, i, v[i]);
         }
     }
 
-    void modify(int x, T mul, T add) {
+    void add(int x, T mul, T add) {
         for (int i = x; i < n; i = i | (i + 1)) {
             f1[i] += mul;
             f2[i] += add;
         }
     }
-    void add(int l, int r, T v) {
+    void modify(int l, int r, T v) {
         assert(l >= 0 && l <= r && r < n);
-        modify(l, v, -v * (l - 1));
-        modify(r, -v, v * r);
+        add(l, v, -v * (l - 1));
+        add(r, -v, v * r);
     }
     T get(int x) {
         T mul{}, add{};
@@ -64,7 +64,7 @@ void solve() {
             int l, r, v;
             cin >> l >> r >> v;
             l--, r--;
-            fen.add(l, r, v);
+            fen.modify(l, r, v);
         }
         else if (t == 2) {
             int l, r;

@@ -24,7 +24,7 @@ struct FenwickTree {
         }
     }
     
-    void add(int x, const T &v) {
+    void modify(int x, const T &v) {
         assert(x >= 0 && x < n);
         for (int i = x; i < n; i = i | (i + 1)) {
             f[i] += v;
@@ -41,7 +41,7 @@ struct FenwickTree {
         assert(l >= 0 && l <= r && r < n);
         return get(r) - get(l - 1);
     }
-    // Return kth largest element
+    // Return Kth smallest element
     int select(const T &k) {
         int x = (1 << (__lg(n) + 1)) - 1;
         T sum{};
@@ -75,19 +75,19 @@ struct FenwickTree2 {
         n = v.size();
         f.assign(n, T{});
         for (int i = 0; i < n; i++) {
-            add(i, i, v[i]);
+            modify(i, i, v[i]);
         }
     }
 
-    void add(int x, T v) {
+    void modify(int x, T v) {
         for (int i = x; i < n; i = i | (i + 1)) {
             f[i] += v;
         }
     }
-    void add(int l, int r, T v) {
+    void modify(int l, int r, T v) {
         assert(l >= 0 && l <= r && r < n);
-        add(l, v);
-        add(r + 1, -v);
+        modify(l, v);
+        modify(r + 1, -v);
     }
     T get(int x) {
         assert(x >= 0 && x < n);
@@ -117,7 +117,7 @@ void solve() {
             int x, v;
             cin >> x >> v;
             x--;
-            fen.add(x, v);
+            fen.modify(x, v);
         }
         else if (t == 2) {
             int l, r;
@@ -151,7 +151,7 @@ void solve2() {
             int l, r, v;
             cin >> l >> r >> v;
             l--, r--;
-            fen.add(l, r, v);
+            fen.modify(l, r, v);
         }
         else if (t == 2) {
             int x;
