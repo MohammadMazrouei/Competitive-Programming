@@ -3,73 +3,57 @@ using namespace std;
 
 // Trie on Strings, O(n)
 struct Trie {
-    struct Node {
-        Node* links[26];
-        int cnt_word = 0, cnt_prefix = 0;
+    int sz;
+    vector<int> cnt_prefix, cnt_word;
+    vector<vector<int>> nxt;
 
-        bool contain_key(char ch) {
-            return links[ch - 'a'];
-        }
-        Node* get(char ch) {
-            return links[ch - 'a'];
-        }
-        void put(char ch, Node* node) {
-            links[ch - 'a'] = node;
-        }
-    };
-
-    Node* root;
-
-    Trie () {
-        root = new Node();
-    }
-    Trie (vector<string> &a) {
-        root = new Node();
-        for (auto &s : a) {
-            insert(s);
-        }
+    Trie (const int n) {
+        sz = 1;
+        cnt_prefix.assign(n, 0);
+        cnt_word.assign(n, 0);
+        nxt.assign(n, vector<int>(26));
     }
 
     void insert(string &s) {
-        Node* node = root;
+        int v = 0;
         for (auto ch : s) {
-            if (!node->contain_key(ch)) {
-                node->put(ch, new Node());
+            if (!nxt[v][ch - 'a']) {
+                nxt[v][ch - 'a'] = sz++;
             }
-            node = node->get(ch);
-            node->cnt_prefix++;
+            v = nxt[v][ch - 'a'];
+            cnt_prefix[v]++;
         }
-        node->cnt_word++;
+        cnt_word[v]++;
     }
     void erase(string &s) {
-        Node* node = root;
+        int v = 0;
         for (auto ch : s) {
-            assert(node->contain_key(ch));
-            node = node->get(ch);
-            node->cnt_prefix--;
+            assert(nxt[v][ch - 'a']);
+            v = nxt[v][ch - 'a'];
+            cnt_prefix[v]--;
         }
-        node->cnt_word--;
-        assert(node->cnt_word >= 0);
+        cnt_word[v]--;
+        assert(cnt_word[v] >= 0);
     }
     int count_word(string &s) {
-        Node* node = root;
+        int v = 0;
         for (auto ch : s) {
-            if (!node->contain_key(ch)) {
+            if (!nxt[v][ch - 'a']) {
                 return 0;
             }
-            node = node->get(ch);
+            v = nxt[v][ch - 'a'];
         }
-        return node->cnt_word;
+        return cnt_word[v];
     }
     int count_prefix(string &s) {
-        Node* node = root;
+        int v = 0;
         for (auto ch : s) {
-            if (!node->contain_key(ch)) {
+            if (!nxt[v][ch - 'a']) {
                 return 0;
             }
-            node = node->get(ch);
+            v = nxt[v][ch - 'a'];
         }
-        return node->cnt_prefix;
+        return cnt_prefix[v];
     }
 };
 
@@ -77,7 +61,8 @@ void solve() {
     int q;
     cin >> q;
 
-    Trie trie;
+    const int N = 1e6;
+    Trie trie(N);
     while (q--) {
         int t;
         cin >> t;
