@@ -49,7 +49,7 @@ struct Trie {
             node->cnt_prefix--;
         }
         node->cnt_word--;
-
+        assert(node->cnt_word >= 0);
     }
     int count_word(string &s) {
         Node* node = root;
