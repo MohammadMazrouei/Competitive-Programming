@@ -25,8 +25,8 @@ struct Trie {
     }
     Trie (vector<string> &a) {
         root = new Node();
-        for (int i = 0; i < (int)a.size(); i++) {
-            insert(a[i]);
+        for (auto &s : a) {
+            insert(s);
         }
     }
 
