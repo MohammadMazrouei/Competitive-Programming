@@ -2,6 +2,7 @@
 using namespace std;
 
 // Extended Euclidean Algorithm, O(log(min(a, b)))
+// g = gcd(a, b) = ax + by
 int64_t exgcd(int64_t a, int64_t b, int64_t &x, int64_t &y) {
     if (b == 0) {
         x = 1;
