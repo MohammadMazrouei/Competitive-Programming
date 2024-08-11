@@ -15,6 +15,15 @@ int64_t exgcd(int64_t a, int64_t b, int64_t &x, int64_t &y) {
     return d;
 }
 
+int64_t inverse(int64_t a, int64_t mod) {
+    int64_t x, y;
+    int64_t g = exgcd(a, mod, x, y);
+    if (g != 1) {
+        return -1;
+    }
+    return (x % mod + mod) % mod;
+}
+
 void solve() {
     int64_t a, b;
     cin >> a >> b;
