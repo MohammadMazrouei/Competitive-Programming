@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Struct Modular Number
 template <typename M>
 struct Modular {
 public:
@@ -45,23 +46,23 @@ public:
     template <typename T> Modular& operator-=(const T &other) { return *this -= Modular(other); }
 
     template <typename T = M>
-    typename enable_if<is_same<typename Modular<T>::Type, int>::value, Modular>::type& operator*=(const Modular &rhs) {
-        value = normalize(static_cast<int64_t>(value) * static_cast<int64_t>(rhs.value));
+    typename enable_if<is_same<typename Modular<T>::Type, int>::value, Modular>::type& operator*=(const Modular &other) {
+        value = normalize(static_cast<int64_t>(value) * static_cast<int64_t>(other.value));
         return *this;
     }
     template <typename T = M>
-    typename enable_if<is_same<typename Modular<T>::Type, int64_t>::value, Modular>::type& operator*=(const Modular &rhs) {
-        int64_t q = int64_t(static_cast<long double>(value) * rhs.value / mod());
-        value = normalize(value * rhs.value - q * mod());
+    typename enable_if<is_same<typename Modular<T>::Type, int64_t>::value, Modular>::type& operator*=(const Modular &other) {
+        int64_t q = int64_t(static_cast<long double>(value) * other.value / mod());
+        value = normalize(value * other.value - q * mod());
         return *this;
     }
     template <typename T = M>
-    typename enable_if<!is_integral<typename Modular<T>::Type>::value, Modular>::type& operator*=(const Modular &rhs) {
-        value = normalize(value * rhs.value);
+    typename enable_if<!is_integral<typename Modular<T>::Type>::value, Modular>::type& operator*=(const Modular &other) {
+        value = normalize(value * other.value);
         return *this;
     }
 
-    Modular& operator/=(const Modular &other) { return *this *= Modular(inverse(other.value, mod())); }
+    Modular& operator/=(const Modular &other) { return *this *= inverse(other); }
 
     template <typename T> friend Modular<T> operator+(const Modular<T> &lhs, const Modular<T> &rhs) { return Modular<T>(lhs) += rhs; }
     template <typename T, typename U> friend Modular<T> operator+(const Modular<T> &lhs, U rhs) { return Modular<T>(lhs) += rhs; }
