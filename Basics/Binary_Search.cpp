@@ -7,7 +7,7 @@ void solve() {
 
     // Lowest x Satisfy f(x), O(log(n))
     auto binary_search1 = [&](int low, int high, const function<bool(const int)> &f) -> int {
-        int lo = low - 1, hi = high;
+        int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
             if (f(mid)) {
@@ -22,7 +22,7 @@ void solve() {
 
     // Highest x Satisfy f(x), O(log(n))
     auto binary_search2 = [&](int low, int high, const function<bool(const int)> &f) -> int {
-        int lo = low, hi = high + 1;
+        int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
             if (f(mid)) {
