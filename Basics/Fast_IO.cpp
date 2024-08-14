@@ -1,13 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#ifdef DEBUG
-#include "/home/mohammad/code/debug.h"
-#else
-#define dbg(...)
-#define dbgarr(...)
-#endif
-
 // cin/cout + unsync + '\n' -> 0.41s
 // fread/fwrite + '\n' -> 0.17s
 inline namespace Input {
