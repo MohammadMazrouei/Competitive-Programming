@@ -28,7 +28,7 @@ void solve() {
 
     cout << s.starts_with("bc") << '\n';
     cout << s.ends_with("z") << '\n';
-    //s.contain("text"); //c++23
+    //s.contains("text"); //c++23
 
     // stoi, stol, stoll, stoul, stoull, stof, stod, stold
     int64_t n1 = stoll("1234567890000");
