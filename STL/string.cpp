@@ -10,7 +10,7 @@ void solve() {
     // s.size(), s.empty(), s.clear()
     // s.push_back('a'), s.pop_back()
 
-    string s2;
+    string s2(10, 'y');
     s2.assign(10, 'x');
 
     // s.substr(strat_index, length);
