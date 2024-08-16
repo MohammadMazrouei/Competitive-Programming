@@ -1,11 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#pragma GCC optimize ("O3")
-#pragma GCC target ("sse4")
-
-using ll = long long;
-
 template <typename T> using pqg = priority_queue<T>;
 template <typename T> using pql = priority_queue<T, vector<T>, greater<T>>;
 
