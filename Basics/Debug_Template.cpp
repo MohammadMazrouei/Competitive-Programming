@@ -85,9 +85,10 @@ namespace __DEBUG_UTIL__ {
         else if constexpr (requires { get<0>(x); }) {
             /* Tuple */
             int f = 0;
-            cerr << '(', apply([&f](auto... args) {
-                              ((cerr << (f++ ? "," : ""), print(args)), ...);
-                         }, x);
+            cerr << '('; 
+            apply([&f](auto... args) {
+                ((cerr << (f++ ? "," : ""), print(args)), ...);
+            }, x);
             cerr << ')';
         }
         else {
@@ -149,14 +150,6 @@ void solve() {
 
     int arr[100] = {12, 13};
     dbgarr(arr, 10);
-
-    queue<int> q;
-    stack<int> s;
-    q.push(100);
-    q.push(200);
-    s.push(100);
-    s.push(200);
-    dbg(q, s);
 }
 
 int32_t main() {
