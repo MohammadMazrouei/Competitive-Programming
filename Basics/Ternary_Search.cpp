@@ -50,7 +50,7 @@ void solve() {
         return lo;
     };
 
-    cout << ternary_search1(0, 100, [&](int x) { return abs(x - 10); }) << '\n'; // max(|x - 10|) = f(10)
+    cout << ternary_search1(0, 100, [&](int x) { return abs(x - 10); }) << '\n';  // max(|x - 10|) = f(10)
     cout << ternary_search2(0, 100, [&](int x) { return -abs(x - 10); }) << '\n'; // min(-|x - 10|) = f(10)
 
     cout << fixed << setprecision(9);
