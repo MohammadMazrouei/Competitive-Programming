@@ -28,7 +28,7 @@ void solve() {
         cin >> l1 >> r1 >> l2 >> r2 >> l3 >> r3;
         l1--, l2--, l3--;
 
-        int ans = p[r1][r2][r3] - p[l1][r2][r3] - p[r1][l2][r3] - p[r1][r2][l3] + p[l1][l2][r3] + p[l1][r2][l3] + p[r1][l2][l3] - p[l1][l2][l3];
+        int64_t ans = p[r1][r2][r3] - p[l1][r2][r3] - p[r1][l2][r3] - p[r1][r2][l3] + p[l1][l2][r3] + p[l1][r2][l3] + p[r1][l2][l3] - p[l1][l2][l3];
         cout << ans << '\n';
     }
 }
