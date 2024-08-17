@@ -24,6 +24,7 @@ STL/Tuple
 STL/Array
 STL/Vector
 STL/Stack
+STL/Queue
 STL/string
 
 Data_Structures/Minimum_Stack
