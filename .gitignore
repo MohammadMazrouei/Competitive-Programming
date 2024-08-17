@@ -22,6 +22,7 @@ STL/Iterators
 STL/Pair
 STL/Tuple
 STL/Array
+STL/Vector
 STL/string
 
 Data_Structures/Minimum_Stack
