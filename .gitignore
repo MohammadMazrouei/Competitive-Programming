@@ -23,6 +23,7 @@ STL/Pair
 STL/Tuple
 STL/Array
 STL/Vector
+STL/Stack
 STL/string
 
 Data_Structures/Minimum_Stack
