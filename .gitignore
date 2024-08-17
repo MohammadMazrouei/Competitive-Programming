@@ -19,6 +19,7 @@ Basics/Bitmask
 Basics/Fast_IO
 
 STL/Iterators
+STL/Pair
 STL/string
 
 Data_Structures/Minimum_Stack
