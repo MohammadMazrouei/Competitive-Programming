@@ -2,20 +2,20 @@
 using namespace std;
 
 /*
- * Input Iterators
- *     (++, *, ->, ==, !=)
- * Output Iterators
- *     (++, *)
- * Forward Iterators
- *     (++, *, ->, ==, !=)
- *     forward_list
- * Bidirectional Iteartors
- *     (++, --, *, ->, ==, !=)
- *     set, multiset, map, multimap, list
- * Random-Access Iterators
- *     (++, --, *, ->, [], +, -, <, <=, >, >=, ==, !=)
- *     array, vector, deque, string
- */
+Input Iterators
+    (++, *, ->, ==, !=)
+Output Iterators
+    (++, *)
+Forward Iterators
+    (++, *, ->, ==, !=)
+    forward_list
+Bidirectional Iteartors
+    (++, --, *, ->, ==, !=)
+    set, multiset, map, multimap, list
+Random-Access Iterators
+    (++, --, *, ->, [], +, -, <, <=, >, >=, ==, !=)
+    array, vector, deque, string
+*/
 void solve() {
     vector<int> v = {1, 2, 3, 4, 5, 6};
 
