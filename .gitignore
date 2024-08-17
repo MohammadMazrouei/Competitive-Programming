@@ -20,6 +20,7 @@ Basics/Fast_IO
 
 STL/Iterators
 STL/Pair
+STL/Tuple
 STL/string
 
 Data_Structures/Minimum_Stack
