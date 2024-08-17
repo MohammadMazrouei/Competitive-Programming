@@ -21,6 +21,7 @@ Basics/Fast_IO
 STL/Iterators
 STL/Pair
 STL/Tuple
+STL/Array
 STL/string
 
 Data_Structures/Minimum_Stack
