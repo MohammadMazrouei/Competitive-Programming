@@ -23,6 +23,7 @@ STL/Pair
 STL/Tuple
 STL/Array
 STL/Vector
+STL/Deque
 STL/Stack
 STL/Queue
 STL/string
