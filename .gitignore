@@ -26,6 +26,7 @@ STL/Vector
 STL/Deque
 STL/Stack
 STL/Queue
+STL/Set
 STL/string
 
 Data_Structures/Minimum_Stack
