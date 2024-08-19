@@ -25,6 +25,10 @@ void solve() {
     set<int>::iterator lb = s.lower_bound(5);
     set<int>::iterator up = s.upper_bound(5);
     cout << *lb << ' ' << *up << '\n';
+
+    for (auto x : s) {
+        cout << x << " \n"[x == *s.rbegin()];
+    }
 }
 
 int32_t main() {
