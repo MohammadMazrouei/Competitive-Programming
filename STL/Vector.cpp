@@ -11,7 +11,7 @@ void solve() {
 
     // insert(pos, data), insert(pos, n, data), insert(pos, it_begin, it_end)
     // erase(pos), erase(pos_begin, pos_end)
-    // emplace
+    // emplace(pos, data)
 
     // Assign replacing a vector with new properties (size and elements). 
     // Resize holding old data and expanding the new vector with new elements.
