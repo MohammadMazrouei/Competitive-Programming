@@ -9,9 +9,9 @@ void solve() {
     while (q--) {
         int l, r, x;
         cin >> l >> r >> x;
-        l--;
+        l--, r--;
         a[l] += x;
-        a[r] -= x;
+        a[r + 1] -= x;
     }
     for (int i = 1; i < n; i++) {
         a[i] += a[i - 1];
