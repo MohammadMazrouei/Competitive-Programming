@@ -12,6 +12,8 @@ void solve() {
     // insert(key), insert(initial_list), insert(it_begin, it_end), insert(pos, key)
     // erase(key), erase(pos), erase(pos_begin, pos_end)
     // emplace(key), emplace_hint(pos, key)
+
+    // erase(pos), insert(pos, key) -> O(1)
  
     // s.contains(key)
     // s.merge(s0), O(n*log(n))
