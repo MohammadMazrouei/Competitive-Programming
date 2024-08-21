@@ -20,9 +20,9 @@ void solve() {
     vector<int> par(n, -1);
     auto dijkstra = [&](int s) -> void {
         priority_queue<pair<int64_t, int>, vector<pair<int64_t, int>>, greater<pair<int64_t, int>>> pq;
-        pq.emplace(0, s);
         dist[s] = 0;
         cnt[s] = 1;
+        pq.emplace(dist[s], s);
         while (!pq.empty()) {
             auto [dist_v, v] = pq.top();
             pq.pop();
@@ -33,8 +33,8 @@ void solve() {
             for (auto [u, w] : adj[v]) {
                 if (dist[v] + w < dist[u]) {
                     dist[u] = dist[v] + w;
-                    par[u] = v;
                     cnt[u] = cnt[v];
+                    par[u] = v;
                     pq.emplace(dist[u], u);
                 }
                 else if (dist[v] + w == dist[u]) {
