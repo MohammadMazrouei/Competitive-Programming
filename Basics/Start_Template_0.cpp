@@ -7,8 +7,8 @@ template <typename T> using pql = priority_queue<T, vector<T>, greater<T>>;
 template <typename T> bool cmin(T &a, const T &b) { return b < a ? a = b, 1 : 0; }
 template <typename T> bool cmax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
 
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-#define uid(a, b) uniform_int_distribution<int64_t>(a, b)(rng)
+mt19937_64 rnd(chrono::steady_clock::now().time_since_epoch().count());
+#define uid(a, b) uniform_int_distribution<int64_t>(a, b)(rnd)
 
 #ifdef DEBUG
 #include "/home/mohammad/code/debug.h"
