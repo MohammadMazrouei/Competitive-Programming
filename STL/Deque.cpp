@@ -13,8 +13,8 @@ void solve() {
     // erase(pos), erase(pos_begin, pos_end)
     // emplace(pos, data)
 
-    // Assign replacing a vector with new properties (size and elements). 
-    // Resize holding old data and expanding the new vector with new elements.
+    // Assign replacing a deque with new properties (size and elements). 
+    // Resize holding old data and expanding the new deque with new elements.
     dq.assign(4, 2);
     dq.resize(10, 4);
     for (auto x : dq) {
