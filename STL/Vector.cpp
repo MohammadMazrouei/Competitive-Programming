@@ -15,8 +15,10 @@ void solve() {
 
     // Assign replacing a vector with new properties (size and elements). 
     // Resize holding old data and expanding the new vector with new elements.
+    // Reserve change capacity of vector.
     v.assign(4, 2);
     v.resize(10, 4);
+    v.reserve(100);
     for (auto x : v) {
         cout << x << '\n';
     }
