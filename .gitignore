@@ -29,6 +29,7 @@ STL/Stack
 STL/Queue
 STL/Set
 STL/Multiset
+STL/Map
 STL/string
 
 Data_Structures/Minimum_Stack
