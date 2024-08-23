@@ -6,7 +6,7 @@ vector<string> split(const string &s, const char ch = ' ') {
     int n = s.size();
     vector<string> sp;
 
-    string tmp = "";
+    string tmp;
     for (int i = 0; i < n; i++) {
         if (s[i] != ch) {
             tmp += s[i];
