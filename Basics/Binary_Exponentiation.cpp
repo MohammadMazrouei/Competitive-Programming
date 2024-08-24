@@ -3,24 +3,24 @@ using namespace std;
 
 // Binary Exponentiation, O(log(b))
 template <typename T>
-T power(T a, int64_t b){
+T power(T a, int64_t b, int64_t m){
     assert(b >= 0);
     T res {1};
     while (b) {
         if (b & 1) {
-            res = res * a;
+            res = res * a % m;
         }
-        a = a * a;
+        a = a * a % m;
         b >>= 1;
     }
     return res;
 }
 
 void solve() {
-    int64_t a, b;
-    cin >> a >> b;
+    int64_t a, b, p;
+    cin >> a >> b >> p;
 
-    cout << power(a, b) << '\n';
+    cout << power(a, b, p) << '\n';
 }
 
 int32_t main() {
