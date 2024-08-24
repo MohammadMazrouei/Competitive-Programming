@@ -30,6 +30,7 @@ STL/Queue
 STL/Set
 STL/Multiset
 STL/Map
+STL/Multimap
 STL/string
 
 Data_Structures/Minimum_Stack
