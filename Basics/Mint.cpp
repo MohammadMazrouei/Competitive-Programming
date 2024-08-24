@@ -135,6 +135,15 @@ private:
     Type value; 
 };
 
+/*
+// Dynamic Modular
+using ModType = int;
+struct VarMod { static ModType value; };
+ModType VarMod::value = 1000000007;
+ModType &MOD = VarMod::value;
+using Mint = Modular<VarMod>;
+*/
+
 //constexpr int MOD = 998244353;
 constexpr int MOD = 1000000007;
 using Mint = Modular<integral_constant<decay<decltype(MOD)>::type, MOD>>;
