@@ -135,6 +135,10 @@ private:
     Type value; 
 };
 
+//constexpr int MOD = 998244353;
+constexpr int MOD = 1000000007;
+using Mint = Modular<integral_constant<decay<decltype(MOD)>::type, MOD>>;
+
 /*
 // Dynamic Modular
 using ModType = int;
@@ -143,10 +147,6 @@ ModType VarMod::value = 1000000007;
 ModType &MOD = VarMod::value;
 using Mint = Modular<VarMod>;
 */
-
-//constexpr int MOD = 998244353;
-constexpr int MOD = 1000000007;
-using Mint = Modular<integral_constant<decay<decltype(MOD)>::type, MOD>>;
 
 struct Comb {
     int n;
