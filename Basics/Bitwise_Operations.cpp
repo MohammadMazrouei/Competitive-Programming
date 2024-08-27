@@ -40,6 +40,11 @@ bool check_power_of_2(int x) {
     return count_set_bits(x) == 1;
 }
 
+// Return the last set bit of x
+int last_set_bit(int x) {
+    return x & -x;
+}
+
 // Prints the binary representation of x
 void to_binary(int x) {
     for (int k = 31; k >= 0; k--) {
@@ -54,13 +59,25 @@ void solve() {
 
     to_binary(n);
 
-    // __builtin_popcountll, __builtin_clzll, __builtin_ctzll
+    // Builtin function for GCC
+    // __builtin_popcountll, __builtin_ffsll, __builtin_clzll, __builtin_ctzll
     // Count set bits
     cout << __builtin_popcount(n) << '\n';
+    // Index of the first set bit
+    cout << __builtin_ffs(n) << '\n';
     // Count of leading zeros
     cout << __builtin_clz(n) << '\n';
     // Count of trailing zeros
     cout << __builtin_ctz(n) << '\n';
+
+    // Count set bits
+    cout << __popcount(n) << '\n';
+    // Return lenght of number
+    cout << __bit_width(n) << '\n';;
+    // Round up/down to the next power of two
+    cout << __bit_floor(n) << ' ' << __bit_ceil(n) << '\n';
+    // Count the leading/trailing zeros/ones
+    cout << __countl_zero(n) << ' ' << __countr_zero(n) << ' ' << __countl_one(n) << ' ' << __countr_one(n) << '\n';
 }
 
 int32_t main() {
