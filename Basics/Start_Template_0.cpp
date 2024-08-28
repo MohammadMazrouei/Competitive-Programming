@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T> using pqg = priority_queue<T>;
-template <typename T> using pql = priority_queue<T, vector<T>, greater<T>>;
-
 template <typename T> bool cmin(T &a, const T &b) { return b < a ? a = b, 1 : 0; }
 template <typename T> bool cmax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
 
