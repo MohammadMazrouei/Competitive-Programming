@@ -22,17 +22,17 @@ Basics/Fast_IO
 STL/Iterators
 STL/Pair
 STL/Tuple
-STL/Array
-STL/Vector
-STL/Deque
 STL/Stack
 STL/Queue
 STL/Priority_Queue
+STL/Array
+STL/Vector
+STL/Deque
+STL/String
 STL/Set
 STL/Multiset
 STL/Map
 STL/Multimap
-STL/string
 
 Data_Structures/Minimum_Stack
 Data_Structures/Minimum_Queue
