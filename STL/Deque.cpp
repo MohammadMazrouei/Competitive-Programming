@@ -9,7 +9,7 @@ void solve() {
     // size, empty, clear
     // push_back, push_front, pop_back, pop_front, emplace_back, emplace_front
 
-    // insert(pos, data), insert(pos, n, data), insert(pos, it_begin, it_end)
+    // insert(pos, data), insert(pos, n, data), insert(pos, initial_list), insert(pos, it_begin, it_end)
     // erase(pos), erase(pos_begin, pos_end)
     // emplace(pos, data)
 
