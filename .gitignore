@@ -29,6 +29,7 @@ STL/Array
 STL/Vector
 STL/Deque
 STL/String
+STL/Forward_List
 STL/Set
 STL/Multiset
 STL/Map
