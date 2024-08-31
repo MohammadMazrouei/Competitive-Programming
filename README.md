@@ -1,5 +1,4 @@
 # Competitive-Programming
-
 Templates, algorithms and data structures implemented and collected for programming contests.
 
 # Topics
@@ -83,6 +82,9 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Extended Euclidean Algorithm](Number_Theory/Extended_Euclidean_Algorithm.cpp)
 - [Sieve](Number_Theory/Sieve.cpp)
 - [Linear Sieve](Number_Theory/Linear_Sieve.cpp)
+
+## Game Theory
+-[Sprague Grundy Theorem](Game_Theory/Sprague_Grundy_Theorem.cpp)
 
 ## Miscellaneous
 - [Arpa Trick](Miscellaneous/Arpa_Trick.cpp)
