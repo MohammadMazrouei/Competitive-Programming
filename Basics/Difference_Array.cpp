@@ -5,20 +5,20 @@ void solve() {
     int n, q;
     cin >> n >> q;
 
-    vector<int64_t> a(n + 1);
+    vector<int64_t> d(n + 1);
     while (q--) {
         int l, r, x;
         cin >> l >> r >> x;
         l--, r--;
-        a[l] += x;
-        a[r + 1] -= x;
+        d[l] += x;
+        d[r + 1] -= x;
     }
-    for (int i = 1; i < n; i++) {
-        a[i] += a[i - 1];
+    for (int i = 1; i <= n; i++) {
+        d[i] += d[i - 1];
     }
 
     for (int i = 0; i < n; i++) {
-        cout << a[i] << " \n"[i == n - 1];
+        cout << d[i] << " \n"[i == n - 1];
     }
 }
 
