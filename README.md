@@ -4,9 +4,7 @@ Templates, algorithms and data structures implemented and collected for programm
 # Topics
 
 ## Basics
-- [Start Template 0](Basics/Start_Template_0.cpp)
-- [Start Template 1](Basics/Start_Template_1.cpp)
-- [Start Template 2](Basics/Start_Template_2.cpp)
+- [Start Template](Basics/Start_Template.cpp)
 - [Debug Template](Basics/Debug_Template.cpp)
 - [Binary Exponentiation](Basics/Binary_Exponentiation.cpp)
 - [Mint](Basics/Mint.cpp)
