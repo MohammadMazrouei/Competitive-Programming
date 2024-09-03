@@ -51,6 +51,7 @@ void solve() {
         return lo;
     };
 
+    // Calculate ceil_sqrt & floor_sqrt
     cout << binary_search1(0, n, [&](int x) { return (int64_t)x * x >= n; }) << '\n';
     cout << binary_search2(0, n, [&](int x) { return (int64_t)x * x <= n; }) << '\n';
 
