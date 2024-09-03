@@ -2,10 +2,11 @@
 using namespace std;
 
 // Minimum Excluded Value(MEX), O(n)
-int mex(vector<int> &a) {
-    int n = a.size();
+template <typename T>
+int mex(vector<T> &v) {
+    int n = v.size();
     vector<bool> f(n + 1);
-    for (int x : a) {
+    for (int x : v) {
         if (x <= n) {
             f[x] = 1;
         }

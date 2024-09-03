@@ -8,13 +8,10 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Debug Template](Basics/Debug_Template.cpp)
 - [Binary Exponentiation](Basics/Binary_Exponentiation.cpp)
 - [Mint](Basics/Mint.cpp)
-- [Mex](Basics/Mex.cpp)
 - [Harmonic Number](Basics/Harmonic_Number.cpp)
 - [GCD and LCM](Basics/GCD_and_LCM.cpp)
 - [Divisors](Basics/Divisors.cpp)
 - [Divisors Upto N](Basics/Divisors_Upto_N.cpp)
-- [Binary Search](Basics/Binary_Search.cpp)
-- [Ternary Search](Basics/Ternary_Search.cpp)
 - [Prefix Sum](Basics/Prefix_Sum.cpp)
 - [Prefix Sum 2D](Basics/Prefix_Sum_2D.cpp)
 - [Prefix Sum 3D](Basics/Prefix_Sum_3D.cpp)
@@ -22,6 +19,8 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Difference Array](Basics/Difference_Array.cpp)
 - [Bitwise Operations](Basics/Bitwise_Operations.cpp)
 - [Bitmask](Basics/Bitmask.cpp)
+- [Binary Search](Basics/Binary_Search.cpp)
+- [Ternary Search](Basics/Ternary_Search.cpp)
 - [Fast IO](Basics/Fast_IO.cpp)
 
 ## STL
@@ -86,4 +85,5 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Sprague Grundy Theorem](Game_Theory/Sprague_Grundy_Theorem.cpp)
 
 ## Miscellaneous
+- [MEX](Miscellaneous/Mex.cpp)
 - [Arpa Trick](Miscellaneous/Arpa_Trick.cpp)
