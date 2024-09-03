@@ -59,7 +59,7 @@ void solve() {
 
     to_binary(n);
 
-    // Builtin function for GCC
+    // Builtin function in GCC
     // __builtin_popcountll, __builtin_ffsll, __builtin_clzll, __builtin_ctzll
     // Count set bits
     cout << __builtin_popcount(n) << '\n';
