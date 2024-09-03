@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Minimum Excluded Value(MEX), O(n)
+// Minimal Excluded(MEX), O(n)
 template <typename T>
-int mex(vector<T> &v) {
+int mex(const vector<T> &v) {
     int n = v.size();
     vector<bool> f(n + 1);
     for (int x : v) {
