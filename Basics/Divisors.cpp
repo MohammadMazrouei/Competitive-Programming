@@ -2,9 +2,10 @@
 using namespace std;
 
 // Find Divisors, O(sqrt(n))
-vector<int64_t> divisors(int64_t n) {
-    vector<int64_t> d;
-    for (int64_t i = 1; i * i <= n; i++) {
+template <typename T>
+vector<T> divisors(T n) {
+    vector<T> d;
+    for (T i = 1; i * i <= n; i++) {
         if (n % i == 0) {
             d.push_back(i);
             if (i * i != n) {
@@ -21,6 +22,7 @@ void solve() {
 
     vector<int64_t> div = divisors(n);
     sort(div.begin(), div.end());
+    cout << div.size() << '\n';
     for (auto d : div) {
         cout << d << " \n"[d == div.back()];
     }
