@@ -85,5 +85,6 @@ Templates, algorithms and data structures implemented and collected for programm
 
 ## Miscellaneous
 - [MEX](Miscellaneous/Mex.cpp)
+- [MEX with Update](Miscellaneous/Mex_with_Update.cpp)
 - [Arpa Trick](Miscellaneous/Arpa_Trick.cpp)
 - [Fast IO](Basics/Fast_IO.cpp)
