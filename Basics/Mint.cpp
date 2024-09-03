@@ -155,8 +155,8 @@ struct Comb {
     vector<Mint> _inv;
     
     Comb() : n{0}, _fact{1}, _inv_fact{1}, _inv{0} {}
-    Comb(int n) : Comb() {
-        init(n);
+    Comb(int _n) : Comb() {
+        init(_n);
     }
     
     void init(int m) {
@@ -196,11 +196,11 @@ struct Comb {
         }
         return _inv[m];
     }
-    Mint comb(int n, int k) {
-        if (k < 0 || k > n) {
+    Mint comb(int m, int k) {
+        if (k < 0 || k > m) {
             return 0;
         }
-        return fact(n) * inv_fact(k) * inv_fact(n - k);
+        return fact(m) * inv_fact(k) * inv_fact(m - k);
     }
 } comb;
 
