@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Struct Modular Number
+// Struct Modular Number, MOD Must be Prime
 template <typename M>
 struct Modular {
 public:
