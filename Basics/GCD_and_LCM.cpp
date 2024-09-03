@@ -2,7 +2,8 @@
 using namespace std;
 
 // Greatest Common Divisor, O(log(min(a, b)))
-int _gcd(int a, int b) {
+template <typename T>
+T _gcd(T a, T b) {
     while (b) {
         a %= b;
         swap(a, b);
@@ -11,12 +12,13 @@ int _gcd(int a, int b) {
 }
 
 // Least Common Multiple, O(log(min(a, b)))
-int64_t _lcm(int a, int b) {
-    return (int64_t)a / _gcd(a, b) * b;
+template <typename T>
+T _lcm(T a, T b) {
+    return a / _gcd(a, b) * b;
 }
 
 void solve() {
-    int a, b;
+    int64_t a, b;
     cin >> a >> b;
 
     int64_t g1 = _gcd(a, b), l1 = _lcm(a, b);
