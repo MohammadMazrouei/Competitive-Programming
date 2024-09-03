@@ -3,9 +3,9 @@ using namespace std;
 
 // Binary Exponentiation, O(log(b))
 template <typename T>
-T power(T a, int64_t b, int64_t m){
+T power(T a, int64_t b, int64_t m) {
     assert(b >= 0);
-    T res {1};
+    T res{1};
     while (b) {
         if (b & 1) {
             res = res * a % m;
