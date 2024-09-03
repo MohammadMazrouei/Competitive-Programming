@@ -2,14 +2,18 @@
 using namespace std;
 
 #define dbg(...) cerr << __DEBUG_UTIL__::outer << __LINE__ << ": [", __DEBUG_UTIL__::printer(#__VA_ARGS__, __VA_ARGS__)
-#define dbgarr(...) cerr << __DEBUG_UTIL__::outer << __LINE__ << ": [", __DEBUG_UTIL__::printerArr(#__VA_ARGS__, __VA_ARGS__)
 
 namespace __DEBUG_UTIL__ {
+    const string WHITE = "\033[0;m";
+    const string RED = "\033[0;31m";
+    const string BLUE = "\033[0;34m";
+    const string GREEN = "\033[0;32m";
+
     bool colored_output = false; 
-    string white = colored_output ? "\033[0;m" : "";
-    string outer = colored_output ? "\033[0;31m" : "";     // red
-    string var_name = colored_output ? "\033[1;34m" : "";  // blue
-    string var_value = colored_output ? "\033[1;32m" : ""; // green
+    string white = colored_output ? WHITE : "";
+    string outer = colored_output ? RED : "";
+    string var_name = colored_output ? BLUE : "";
+    string var_value = colored_output ? GREEN : "";
 
     template <typename T>
     concept is_iterable = requires(T &&x) { begin(x); } && !is_same_v<remove_cvref_t<T>, string>;
@@ -29,7 +33,7 @@ namespace __DEBUG_UTIL__ {
 
     void print(vector<bool> &&v) { 
         /* Overloaded this because stl optimizes vector<bool> by using
-         _Bit_reference instead of bool to conserve space. */
+           _Bit_reference instead of bool to conserve space. */
         int f = 0;
         cerr << '{';
         for (auto &&i : v) {
@@ -44,8 +48,8 @@ namespace __DEBUG_UTIL__ {
             if (size(x) && is_iterable<decltype(*(begin(x)))>) { 
                 /* Iterable inside Iterable */
                 int f = 0;
-                cerr << "\n~~~~~\n";
                 int w = max(0, (int)log10(size(x) - 1)) + 2;
+                cerr << "\n~~~~~\n";
                 for (auto &&i : x) {
                     cerr << setw(w) << left << f++, print(i), cerr << "\n";
                 }
@@ -62,7 +66,7 @@ namespace __DEBUG_UTIL__ {
             }
         }
         else if constexpr (requires { x.pop(); }) {
-            /* Stacks, Priority Queues, Queues */
+            /* Stacks, Queues, Priority Queues */
             auto temp = x;
             int f = 0;
             cerr << "{";
@@ -88,7 +92,7 @@ namespace __DEBUG_UTIL__ {
             cerr << '('; 
             apply([&f](auto... args) {
                 ((cerr << (f++ ? "," : ""), print(args)), ...);
-            }, x);
+                }, x);
             cerr << ')';
         }
         else {
@@ -117,39 +121,13 @@ namespace __DEBUG_UTIL__ {
             cerr << outer << "]\n" << white;
         }
     }
-
-    template <typename T, typename... V>
-    void printerArr(const char *names, T arr[], size_t N, V... tail) {
-        size_t i = 0;
-        cerr << var_name;
-        for (; names[i] and names[i] != ','; i++) {
-            cerr << names[i];
-        }
-        for (i++; names[i] and names[i] != ','; i++);
-        cerr << outer << " = " << var_value << "{";
-        for (size_t ind = 0; ind < N; ind++) {
-            cerr << (ind ? "," : ""), print(arr[ind]);
-        }
-        cerr << "}";
-        if constexpr (sizeof...(tail)) {
-            cerr << outer << " ||", printerArr(names + i + 1, tail...);
-        }
-        else {
-            cerr << outer << "]\n" << white;
-        }
-    }
 }
 
 void solve() {
-    pair<int, bool> x1 = {1, 2};
+    pair<int, bool> x1 = {1, false};
     pair<char, string> x2 = {'a', "mmd"};
-    dbg(x1, x2);
-
     vector<int> v = {1, 2, 3, 4};
-    dbg(v);
-
-    int arr[100] = {12, 13};
-    dbgarr(arr, 10);
+    dbg(x1, x2, v);
 }
 
 int32_t main() {
