@@ -54,7 +54,7 @@ void solve() {
     cout << ternary_search2(0, 100, [&](int x) { return -abs(x - 10); }) << '\n'; // min(-|x - 10|) = f(10)
 
     cout << fixed << setprecision(9);
-    cout << ternary_search(0, 100, [&](double x) { return -2 * (x * x) + 10 * x + 3; }) << '\n'; // min(-2x^2 + 10x + 3) = f(2.5)
+    cout << ternary_search(0, 100, [&](double x) { return -2 * (x * x) + 10 * x + 3; }) << '\n'; // max(-2x^2 + 10x + 3) = f(2.5)
 }
 
 int32_t main() {
