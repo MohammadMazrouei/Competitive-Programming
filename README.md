@@ -21,7 +21,6 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Bitmask](Basics/Bitmask.cpp)
 - [Binary Search](Basics/Binary_Search.cpp)
 - [Ternary Search](Basics/Ternary_Search.cpp)
-- [Fast IO](Basics/Fast_IO.cpp)
 
 ## STL
 - [Iterators](STL/Iterators.cpp)
@@ -87,3 +86,4 @@ Templates, algorithms and data structures implemented and collected for programm
 ## Miscellaneous
 - [MEX](Miscellaneous/Mex.cpp)
 - [Arpa Trick](Miscellaneous/Arpa_Trick.cpp)
+- [Fast IO](Basics/Fast_IO.cpp)
