@@ -21,6 +21,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Bitmask](Basics/Bitmask.cpp)
 - [Binary Search](Basics/Binary_Search.cpp)
 - [Ternary Search](Basics/Ternary_Search.cpp)
+- [Random Generator](Basics/Random_Generator.cpp)
 
 ## STL
 - [Iterators](STL/Iterators.cpp)
@@ -36,7 +37,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Forward List](STL/Forward_List.cpp)
 - [List](STL/List.cpp)
 - [Bitset](STL/Bitset.cpp)
-- [Vector<bool>](STL/Vector_Bool.cpp)
+- [Vector Bool](STL/Vector_Bool.cpp)
 - [Set](STL/Set.cpp)
 - [Multiset](STL/Multiset.cpp)
 - [Map](STL/Map.cpp)
