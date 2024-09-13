@@ -13,7 +13,7 @@ void solve() {
     // erase(key), erase(pos), erase(pos_begin, pos_end)
     // emplace(key), emplace_hint(pos, key)
 
-    // erase(pos), insert(pos, key) -> O(1)
+    // insert(pos, key), emplace_hint(pos, key), erase(pos) -> O(1)
     // erase(key), count(key) -> O(log(n)+count(key))
  
     // ms.contains(key)
@@ -26,8 +26,8 @@ void solve() {
     // lower_bound(x) -> The first element greater than or equal to x
     // upper_bound(x) -> The first element greater than to x
     multiset<int>::iterator lb = ms.lower_bound(5);
-    multiset<int>::iterator up = ms.upper_bound(5);
-    cout << *lb << ' ' << *up << '\n';
+    multiset<int>::iterator ub = ms.upper_bound(5);
+    cout << *lb << ' ' << *ub << '\n';
 
     for (auto x : ms) {
         cout << x << ' ';
