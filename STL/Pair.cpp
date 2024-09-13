@@ -2,9 +2,7 @@
 using namespace std;
 
 void solve() {
-    pair<string, int> p("way1", 1);
-    p = make_pair("way2", 2);
-    p = {"way3", 3};
+    pair<string, int> p("way1", 1), p2 = make_pair("way2", 2), p3 = {"way3", 3};
     p.first = "way4";
     p.second = 4;
     get<0>(p) = "way5";
