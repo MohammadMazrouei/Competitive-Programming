@@ -13,14 +13,14 @@ void solve() {
     // erase_after(pos), erase_after(pos_begin, pos_end)
     // emplace_after(pos, data)
 
-    // remove(data), remove_if(function<int(bool)> &f)
-    // sort, reverse, unique, merge(other_sorted_list)
+    // remove(data), remove_if(const function<int(bool)> f)
+    // sort, reverse, unique, merge(other_sorted_forward_list)
 
-    // Transfers(Not copy) elements from one list to another in O(1).
-    // l.splice_after(pos, other_list), l.splice_after(pos, other_list, it_begin(), it_end())
+    // Transfers(Not copy) elements from one forward_list to another in O(1).
+    // l.splice_after(pos, other_forward_list), l.splice_after(pos, other_forward_list, it_begin(), it_end())
 
-    // Assign replacing a list with new properties (size and elements). 
-    // Resize holding old data and expanding the new list with new elements.
+    // Assign replacing a forward_list with new properties (size and elements). 
+    // Resize holding old data and expanding the new forward_list with new elements.
     l.assign(4, 2);
     l.resize(10, 4);
     for (auto x : l) {
