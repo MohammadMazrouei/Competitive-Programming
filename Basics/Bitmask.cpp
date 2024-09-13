@@ -21,12 +21,13 @@ void solve() {
         }
         sums.push_back(sum);
     }
+
     for (auto x : sums) {
         cout << x << " \n"[sums.back() == x];
     }
 
     /*
-    Iterating through all masks with their submasks, O(n^3)
+    Iterating through all masks with their submasks, O(3^n)
     for (int mask = 0; mask < (1 << n); mask++)
         for (int sub_mask = mask; sub_mask; sub_mask = (sub_mask - 1) & mask)
     */
