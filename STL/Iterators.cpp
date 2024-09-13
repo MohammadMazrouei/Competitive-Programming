@@ -11,9 +11,9 @@ Forward Iterators
     forward_list
 Bidirectional Iteartors
     (++, --, *, ->, ==, !=)
-    set, multiset, map, multimap, list
+    list, set, multiset, map, multimap
 Random-Access Iterators
-    (++, --, *, ->, [], +, -, <, <=, >, >=, ==, !=)
+    (++, --, *, ->, [], +, -, ==, !=, <, >, <=, >=)
     array, vector, deque, string
 */
 void solve() {
