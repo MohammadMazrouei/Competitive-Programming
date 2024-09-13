@@ -15,7 +15,7 @@ void solve() {
     // emplace(key, value), emplace_hint(pos, key, value)
     // insert_or_assign({key, value})
 
-    // erase(pos), insert(pos, {key, value}) -> O(1)
+    // insert(pos, {key, value}), emplace_hint(pos, key, value), erase(pos)  -> O(1)
  
     // mp.contains(key)
     // mp.merge(mp0), O(n*log(n))
@@ -27,9 +27,9 @@ void solve() {
     // lower_bound(key) -> The first element greater than or equal to key 
     // upper_bound(key) -> The first element greater than to key 
     map<int, char>::iterator lb = mp.lower_bound(3);
-    map<int, char>::iterator up = mp.upper_bound(3);
+    map<int, char>::iterator ub = mp.upper_bound(3);
     cout << lb->first << ' ' << lb->second << '\n'; 
-    cout << up->first << ' ' << up->second  << '\n';
+    cout << ub->first << ' ' << ub->second  << '\n';
 
     for (auto [key, value] : mp) {
         cout << key << ' ' << value << '\n';;
