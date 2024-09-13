@@ -35,6 +35,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [String](STL/String.cpp)
 - [Forward List](STL/Forward_List.cpp)
 - [List](STL/List.cpp)
+- [Bitset](STL/Bitset.cpp)
 - [Set](STL/Set.cpp)
 - [Multiset](STL/Multiset.cpp)
 - [Map](STL/Map.cpp)
