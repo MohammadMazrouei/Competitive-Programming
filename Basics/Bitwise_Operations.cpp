@@ -40,9 +40,14 @@ bool check_power_of_2(int x) {
     return count_set_bits(x) == 1;
 }
 
-// Return the last set bit of x
-int last_set_bit(int x) {
+// Return the lowest bit of x
+int lowest_bit(int x) {
     return x & -x;
+}
+
+// Unset the lowest bit of x
+int unset_lowest_bit(int x) {
+    return x & (x - 1);
 }
 
 // Prints the binary representation of x
@@ -63,7 +68,7 @@ void solve() {
     // __builtin_popcountll, __builtin_ffsll, __builtin_clzll, __builtin_ctzll
     // Count set bits
     cout << __builtin_popcount(n) << '\n';
-    // Index of the first set bit
+    // Index of the lowest set bit
     cout << __builtin_ffs(n) << '\n';
     // Count of leading zeros
     cout << __builtin_clz(n) << '\n';
