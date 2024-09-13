@@ -1,8 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+Store each bool as a single bit.
+The bitfield representation necessitates extra bit manipulation.
+Standard algorithms and functions that expect regular references may encounter issues with the proxy object, 
+leading to unexpected behavior or compilation errors.
+*/
 void solve() {
-    // Store each bool as a single bit
     vector<bool> v = {true, false, true, false}, v2(10), v3(10, true);
 
     // begin, end, rbegin, rend
