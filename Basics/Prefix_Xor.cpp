@@ -10,7 +10,7 @@ void solve() {
         cin >> a[i];
     }
 
-    vector<int64_t> p(n + 1);
+    vector<int> p(n + 1);
     for (int i = 1; i <= n; i++) {
         p[i] = p[i - 1] ^ a[i - 1];
     }
@@ -20,7 +20,7 @@ void solve() {
         cin >> l >> r;
         l--;
 
-        int64_t ans = p[r] ^ p[l];
+        int ans = p[r] ^ p[l];
         cout << ans << '\n';
     }
 }
