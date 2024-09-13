@@ -8,10 +8,10 @@ void solve() {
     // begin, end, rbegin, rend
     // front, back, [], at
     // size, empty, clear
-    // push_back, s.pop_back, +=
+    // push_back, pop_back, +=
     // getline(cin, s)
 
-    // insert(pos, str), insert(pos, n, char), insert(pos, it_begin, it_end)
+    // insert(pos, char), insert(pos, n, char), insert(pos, initial_list), insert(pos, it_begin, it_end)
     // erase(pos), erase(pos_begin, pos_end)
     // append(str), append(n, char)
 
@@ -27,7 +27,7 @@ void solve() {
     s.reserve(100);
     cout << s << '\n';
 
-    // Return index of first & last occurrence of a string (s.npos if not found)
+    // Return index of first & last occurrence of a string (-1 if not found)
     // s.find(str, start_index=0), s.rfind(str, start_index=0)
     cout << s.find("aa") << ' ' << s.rfind("aa") << '\n';
     cout << s.contains("aabb") << ' ' << s.starts_with("aa") << ' ' << s.ends_with("aa") << '\n';
