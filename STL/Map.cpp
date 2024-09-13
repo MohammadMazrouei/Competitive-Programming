@@ -15,7 +15,7 @@ void solve() {
     // emplace(key, value), emplace_hint(pos, key, value)
     // insert_or_assign({key, value})
 
-    // insert(pos, {key, value}), emplace_hint(pos, key, value), erase(pos)  -> O(1)
+    // insert(pos, {key, value}), emplace_hint(pos, key, value), erase(pos) -> O(1)
  
     // mp.contains(key)
     // mp.merge(mp0), O(n*log(n))
