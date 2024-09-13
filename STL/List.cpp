@@ -13,7 +13,7 @@ void solve() {
     // erase(pos), erase(pos_begin, pos_end)
     // emplace(pos, data)
 
-    // remove(data), remove_if(function<int(bool)> &f)
+    // remove(data), remove_if(const function<int(bool)> f)
     // sort, reverse, unique, merge(other_sorted_list)
 
     // Transfers(Not copy) elements from one list to another in O(1).
