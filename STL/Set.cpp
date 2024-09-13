@@ -13,7 +13,7 @@ void solve() {
     // erase(key), erase(pos), erase(pos_begin, pos_end)
     // emplace(key), emplace_hint(pos, key)
 
-    // erase(pos), insert(pos, key) -> O(1)
+    // insert(pos, key), emplace_hint(pos, key), erase(pos) -> O(1)
  
     // s.contains(key)
     // s.merge(s0), O(n*log(n))
