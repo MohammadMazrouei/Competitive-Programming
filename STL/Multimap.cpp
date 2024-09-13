@@ -13,7 +13,7 @@ void solve() {
     // erase(key), erase(pos), erase(pos_begin, pos_end)
     // emplace(key, value), emplace_hint(pos, key, value)
 
-    // erase(pos), insert(pos, {key, value}) -> O(1)
+    // insert(pos, {key, value}), emplace_hint(pos, key, value), erase(pos)  -> O(1)
     // erase(key), count(key) -> O(log(n)+count(key))
  
     // mp.contains(key)
@@ -26,9 +26,9 @@ void solve() {
     // lower_bound(key) -> The first element greater than or equal to key 
     // upper_bound(key) -> The first element greater than to key 
     multimap<int, char>::iterator lb = mp.lower_bound(3);
-    multimap<int, char>::iterator up = mp.upper_bound(3);
+    multimap<int, char>::iterator ub = mp.upper_bound(3);
     cout << lb->first << ' ' << lb->second << '\n'; 
-    cout << up->first << ' ' << up->second  << '\n';
+    cout << ub->first << ' ' << ub->second  << '\n';
 
     for (auto [key, value] : mp) {
         cout << key << ' ' << value << '\n';;
