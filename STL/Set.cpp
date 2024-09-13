@@ -25,8 +25,8 @@ void solve() {
     // lower_bound(x) -> The first element greater than or equal to x
     // upper_bound(x) -> The first element greater than to x
     set<int>::iterator lb = s.lower_bound(5);
-    set<int>::iterator up = s.upper_bound(5);
-    cout << *lb << ' ' << *up << '\n';
+    set<int>::iterator ub = s.upper_bound(5);
+    cout << *lb << ' ' << *ub << '\n';
 
     for (auto x : s) {
         cout << x << " \n"[x == *s.rbegin()];
