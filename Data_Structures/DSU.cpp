@@ -1,22 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Disjoint Set Union, O(1)
+// Disjoint Set Union, O(alpha(n))
 struct DSU {
-    vector<int> par, sz;
     int c;
+    vector<int> par, sz;
     
-    DSU(int n) : c(n) {
+    DSU() {}
+    DSU(int n) {
+        init(n);
+    }
+
+    void init(int n) {
+        c = n;
         par.resize(n);
         iota(par.begin(), par.end(), 0);
         sz.assign(n, 1);
     }
 
-    void make(int a) {
-        par[a] = a;
-        sz[a] = 1;
-        c++;
-    }
     int find(int a) {
         return (par[a] == a ? a : (par[a] = find(par[a])));
     }
@@ -61,12 +62,7 @@ void solve() {
             int a, b;
             cin >> a >> b;
             a--, b--;
-            if (dsu.same(a, b)) {
-                cout << "YES\n";
-            }
-            else {
-                cout << "NO\n";
-            }
+            cout << (dsu.same(a, b) ? "YES\n" : "NO\n");
         }
     }
 }
