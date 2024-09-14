@@ -6,7 +6,7 @@ template <typename T>
 struct MStack {
     stack<pair<T, T>> st;
     
-    void push(T v) {
+    void push(const T &v) {
         T mn = st.empty() ? v : min(v, st.top().second);
         st.emplace(v, mn);
     }
@@ -19,10 +19,10 @@ struct MStack {
     T get() {
         return st.top().second;
     }
-    bool empty() {
+    bool empty() const {
         return st.empty();
     }
-    int size() {
+    int size() const {
         return st.size();
     }
 };
@@ -31,7 +31,7 @@ void solve() {
     int q;
     cin >> q;
 
-    MStack<int> s;
+    MStack<int> st;
     while (q--) {
         int t;
         cin >> t;
@@ -39,13 +39,13 @@ void solve() {
         if (t == 1) {
             int x;
             cin >> x;
-            s.push(x);
+            st.push(x);
         }
         else if (t == 2) {
-            s.pop();
+            st.pop();
         }
         else if (t == 3) {
-            cout << s.get() << '\n';
+            cout << st.get() << '\n';
         }
     }
 }
