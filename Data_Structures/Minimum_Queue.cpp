@@ -6,7 +6,7 @@ template <typename T>
 struct MQueue {
     stack<pair<T, T>> st1, st2;
     
-    void push(T v) {
+    void push(const T &v) {
         T mn = st1.empty() ? v : min(v, st1.top().second);
         st1.emplace(v, mn);
     }
@@ -38,10 +38,10 @@ struct MQueue {
         }
         return min(st1.top().second, st2.top().second);
     }
-    bool empty() {
+    bool empty() const {
         return st1.empty() && st2.empty();
     }
-    int size() {
+    int size() const {
         return st1.size() + st2.size();
     }
 };
