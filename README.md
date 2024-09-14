@@ -51,6 +51,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Fenwick Tree](Data_Structures/Fenwick_Tree.cpp)
 - [Fenwick Tree Range Update Range_Query](Data_Structures/Fenwick_Tree_Range_Update_Range_Query.cpp)
 - [Segment Tree](Data_Structures/Segment_Tree.cpp)
+- [Segment Tree with Lazy Propagation](Data_Structures/Segment_Tree_Lazy.cpp)
 - [Ordered Set](Data_Structures/Ordered_Set.cpp)
 - [Trie](Data_Structures/Trie.cpp)
 - [Treap](Data_Structures/Treap.cpp)
