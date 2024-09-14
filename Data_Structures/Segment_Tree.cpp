@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Segment Tree, update & query -> O(log(n))
+// Segment Tree, build -> O(n), update & query -> O(log(n))
 struct SegmentTree {
     struct Node {
         int64_t sum = 0;
-        int mn = 2e9, cnt = 1;
+        int mn = 2e9, cnt = 0;
 
         template <typename M>
         void init(const M &v) {
@@ -33,7 +33,7 @@ struct SegmentTree {
         if (l == r) {
             return;
         }
-        int m = (l + r) >> 1;
+        int m = (l + r) / 2;
         build(2 * x, l, m);
         build(2 * x + 1, m + 1, r);
         pull(x);
@@ -45,7 +45,7 @@ struct SegmentTree {
             tree[x].init(v[l]);
             return;
         }
-        int m = (l + r) >> 1;
+        int m = (l + r) / 2;
         build(2 * x, l, m, v);
         build(2 * x + 1, m + 1, r, v);
         pull(x);
@@ -57,7 +57,7 @@ struct SegmentTree {
             tree[x].init(v);
             return;
         }
-        int m = (l + r) >> 1;
+        int m = (l + r) / 2;
         if (p <= m) {
             modify(2 * x, l, m, p, v);
         }
@@ -68,16 +68,13 @@ struct SegmentTree {
     }
     
     Node get(int x, int l, int r, int ll, int rr) {
-        if (ll <= l && r <= rr) {
+        if (l > rr || r < ll) {
+            return Node();
+        }
+        if (l >= ll && r <= rr) {
             return tree[x];
         }
-        int m = (l + r) >> 1;
-        if (m >= rr) {
-            return get(2 * x, l, m, ll, rr);
-        }
-        else if (m < ll) {
-            return get(2 * x + 1, m + 1, r, ll, rr);
-        }
+        int m = (l + r) / 2;
         return merge(get(2 * x, l, m, ll, rr), get(2 * x + 1, m + 1, r, ll, rr));
     }
 
@@ -85,7 +82,7 @@ struct SegmentTree {
         if (l == r) {
             return l;
         }
-        int m = (l + r) >> 1;
+        int m = (l + r) / 2;
         if (f(tree[2 * x])) {
             return find_first_knowingly(2 * x, l, m, f);
         } 
@@ -93,18 +90,18 @@ struct SegmentTree {
     }
 
     int find_first(int x, int l, int r, int ll, int rr, const function<bool(const Node&)> &f) {
-        if (ll <= l && r <= rr) {
+        if (l > rr || r < ll) {
+            return -1;
+        }
+        if (l >= ll && r <= rr) {
             if (!f(tree[x])) {
                 return -1;
             }
             return find_first_knowingly(x, l, r, f);
         }
-        int m = (l + r) >> 1;
-        int res = -1;
-        if (m >= ll) {
-            res = find_first(2 * x, l, m, ll, rr, f);
-        }
-        if (m < rr && res == -1) {
+        int m = (l + r) / 2;
+        int res = find_first(2 * x, l, m, ll, rr, f);
+        if (res == -1) {
             res = find_first(2 * x + 1, m + 1, r, ll, rr, f);
         }
         return res;
@@ -114,7 +111,7 @@ struct SegmentTree {
         if (l == r) {
             return l;
         }
-        int m = (l + r) >> 1;
+        int m = (l + r) / 2;
         if (f(tree[2 * x + 1])) {
             return find_last_knowingly(2 * x + 1, m + 1, r, f);
         } 
@@ -122,18 +119,18 @@ struct SegmentTree {
     }
 
     int find_last(int x, int l, int r, int ll, int rr, const function<bool(const Node&)> &f) {
-        if (ll <= l && r <= rr) {
+        if (l > rr || r < ll) {
+            return -1;
+        }
+        if (l >= ll && r <= rr) {
             if (!f(tree[x])) {
                 return -1;
             }
             return find_last_knowingly(x, l, r, f);
         }
-        int m = (l + r) >> 1;
-        int res = -1;
-        if (m < rr) {
-            res = find_last(2 * x + 1, m + 1, r, ll, rr, f);
-        }
-        if (m >= ll && res == -1) {
+        int m = (l + r) / 2;
+        int res = find_last(2 * x + 1, m + 1, r, ll, rr, f);
+        if (res == -1) {
             res = find_last(2 * x, l, m, ll, rr, f);
         }
         return res;
@@ -153,25 +150,24 @@ struct SegmentTree {
         build(1, 0, n - 1, v);
     }
 
-    Node get(int ll, int rr) {
-        assert(ll >= 0 && ll <= rr && rr < n);
-        return get(1, 0, n - 1, ll, rr);
-    }
-
-    Node get(int p) {
-        assert(0 <= p && p < n);
-        return get(1, 0, n - 1, p, p);
-    }
-
     template <typename M>
     void modify(int p, const M &v) {
         assert(p >= 0 && p < n);
         modify(1, 0, n - 1, p, v);
     }
 
-    // find_first and find_last call all FALSE elements
-    // to the left (right) of the sought position exactly once
-    // auto f = [&](const auto &info) { return info.mn == 0; }
+    Node get(int ll, int rr) {
+        assert(ll >= 0 && ll <= rr && rr < n);
+        return get(1, 0, n - 1, ll, rr);
+    }
+
+    Node get(int p) {
+        assert(p >= 0 && p < n);
+        return get(1, 0, n - 1, p, p);
+    }
+
+    // find_first and find_last find first/last element satisfy f
+    // auto f = [&](const auto &info) { return info.mn == 0; };
 
     int find_first(int ll, int rr, const function<bool(const Node&)> &f) {
         assert(ll >= 0 && ll <= rr && rr < n);
