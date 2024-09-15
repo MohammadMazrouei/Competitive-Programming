@@ -15,22 +15,19 @@ void solve() {
     }
 
     // Breadth First Search, O(n + m)
-    vector<bool> vis(n);
-    vector<int> dist(n), par(n);
+    constexpr int INF = 1e9;
+    vector<int> dist(n, INF), par(n, -1);
     auto bfs = [&](int s) -> void {
         queue<int> q;
         q.push(s);
-        vis[s] = true;
         dist[s] = 0;
-        par[s] = -1;
         while (!q.empty()) {
             int v = q.front();
             q.pop();
 
             for (auto u : adj[v]) {
-                if (!vis[u]) {
+                if (dist[v] + 1 < dist[u]) {
                     q.push(u);
-                    vis[u] = true;
                     dist[u] = dist[v] + 1;
                     par[u] = v;
                 }
@@ -40,7 +37,7 @@ void solve() {
     bfs(0);
 
     for (int i = 0; i < n; i++) {
-        int d = vis[i] ? dist[i] : -1;
+        int d = dist[i] != INF ? dist[i] : -1;
         cout << d << " \n"[i == n - 1]; 
     }
 }
