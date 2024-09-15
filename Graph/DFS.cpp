@@ -17,6 +17,7 @@ void solve() {
     // Depth First Search, O(n + m)
     vector<bool> vis(n);
     vector<int> in(n), out(n), order;
+    order.reserve(n);
     int timer = 0;
     auto dfs = [&](auto &&self, int v) -> void {
         vis[v] = true;
