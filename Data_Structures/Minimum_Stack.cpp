@@ -2,12 +2,13 @@
 using namespace std;
 
 // Minimum Stack, O(1)
-template <typename T>
+template <typename T, typename Cmp = less<T>>
 struct MStack {
     stack<pair<T, T>> st;
+    const Cmp cmp = Cmp();
     
     void push(const T &v) {
-        T mn = st.empty() ? v : min(v, st.top().second);
+        T mn = st.empty() ? v : min(v, st.top().second, cmp);
         st.emplace(v, mn);
     }
     void pop() {
