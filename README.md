@@ -59,8 +59,8 @@ Templates, algorithms and data structures implemented and collected for programm
 ## Graph
 - [DFS](Graph/DFS.cpp)
 - [BFS](Graph/BFS.cpp)
-- [Bipartite Checking](Graph/Bipartite_Checking.cpp)
 - [Topological Sorting](Graph/Topological_Sorting.cpp)
+- [Bipartite Checking](Graph/Bipartite_Checking.cpp)
 - [Cycle Detection Directed Graph](Graph/Cycle_Detection_Directed_Graph.cpp)
 - [Cycle Detection Undirected Graph](Graph/Cycle_Detection_Undirected_Graph.cpp)
 - [Articulation Points](Graph/Articulation_Points.cpp)
