@@ -1,21 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Range_Update & Range_Query, O(log(n))
+// Range Update & Range Query, O(log(n))
 template <typename T>
 struct FenwickTree {
     int n;
-    vector<T> f1, f2;
+    vector<T> f_mul, f_add;
     
     FenwickTree() {}
     FenwickTree(int _n) : n(_n) {
-        f1.assign(n, T{});
-        f2.assign(n, T{});
+        f_mul.assign(n, T{});
+        f_add.assign(n, T{});
     }
     FenwickTree(const vector<T> &v) {
         n = v.size();
-        f1.assign(n, T{});
-        f2.assign(n, T{});
+        f_mul.assign(n, T{});
+        f_add.assign(n, T{});
         for (int i = 0; i < n; i++) {
             modify(i, i, v[i]);
         }
@@ -23,11 +23,11 @@ struct FenwickTree {
 
     void add(int x, T mul, T add) {
         for (int i = x; i < n; i = i | (i + 1)) {
-            f1[i] += mul;
-            f2[i] += add;
+            f_mul[i] += mul;
+            f_add[i] += add;
         }
     }
-    void modify(int l, int r, T v) {
+    void modify(int l, int r, const T &v) {
         assert(l >= 0 && l <= r && r < n);
         add(l, v, -v * (l - 1));
         add(r, -v, v * r);
@@ -35,8 +35,8 @@ struct FenwickTree {
     T get(int x) {
         T mul{}, add{};
         for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
-            mul += f1[i];
-            add += f2[i];
+            mul += f_mul[i];
+            add += f_add[i];
         }
         return mul * x + add;
     }
