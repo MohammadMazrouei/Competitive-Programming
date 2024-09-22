@@ -4,7 +4,7 @@ using namespace std;
 // Segment Tree with Lazy Propagation, build -> O(n), update & query -> O(log(n))
 struct SegmentTreeLazy {
     struct Node {
-        int64_t sum = 0, mn = 4e18, cnt = 0;
+        int64_t sum = 0, mn = LLONG_MAX, cnt = 0;
         int64_t add = 0;
 
         template <typename M>
@@ -39,8 +39,8 @@ struct SegmentTreeLazy {
     }
 
     inline void push(int l, int r, int x) {
-        int m = (l + r) / 2;
         if (tree[x].add != 0) {
+            int m = (l + r) / 2;
             tree[2 * x].apply(l, m, tree[x].add);
             tree[2 * x + 1].apply(m + 1, r, tree[x].add);
             tree[x].add = 0;
