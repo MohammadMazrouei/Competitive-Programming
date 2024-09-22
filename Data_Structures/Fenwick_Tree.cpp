@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Point_Update & Range_Query, O(log(n))
+// Point Update & Range Query, O(log(n))
 template <typename T>
 struct FenwickTree {
     int n;
@@ -14,9 +14,8 @@ struct FenwickTree {
     // O(n) Construction
     FenwickTree(const vector<T> &v) {
         n = v.size();
-        f.assign(n, T{});
+        f.assign(v.begin(), v.end());;
         for (int i = 0; i < n; i++) {
-            f[i] += v[i];
             int r = i | (i + 1);
             if (r < n) {
                 f[r] += f[i];
@@ -31,37 +30,32 @@ struct FenwickTree {
         }
     }
     T get(int x) {
-        T ans{};
+        T res{};
         for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
-            ans += f[i];
+            res += f[i];
         }
-        return ans;
+        return res;
     }
     T get(int l, int r) {
         assert(l >= 0 && l <= r && r < n);
         return get(r) - get(l - 1);
     }
-    // Return Kth smallest element
+    // Lower bound on prefix sum array (every a[i] must be non-negative)
     int select(const T &k) {
-        int x = (1 << (__lg(n) + 1)) - 1;
         T sum{};
-        for (int i = 1 << __lg(n); i; i >>= 1) {
-            if (x >= n || sum + f[x] >= k) {
-                x -= i;
-            }
-            else if (x + i < n && sum + f[x] + f[x + i] < k) {
-                sum += f[x];
-                x += i;
+        int x = 0, pw = __bit_floor(unsigned(n));;
+        for (int len = pw; len > 0; len >>= 1) {
+            if (x + len <= n && sum + f[x + len - 1] < k) {
+                sum += f[x + len - 1];
+                x += len;
             }
         }
-        if (sum + f[x] < k) {
-            x++;
-        }
+        assert(x >= 0 && x <= n);
         return x;
     }
 };
 
-// Range_Update & Point_Query, O(log(n))
+// Range Update & Point Query, O(log(n))
 template <typename T>
 struct FenwickTree2 { 
     int n;
@@ -79,23 +73,23 @@ struct FenwickTree2 {
         }
     }
 
-    void modify(int x, T v) {
+    void modify(int x, const T &v) {
         for (int i = x; i < n; i = i | (i + 1)) {
             f[i] += v;
         }
     }
-    void modify(int l, int r, T v) {
+    void modify(int l, int r, const T &v) {
         assert(l >= 0 && l <= r && r < n);
         modify(l, v);
         modify(r + 1, -v);
     }
     T get(int x) {
         assert(x >= 0 && x < n);
-        T ans = 0;
+        T res = 0;
         for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
-            ans += f[i];
+            res += f[i];
         }
-        return ans;
+        return res;
     }
 };
 
