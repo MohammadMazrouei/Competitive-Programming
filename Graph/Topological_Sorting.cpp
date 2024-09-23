@@ -17,7 +17,8 @@ void solve() {
     // An order of vertices in DAG that every edge leads from 
     // the vertex with a smaller index to a vertex with a larger one.
     vector<bool> vis(n);
-    vector<int> ord;
+    vector<int> order;
+    order.reserve(n);
     auto dfs = [&](auto &&self, int v) -> void {
         vis[v] = true;
         for (auto u : adj[v]) {
@@ -25,7 +26,7 @@ void solve() {
                 self(self, u);
             }
         }
-        ord.push_back(v);
+        order.push_back(v);
     };
     auto topological_sorting = [&]() -> void {
         for (int v = 0; v < n; v++) {
@@ -33,12 +34,12 @@ void solve() {
                 dfs(dfs, v);
             }
         }
-        reverse(ord.begin(), ord.end());
+        reverse(order.begin(), order.end());
     };
     topological_sorting();
 
     for (int i = 0; i < n; i++) {
-        cout << ord[i] + 1 << " \n"[i == n - 1];
+        cout << order[i] + 1 << " \n"[i == n - 1];
     }
 }
 
