@@ -167,7 +167,7 @@ struct SegmentTree {
     }
 
     // find_first and find_last find first/last element satisfy f
-    // auto f = [&](const auto &info) { return info.mn == 0; };
+    // auto f = [&](const auto &node) { return node.mn <= 0; };
 
     int find_first(int ll, int rr, const function<bool(const Node&)> &f) {
         assert(ll >= 0 && ll <= rr && rr < n);
