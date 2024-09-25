@@ -5,22 +5,23 @@ using namespace std;
 struct Trie {
     int sz;
     vector<int> cnt_prefix, cnt_word;
-    vector<vector<int>> nxt;
+    vector<array<int, 26>> nxt;
 
-    Trie (const int n) {
+    Trie(int n) : sz(1) {
         sz = 1;
         cnt_prefix.assign(n, 0);
         cnt_word.assign(n, 0);
-        nxt.assign(n, vector<int>(26));
+        nxt.assign(n, array<int, 26>());
     }
 
     void insert(string &s) {
         int v = 0;
         for (auto ch : s) {
-            if (!nxt[v][ch - 'a']) {
-                nxt[v][ch - 'a'] = sz++;
+            int ind = ch - 'a';
+            if (!nxt[v][ind]) {
+                nxt[v][ind] = sz++;
             }
-            v = nxt[v][ch - 'a'];
+            v = nxt[v][ind];
             cnt_prefix[v]++;
         }
         cnt_word[v]++;
@@ -28,8 +29,9 @@ struct Trie {
     void erase(string &s) {
         int v = 0;
         for (auto ch : s) {
-            assert(nxt[v][ch - 'a']);
-            v = nxt[v][ch - 'a'];
+            int ind = ch - 'a';
+            assert(nxt[v][ind]);
+            v = nxt[v][ind];
             cnt_prefix[v]--;
         }
         cnt_word[v]--;
@@ -38,20 +40,22 @@ struct Trie {
     int count_word(string &s) {
         int v = 0;
         for (auto ch : s) {
-            if (!nxt[v][ch - 'a']) {
+            int ind = ch - 'a';
+            if (!nxt[v][ind]) {
                 return 0;
             }
-            v = nxt[v][ch - 'a'];
+            v = nxt[v][ind];
         }
         return cnt_word[v];
     }
     int count_prefix(string &s) {
         int v = 0;
         for (auto ch : s) {
-            if (!nxt[v][ch - 'a']) {
+            int ind = ch - 'a';
+            if (!nxt[v][ind]) {
                 return 0;
             }
-            v = nxt[v][ch - 'a'];
+            v = nxt[v][ind];
         }
         return cnt_prefix[v];
     }
