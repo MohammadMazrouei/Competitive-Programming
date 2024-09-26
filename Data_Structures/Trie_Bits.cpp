@@ -7,7 +7,7 @@ struct Trie {
     int sz;
     vector<int> cnt_prefix, cnt_word;
     vector<array<int, 2>> nxt;
-    const int B = numeric_limits<T>::digits;
+    const int B = numeric_limits<T>::digits - 1;
 
     Trie(int n) : sz(1) {
         cnt_prefix.assign(n, 0);
