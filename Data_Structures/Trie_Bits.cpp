@@ -3,20 +3,19 @@ using namespace std;
 
 // Tire on Bits, O(n)
 template <typename T>
-struct Trie2 {
-    const int B = numeric_limits<T>::digits;
+struct Trie {
     int sz;
     vector<int> cnt_prefix, cnt_word;
     vector<array<int, 2>> nxt;
+    const int B = numeric_limits<T>::digits;
 
-    Trie2(int n) : sz(1) {
-        cerr << B << endl;
+    Trie(int n) : sz(1) {
         cnt_prefix.assign(n, 0);
         cnt_word.assign(n, 0);
-        nxt.resize(n);
+        nxt.assign(n, array<int, 2>());
     }
 
-    void insert(T x) {
+    void insert(const T &x) {
         int v = 0;
         for (int i = B; i >= 0; i--) {
             int bit = x >> i & 1;
@@ -28,29 +27,20 @@ struct Trie2 {
         }
         cnt_word[v]++;
     }
-    void erase(int x) {
+
+    void erase(const T &x) {
         int v = 0;
         for (int i = B; i >= 0; i--) {
             int bit = x >> i & 1;
-            assert(nxt[v][bit]);
             v = nxt[v][bit];
             cnt_prefix[v]--;
+            assert(cnt_prefix[v]);
         }
         cnt_word[v]--;
         assert(cnt_word[v] >= 0);
     }
-    int count_word(T x) {
-        int v = 0;
-        for (int i = B; i >= 0; i--) {
-            int bit = x >> i & 1;
-            if (!nxt[v][bit]) {
-                return 0;
-            }
-            v = nxt[v][bit];
-        }
-        return cnt_word[v];
-    }
-    int count_prefix(T x) {
+
+    int count_prefix(const T &x) {
         int v = 0;
         for (int i = B; i >= 0; i--) {
             int bit = x >> i & 1;
@@ -61,7 +51,20 @@ struct Trie2 {
         }
         return cnt_prefix[v];
     }
-    T max_xor(T x) {
+
+    int count_word(const T &x) {
+        int v = 0;
+        for (int i = B; i >= 0; i--) {
+            int bit = x >> i & 1;
+            if (!nxt[v][bit]) {
+                return 0;
+            }
+            v = nxt[v][bit];
+        }
+        return cnt_word[v];
+    }
+
+    T max_xor(const T &x) {
         T res{};
         int v = 0;
         for (int i = B; i >= 0; i--) {
@@ -79,7 +82,25 @@ struct Trie2 {
 };
 
 void solve() {
-        
+    int q;
+    cin >> q;
+
+    const int N = 1e6;
+    Trie<int> trie(N);
+    while (q--) {
+        int t, x;
+        cin >> t >> x;
+
+        if (t == 1) {
+            trie.insert(x);
+        }
+        else if (t == 2) {
+            trie.erase(x);
+        }
+        else if (t == 3) {
+            cout << trie.max_xor(x) << '\n';
+        }
+    }
 }
 
 int32_t main() {
