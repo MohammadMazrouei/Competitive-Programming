@@ -34,7 +34,7 @@ struct Trie {
             int bit = x >> i & 1;
             v = nxt[v][bit];
             cnt_prefix[v]--;
-            assert(cnt_prefix[v]);
+            assert(cnt_prefix[v] >= 0);
         }
         cnt_word[v]--;
         assert(cnt_word[v] >= 0);
