@@ -30,7 +30,7 @@ void solve() {
                 return true;
             }
             par[u] = v;
-            if (self(self, u, par[u])) {
+            if (self(self, u, v)) {
                 return true;
             }
         }
@@ -40,7 +40,7 @@ void solve() {
         cycle.clear();
         cycle_start = -1;
         for (int v = 0; v < n; v++) {
-            if (!vis[v] && dfs(dfs, v, par[v])) {
+            if (!vis[v] && dfs(dfs, v, -1)) {
                 break;
             }
         }
@@ -48,7 +48,6 @@ void solve() {
             return false;
         } 
 
-        cycle.push_back(cycle_start);
         for (int v = cycle_end; v != cycle_start; v = par[v]) {
             cycle.push_back(v);
         }

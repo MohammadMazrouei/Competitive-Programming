@@ -46,7 +46,6 @@ void solve() {
             return false;
         }
 
-        cycle.push_back(cycle_start);
         for (int v = cycle_end; v != cycle_start; v = par[v]) {
             cycle.push_back(v);
         }
