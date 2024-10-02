@@ -6,7 +6,7 @@ template <typename T>
 int mex(const vector<T> &v) {
     int n = v.size();
     vector<bool> f(n + 1);
-    for (int x : v) {
+    for (auto x : v) {
         if (x <= n) {
             f[x] = 1;
         }
