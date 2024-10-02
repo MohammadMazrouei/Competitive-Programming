@@ -17,9 +17,7 @@ struct SegmentTreeLazy {
         void apply([[maybe_unused]] int l, [[maybe_unused]] int r, const M &v) {
             sum += (int64_t)v * (r - l + 1);
             mn += v;
-            if (l != r) {
-                add += v;
-            }
+            add += v;
         }
     };
 
@@ -38,8 +36,8 @@ struct SegmentTreeLazy {
         tree[x] = merge(tree[2 * x], tree[2 * x + 1]);
     }
 
-    inline void push(int l, int r, int x) {
-        if (tree[x].add != 0) {
+    inline void push(int x, int l, int r) {
+        if (tree[x].add != 0 && l != r) {
             int m = (l + r) / 2;
             tree[2 * x].apply(l, m, tree[x].add);
             tree[2 * x + 1].apply(m + 1, r, tree[x].add);
@@ -78,7 +76,7 @@ struct SegmentTreeLazy {
             tree[x].apply(l, r, v);
             return;
         }
-        push(l, r, x);
+        push(x, l, r);
         int m = (l + r) / 2;
         modify(2 * x, l, m, ll, rr, v);
         modify(2 * x + 1, m + 1, r, ll, rr, v);
@@ -92,7 +90,7 @@ struct SegmentTreeLazy {
         if (l >= ll && r <= rr) {
             return tree[x];
         }
-        push(l, r, x);
+        push(x, l, r);
         int m = (l + r) / 2;
         return merge(get(2 * x, l, m, ll, rr), get(2 * x + 1, m + 1, r, ll, rr));
     }
@@ -101,7 +99,7 @@ struct SegmentTreeLazy {
         if (l == r) {
             return l;
         }
-        push(l, r, x);
+        push(x, l, r);
         int m = (l + r) / 2;
         if (f(tree[2 * x])) {
             return find_first_knowingly(2 * x, l, m, f);
@@ -119,7 +117,7 @@ struct SegmentTreeLazy {
             }
             return find_first_knowingly(x, l, r, f);
         }
-        push(l, r, x);
+        push(x, l, r);
         int m = (l + r) / 2;
         int res = find_first(2 * x, l, m, ll, rr, f);
         if (res == -1) {
@@ -132,7 +130,7 @@ struct SegmentTreeLazy {
         if (l == r) {
             return l;
         }
-        push(l, r, x);
+        push(x, l, r);
         int m = (l + r) / 2;
         if (f(tree[2 * x + 1])) {
             return find_last_knowingly(2 * x + 1, m + 1, r, f);
@@ -150,7 +148,7 @@ struct SegmentTreeLazy {
             }
             return find_last_knowingly(x, l, r, f);
         }
-        push(l, r, x);
+        push(x, l, r);
         int m = (l + r) / 2;
         int res = find_last(2 * x + 1, m + 1, r, ll, rr, f);
         if (res == -1) {
