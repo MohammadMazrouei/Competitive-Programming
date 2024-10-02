@@ -5,7 +5,7 @@ using namespace std;
 struct SegmentTree {
     struct Node {
         int64_t sum = 0;
-        int mn = INT_MAX, cnt = 0;
+        int mn = 2e9, cnt = 0;
 
         template <typename M>
         void init(const M &v) {
