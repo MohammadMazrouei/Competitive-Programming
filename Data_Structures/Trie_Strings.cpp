@@ -70,20 +70,19 @@ void solve() {
     const int N = 1e6;
     Trie trie(N);
     while (q--) {
-        int t;
+        int op;
         string s;
-        cin >> t >> s;
-
-        if (t == 1) {
+        cin >> op >> s;
+        if (op == 1) {
             trie.insert(s);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             trie.erase(s);
         }
-        else if (t == 3) {
+        else if (op == 3) {
             cout << trie.count_prefix(s) << '\n';
         }
-        else if (t == 4) {
+        else if (op == 4) {
             cout << trie.count_word(s) << '\n';
         }
     }
