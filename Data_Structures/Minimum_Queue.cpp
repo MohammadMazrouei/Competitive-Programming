@@ -53,18 +53,17 @@ void solve() {
 
     MQueue<int> qu;
     while (q--) {
-        int t;
-        cin >> t;
-
-        if (t == 1) {
+        int op;
+        cin >> op;
+        if (op == 1) {
             int x;
             cin >> x;
             qu.push(x);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             qu.pop();
         }
-        else if (t == 3) {
+        else if (op == 3) {
             cout << qu.get() << '\n';
         }
     }
