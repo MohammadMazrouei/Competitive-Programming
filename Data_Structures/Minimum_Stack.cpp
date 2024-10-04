@@ -34,18 +34,17 @@ void solve() {
 
     MStack<int> st;
     while (q--) {
-        int t;
-        cin >> t;
-
-        if (t == 1) {
+        int op;
+        cin >> op;
+        if (op == 1) {
             int x;
             cin >> x;
             st.push(x);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             st.pop();
         }
-        else if (t == 3) {
+        else if (op == 3) {
             cout << st.get() << '\n';
         }
     }
