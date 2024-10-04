@@ -14,11 +14,15 @@ struct BST {
 
         void set_left(Node *node) {
             left = node;
-            node->par = this;
+            if (node != nullptr) {
+                node->par = this;
+            }
         }
         void set_right(Node *node) {
             right = node;
-            node->par = this;
+            if (node != nullptr) {
+                node->par = this;
+            }
         }
     };
 
@@ -38,7 +42,7 @@ struct BST {
         if (_key < node->key) {
             node->set_left(insert(node->left, _key));
         }
-        else {
+        else if (_key > node->key) {
             node->set_right(insert(node->right, _key));
         }
         return node;
@@ -57,16 +61,16 @@ struct BST {
         else {
             if (node->left == nullptr) {
                 Node *tmp = node->right;
-                free(node);
+                delete node;
                 return tmp;
             }
             if (node->right == nullptr) {
                 Node *tmp = node->left;
-                free(node);
+                delete node;
                 return tmp;
             }
             Node *tmp = node->right;
-            while (tmp != nullptr && tmp->left != nullptr) {
+            while (tmp->left != nullptr) {
                 tmp = tmp->left;
             }
             node->key = tmp->key;
@@ -123,11 +127,31 @@ struct BST {
 };
 
 void solve() {
-    vector<int> v = {1, 2, 10, 20, 11, 12};        
-    BST bst(v);
-    bst.insert(100);
-    bst.erase(1);
-    cout << bst.contains(100) << ' ' << bst.contains(1) << '\n';
+    int n, q;
+    cin >> n >> q;
+
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    BST bst(a);
+    while (q--) {
+        int op, x;
+        cin >> op >> x;
+        if (op == 1) {
+            bst.insert(x);
+        }
+        else if (op == 2) {
+            bst.erase(x);
+        }
+        else if (op == 3) {
+            cout << bst.contains(x) << '\n';
+        }
+        else if (op == 4) {
+            cout << bst.count(x) << '\n';
+        }
+    }
 }
 
 int32_t main() {
