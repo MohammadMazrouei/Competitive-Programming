@@ -57,16 +57,15 @@ void solve() {
 
     FenwickTree<int> fen(a);
     while (q--) {
-        int t;
-        cin >> t;
-
-        if (t == 1) {
+        int op;
+        cin >> op;
+        if (op == 1) {
             int l, r, v;
             cin >> l >> r >> v;
             l--, r--;
             fen.modify(l, r, v);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             int l, r;
             cin >> l >> r;
             l--, r--;
