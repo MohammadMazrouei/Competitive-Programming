@@ -88,16 +88,15 @@ void solve() {
     const int N = 1e6;
     Trie<int> trie(N);
     while (q--) {
-        int t, x;
-        cin >> t >> x;
-
-        if (t == 1) {
+        int op, x;
+        cin >> op >> x;
+        if (op == 1) {
             trie.insert(x);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             trie.erase(x);
         }
-        else if (t == 3) {
+        else if (op == 3) {
             cout << trie.max_xor(x) << '\n';
         }
     }
