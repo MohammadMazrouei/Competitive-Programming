@@ -49,16 +49,15 @@ void solve() {
 
     DSU dsu(n);
     while (q--) {
-        int t;
-        cin >> t;
-
-        if (t == 1) {
+        int op;
+        cin >> op;
+        if (op == 1) {
             int a, b;
             cin >> a >> b;
             a--, b--;
             dsu.merge(a, b);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             int a, b;
             cin >> a >> b;
             a--, b--;
