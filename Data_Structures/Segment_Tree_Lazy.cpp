@@ -211,35 +211,33 @@ void solve() {
     }
 
     SegmentTreeLazy seg(a);
-    auto f = [&](const auto &info) { return info.mn == 0; };
     while (q--) {
-        int t;
-        cin >> t;
-
-        if (t == 1) {
+        int op;
+        cin >> op;
+        if (op == 1) {
             int l, r, v;
             cin >> l >> r >> v;
             l--, r--;
             seg.modify(l, r, v);
         }
-        else if (t == 2) {
+        else if (op == 2) {
             int l, r;
             cin >> l >> r;
             l--, r--;
             auto node = seg.get(l, r);
             cout << node.sum << ' ' << node.mn << ' ' << node.cnt << '\n';
         }
-        else if (t == 3) {
+        else if (op == 3) {
             int l, r;
             cin >> l >> r;
             l--, r--;
-            cout << seg.find_first(l, r, f) + 1 << '\n';
+            cout << seg.find_first(l, r, [&](const auto &node) { return node.mn <= 0; }) + 1 << '\n';
         }
-        else if (t == 4) {
+        else if (op == 4) {
             int l, r;
             cin >> l >> r;
             l--, r--;
-            cout << seg.find_last(l, r, f) + 1 << '\n';
+            cout << seg.find_last(l, r, [&](const auto &node) { return node.mn <= 0; }) + 1 << '\n';
         }
     }
 }
