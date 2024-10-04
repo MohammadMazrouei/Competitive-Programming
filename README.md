@@ -54,6 +54,9 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Segment Tree Lazy](Data_Structures/Segment_Tree_Lazy.cpp)
 - [Trie on Strings](Data_Structures/Trie_Strings.cpp)
 - [Trie on Bits](Data_Structures/Trie_Bits.cpp)
+- [Sqrt Decomposition](Data_Structures/Sqrt_Decomposition.cpp)
+- [MO's Algorithm](Data_Structures/MOs_Algorithm.cpp)
+- [BST](Data_Structures/BST.cpp)
 - [Treap](Data_Structures/Treap.cpp)
 - [Ordered Set](Data_Structures/Ordered_Set.cpp)
 
