@@ -14,7 +14,7 @@ void solve() {
     }
     
     // Find Number of Divisors Upto n, O(sqrt(n))
-    auto number_of_divisors = [&](int64_t x) {
+    auto number_of_divisors = [&](int64_t x) -> int64_t {
         int64_t res = 0, i = 1;
         for (; i * i <= x; i++) {
             res += x / i;
@@ -23,8 +23,7 @@ void solve() {
         return res;
     };
 
-    int64_t sum = number_of_divisors(n);
-    cout << sum << '\n';
+    cout << number_of_divisors(n) << '\n';
     for (int i = 1; i <= n; i++) { 
         cout << '#' << i << '\n';
         for (auto d : div[i]) {
