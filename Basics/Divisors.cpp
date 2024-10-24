@@ -3,7 +3,7 @@ using namespace std;
 
 // Find Divisors, O(sqrt(n))
 template <typename T>
-vector<T> divisors(T n) {
+vector<T> divisors(const T n) {
     vector<T> d;
     for (T i = 1; i * i <= n; i++) {
         if (n % i == 0) {
