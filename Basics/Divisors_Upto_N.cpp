@@ -14,7 +14,7 @@ void solve() {
     }
     
     // Find Number of Divisors Upto n, O(sqrt(n))
-    auto number_of_divisors = [&](int64_t x) -> int64_t {
+    auto number_of_divisors = [&](const int64_t x) -> int64_t {
         int64_t res = 0, i = 1;
         for (; i * i <= x; i++) {
             res += x / i;
