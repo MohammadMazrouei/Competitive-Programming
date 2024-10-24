@@ -39,8 +39,7 @@ void solve() {
         while (hi - lo > eps) {
             double m1 = lo + (hi - lo) / 3;
             double m2 = hi - (hi - lo) / 3;
-            double f1 = f(m1), f2 = f(m2);
-            if (f1 <= f2) {
+            if (f(m1) <= f(m2)) {
                 lo = m1;
             }
             else {
