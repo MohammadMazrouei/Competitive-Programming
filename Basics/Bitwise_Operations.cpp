@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Checks if x is odd or even
+// Check if x is odd or even
 bool is_odd(int x) {
     return x & 1;
 }
 
-// Checks if kth bit of x is set
+// Check if kth bit of x is set
 bool check_kth_bit(int x, int k) {
     return x >> k & 1;
 }
 
-// Returns the count of set bits
+// Return the count of set bits
 int count_set_bits(int x) {
     int res = 0;
     for (int k = 0; k < 32; k++) {
@@ -20,22 +20,22 @@ int count_set_bits(int x) {
     return res;
 }
 
-// Sets the kth bit of x
+// Set the kth bit of x
 int set_kth_bit(int x, int k) {
     return x | (1 << k);
 }
 
-// Unsets the kth bit of x
+// Unset the kth bit of x
 int unset_kth_bit(int x, int k) {
     return x & (~(1 << k));
 }
 
-// Toggles the kth bit of x
+// Toggle the kth bit of x
 int toggle_kth_bit(int x, int k) {
     return x ^ (1 << k);
 }
 
-// Checks if x is a power of 2
+// Check if x is a power of 2
 bool check_power_of_2(int x) {
     return count_set_bits(x) == 1;
 }
@@ -50,7 +50,7 @@ int unset_lowest_bit(int x) {
     return x & (x - 1);
 }
 
-// Prints the binary representation of x
+// Print the binary representation of x
 void to_binary(int x) {
     for (int k = 31; k >= 0; k--) {
         cout << (x >> k & 1);
