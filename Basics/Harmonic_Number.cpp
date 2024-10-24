@@ -13,8 +13,8 @@ void solve() {
             sum++;
         }
     }
-    cout << complexity << '\n';
     cout << sum << '\n';
+    cout << complexity << '\n';
 }
 
 int32_t main() {
