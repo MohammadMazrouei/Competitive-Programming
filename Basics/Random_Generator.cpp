@@ -8,8 +8,8 @@ void solve() {
     int64_t a, b;
     cin >> a >> b;
 
-    cout << uid(a, b) << '\n';
     cout << rng() << '\n';
+    cout << uid(a, b) << '\n';
 }
 
 int32_t main() {
