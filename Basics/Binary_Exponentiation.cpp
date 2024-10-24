@@ -17,10 +17,10 @@ T power(T a, int64_t b, int64_t m) {
 }
 
 void solve() {
-    int64_t a, b, p;
-    cin >> a >> b >> p;
+    int64_t a, b, m;
+    cin >> a >> b >> m;
 
-    cout << power(a, b, p) << '\n';
+    cout << power(a, b, m) << '\n';
 }
 
 int32_t main() {
