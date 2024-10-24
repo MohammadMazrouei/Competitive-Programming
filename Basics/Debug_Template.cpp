@@ -35,7 +35,7 @@ namespace __DEBUG_UTIL__ {
         /* Overloaded this because stl optimizes vector<bool> by using
            _Bit_reference instead of bool to conserve space. */
         int f = 0;
-        cerr << '{';
+        cerr << "{";
         for (auto &&i : v) {
             cerr << (f++ ? "," : "") << (i ? "T" : "F");
         }
@@ -84,16 +84,16 @@ namespace __DEBUG_UTIL__ {
         }
         else if constexpr (requires { x.first; x.second; }) {
             /* Pair */
-            cerr << '(', print(x.first), cerr << ',', print(x.second), cerr << ')';
+            cerr << "(", print(x.first), cerr << ",", print(x.second), cerr << ")";
         }
         else if constexpr (requires { get<0>(x); }) {
             /* Tuple */
             int f = 0;
-            cerr << '('; 
+            cerr << "("; 
             apply([&f](auto... args) {
                 ((cerr << (f++ ? "," : ""), print(args)), ...);
                 }, x);
-            cerr << ')';
+            cerr << ")";
         }
         else {
             cerr << x;
