@@ -8,6 +8,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Debug Template](Basics/Debug_Template.cpp)
 - [Binary Exponentiation](Basics/Binary_Exponentiation.cpp)
 - [Mint](Basics/Mint.cpp)
+- [Random Generator](Basics/Random_Generator.cpp)
 - [Harmonic Number](Basics/Harmonic_Number.cpp)
 - [GCD and LCM](Basics/GCD_and_LCM.cpp)
 - [Divisors](Basics/Divisors.cpp)
@@ -21,7 +22,6 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Bitmask](Basics/Bitmask.cpp)
 - [Binary Search](Basics/Binary_Search.cpp)
 - [Ternary Search](Basics/Ternary_Search.cpp)
-- [Random Generator](Basics/Random_Generator.cpp)
 
 ## STL
 - [Iterators](STL/Iterators.cpp)
