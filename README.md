@@ -76,6 +76,7 @@ Templates, algorithms and data structures implemented and collected for programm
 ## String
 - [Split](String/Split.cpp)
 - [Strip](String/Strip.cpp)
+- [Hashing](String/Hashing.cpp)
 - [Z Function](String/Z_Function.cpp)
 - [Manacher](String/Manacher.cpp)
 - [Suffix Array](String/Suffix_Array.cpp)
