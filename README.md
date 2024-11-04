@@ -69,9 +69,11 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Cycle Detection in Directed Graph](Graph/Cycle_Detection_Directed_Graph.cpp)
 - [Articulation Bridges](Graph/Articulation_Bridges.cpp)
 - [Articulation Points](Graph/Articulation_Points.cpp)
-- [Centroids](Graph/Centroids.cpp)
+- [Bridge Tree](Graph/Bridge_Tree.cpp)
+- [Block-Cut Tree](Graph/Black_Cut_Tree.cpp)
 - [Floyd Warshall](Graph/Floyd_Warshall.cpp)
 - [Dijkstra](Graph/Dijkstra.cpp)
+- [Centroids](Graph/Centroids.cpp)
 
 ## String
 - [Split](String/Split.cpp)
