@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Hash Strings, O(1)
+// String Hashing, O(1)
 struct Hash {
     static const uint64_t md = (1LL << 61) - 1;
     static uint64_t step;
@@ -9,13 +9,17 @@ struct Hash {
 
     uint64_t addmod(uint64_t a, uint64_t b) const {
         a += b;
-        if (a >= md) a -= md;
+        if (a >= md) {
+            a -= md;
+        }
         return a;
     }
 
     uint64_t submod(uint64_t a, uint64_t b) const {
         a += md - b;
-        if (a >= md) a -= md;
+        if (a >= md) {
+            a -= md;
+        }
         return a;
     }
 
@@ -67,7 +71,7 @@ void solve() {
     string s1, s2;
     cin >> s1 >> s2;
 
-    auto h1 = Hash(s1), h2 = Hash(s2);
+    Hash h1(s1), h2(s2);
 
     int q;
     cin >> q;
