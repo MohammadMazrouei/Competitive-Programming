@@ -33,7 +33,7 @@ void solve() {
                 self(self, u, v);
                 low[v] = min(low[v], low[u]);
                 if (low[u] > tin[v]) {
-                    bridges.push_back({v, u});
+                    bridges.emplace_back(v, u);
                 }
             }
         }
