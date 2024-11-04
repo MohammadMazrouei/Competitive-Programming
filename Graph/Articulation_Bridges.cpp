@@ -17,7 +17,7 @@ void solve() {
     // Find Articulation Bridges in Udirected Graph, O(n + m)
     vector<bool> vis(n);
     vector<int> tin(n), low(n);
-    vector<array<int, 2>> bridges;
+    vector<pair<int, int>> bridges;
     int timer = 0;
     auto dfs = [&](auto &&self, int v, int p) -> void {
         vis[v] = true;
@@ -50,7 +50,7 @@ void solve() {
     int sz = bridges.size();
     cout << sz << '\n';
     for (int i = 0; i < sz; i++) {
-        cout << bridges[i][0] + 1 << ' ' << bridges[i][1] + 1 << '\n';
+        cout << bridges[i].first + 1 << ' ' << bridges[i].second + 1 << '\n';
     }
 }
 
