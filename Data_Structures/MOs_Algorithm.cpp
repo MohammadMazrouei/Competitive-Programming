@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// MO's Algorithm, O((n + q) * sqrt(n) * F)
+// MO's Algorithm, O((n+q)*sqrt(n)*F)
 const int B = 440;
 struct Query {
     int l, r, id;
