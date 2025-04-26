@@ -71,9 +71,12 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Articulation Points](Graph/Articulation_Points.cpp)
 - [Bridge Tree](Graph/Bridge_Tree.cpp)
 - [Block-Cut Tree](Graph/Black_Cut_Tree.cpp)
+- [BFS 0/1](Graph/BFS_01.cpp)
 - [Floyd Warshall](Graph/Floyd_Warshall.cpp)
+- [Bellman Ford](Graph/Bellman_Ford.cpp)
 - [Dijkstra](Graph/Dijkstra.cpp)
 - [Centroids](Graph/Centroids.cpp)
+- [Maximum Flow (Edmons-Karp)](Graph/Flow_EdmonsKarp.cpp)
 
 ## String
 - [Split](String/Split.cpp)
