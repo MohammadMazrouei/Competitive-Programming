@@ -4,27 +4,38 @@ using namespace std;
 // Maximum Flow (Edmons-Karp), O(n * m^2)
 template <typename T>
 struct Flow {
+    struct Edge {
+        int from, to;
+        T cap, flow;
+        Edge(int _from, int _to, T _cap, T _flow) : from(_from), to(_to), cap(_cap), flow(_flow) {}
+    };
+
     const int n;
     vector<vector<int>> adj;
-    vector<vector<T>> c, f;
+    vector<Edge> edges;
     vector<int> par;
 
-    Flow(int _n) : n(_n), adj(_n) {
-        c.assign(n, vector<T>(n));
-        f.assign(n, vector<T>(n));
+    Flow(int _n) : n(_n), adj(_n) {}
+
+    void add_edge(int u, int v, T c) {
+        adj[u].push_back(edges.size());
+        edges.emplace_back(u, v, c, 0);
+        adj[v].push_back(edges.size());
+        edges.emplace_back(v, u, 0, 0);
     }
 
     bool bfs(int s, int t) {
         par.assign(n, -1);
-        par[s] = -2;
         queue<int> q;
+        par[s] = -2;
         q.push(s);
         while (!q.empty()) {
             int v = q.front();
             q.pop();
-            for (auto u : adj[v]) {
-                if (c[v][u] - f[v][u] > 0 && par[u] == -1) {
-                    par[u] = v;
+            for (int i : adj[v]) {
+                auto [_, u, c, f] = edges[i];
+                if (c - f > 0 && par[u] == -1) {
+                    par[u] = i;
                     q.push(u);
                     if (u == t) {
                         return true;
@@ -34,24 +45,23 @@ struct Flow {
         }
         return false;
     }
+
     T augment(int s, int t) {
         T flow = numeric_limits<T>::max();
-        for (int cur = t; cur != s; cur = par[cur]) {
-            flow = min(flow, c[par[cur]][cur] - f[par[cur]][cur]);
+        for (int cur = t; cur != s;) {
+            auto [v, _, c, f] = edges[par[cur]];
+            flow = min(flow, c - f);
+            cur = v;
         }
-        for (int cur = t; cur != s; cur = par[cur]) {
-            int v = par[cur], u = cur;
-            f[v][u] += flow;
-            f[u][v] -= flow;
+        for (int cur = t; cur != s;) {
+            auto [v, _, c, f] = edges[par[cur]];
+            edges[par[cur]].flow += flow;
+            edges[par[cur] ^ 1].flow -= flow;
+            cur = v;
         }
         return flow;
     }
 
-    void add_edge(int u, int v, T cap) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-        c[u][v] += cap;
-    }
     T max_flow(int s, int t) {
         T flow = 0;
         while (bfs(s, t)) {
