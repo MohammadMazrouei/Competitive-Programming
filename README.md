@@ -77,6 +77,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Dijkstra](Graph/Dijkstra.cpp)
 - [Centroids](Graph/Centroids.cpp)
 - [Maximum Flow (Edmons-Karp)](Graph/Flow_EdmonsKarp.cpp)
+- [Maximum Flow (Dinics)](Graph/Flow_Dinics.cpp)
 
 ## String
 - [Split](String/Split.cpp)
