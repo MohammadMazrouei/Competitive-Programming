@@ -30,6 +30,14 @@ void merge_sort(vector<T> &a, int l, int r) {
     merge(a, l, r, m);
 }
 
+template <typename T>
+void merge_sort(vector<T> &a) {
+    if (a.size() == 0) {
+        return;
+    }
+    merge_sort(a, 0, a.size() - 1);
+}
+
 void solve() {
     int n;
     cin >> n;
@@ -39,7 +47,7 @@ void solve() {
         cin >> a[i];
     }
 
-    merge_sort(a, 0, a.size() - 1);
+    merge_sort(a);
 
     for (int i = 0; i < n; i++) {
         cout << a[i] << " \n"[i == n - 1];
