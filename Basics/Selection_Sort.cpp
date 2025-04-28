@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Selection Sort, O(n^2)
+// Selection Sort, Not Stable, O(n^2)
 template <typename T>
 void selection_sort(vector<T> &a) {
     int n = a.size();
