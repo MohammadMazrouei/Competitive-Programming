@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Counting Sort, Stable, O(n + k)
+// Counting Sort, Stable, O(n + MAX)
 template <typename T>
 void counting_sort(vector<T> &a) {
     int n = a.size();
