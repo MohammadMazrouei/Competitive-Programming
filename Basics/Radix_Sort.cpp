@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Radix Sort, Stable, O(n * log(MAX))
+// Radix Sort, Stable, O((n + base) * log(MAX))
 template <typename T>
 void counting_sort(vector<T> &a, int n, T place, T base) {
     vector<int> cnt(base);
