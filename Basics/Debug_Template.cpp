@@ -112,11 +112,11 @@ namespace __DEBUG_UTIL__ {
     template <typename T, typename... V>
     void printer(const char *names, T &&head, V &&...tail) {
         int i = 0;
-        for (int bracket = 0; names[i] != '\0' and (names[i] != ',' or bracket != 0); i++) {
-            if (names[i] == '(' or names[i] == '<' or names[i] == '{') {
+        for (int bracket = 0; names[i] != '\0' && (names[i] != ',' || bracket != 0); i++) {
+            if (names[i] == '(' || names[i] == '<' || names[i] == '{') {
                 bracket++;
             }
-            else if (names[i] == ')' or names[i] == '>' or names[i] == '}') {
+            else if (names[i] == ')' || names[i] == '>' || names[i] == '}') {
                 bracket--;
             }
         }

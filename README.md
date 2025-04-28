@@ -6,9 +6,9 @@ Templates, algorithms and data structures implemented and collected for programm
 ## Basics
 - [Start Template](Basics/Start_Template.cpp)
 - [Debug Template](Basics/Debug_Template.cpp)
+- [Random Generator](Basics/Random_Generator.cpp)
 - [Binary Exponentiation](Basics/Binary_Exponentiation.cpp)
 - [Mint](Basics/Mint.cpp)
-- [Random Generator](Basics/Random_Generator.cpp)
 - [Harmonic Number](Basics/Harmonic_Number.cpp)
 - [GCD and LCM](Basics/GCD_and_LCM.cpp)
 - [Divisors](Basics/Divisors.cpp)
