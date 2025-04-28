@@ -22,6 +22,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Bitmask](Basics/Bitmask.cpp)
 - [Selection Sort](Basics/Selection_Sort.cpp)
 - [Bubble Sort](Basics/Bubble_Sort.cpp)
+- [Insertion Sort](Basics/Insertion_Sort.cpp)
 - [Binary Search](Basics/Binary_Search.cpp)
 - [Ternary Search](Basics/Ternary_Search.cpp)
 
