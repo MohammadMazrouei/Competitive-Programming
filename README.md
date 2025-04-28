@@ -27,6 +27,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Merge Sort](Basics/Merge_Sort.cpp)
 - [Heap Sort](Basics/Heap_Sort.cpp)
 - [Counting Sort](Basics/Counting_Sort.cpp)
+- [Radix Sort](Basics/Radix_Sort.cpp)
 - [Binary Search](Basics/Binary_Search.cpp)
 - [Ternary Search](Basics/Ternary_Search.cpp)
 
