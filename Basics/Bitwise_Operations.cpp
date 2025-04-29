@@ -57,7 +57,7 @@ void solve() {
 
     // Builtin function in GCC
     // __builtin_popcountll, __builtin_ffsll, __builtin_clzll, __builtin_ctzll
-    // Count set bits
+    // Count of set bits
     cout << "popcount: " << __builtin_popcount(n) << '\n';
     // Index of the lowest set bit
     cout << "ffs: " << __builtin_ffs(n) << '\n';
@@ -66,7 +66,7 @@ void solve() {
     // Count of trailing zeros
     cout << "ctz: " << __builtin_ctz(n) << '\n';
 
-    // Count set bits
+    // Count of set bits
     cout << "popcount: " << __popcount(n) << '\n';
     // Return bit lenght of n
     cout << "bit_width: " << __bit_width(n) << '\n';
@@ -74,9 +74,9 @@ void solve() {
     cout << "Round: " << __bit_floor(n) << ' ' << __bit_ceil(n) << '\n';
     // Rotate left/right
     cout << "Rotate: " << __rotl(n, 4) << ' ' << __rotr(n, 4) << '\n';
-    // Count the leading/trailing zeros
+    // Count of leading/trailing zeros
     cout << "Count Zeros: " << __countl_zero(n) << ' ' << __countr_zero(n) << '\n';
-    // Count the leading/trailing ones
+    // Count of leading/trailing ones
     cout << "Count Ones: " <<  __countl_one(n) << ' ' << __countr_one(n) << '\n';
 }
 
