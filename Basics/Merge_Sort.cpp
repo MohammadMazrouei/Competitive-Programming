@@ -2,15 +2,15 @@
 using namespace std;
 
 // Merge Sort, Stable, O(n*log(n))
-template <typename T>
-void merge(vector<T> &a, int l, int r, int m) {
+template <typename T, typename Compare>
+void merge(vector<T> &a, int l, int r, int m, Compare cmp) {
     vector<T> left(a.begin() + l, a.begin() + m + 1);
     vector<T> right(a.begin() + m + 1, a.begin() + r + 1);
     int n1 = left.size(), n2 = right.size();
 
     int i = 0, j = 0, k = l;
     while (i < n1 || j < n2) {
-        if (i < n1 && (j >= n2 || left[i] < right[j])) {
+        if (i < n1 && (j >= n2 || cmp(left[i], right[j]))) {
             a[k++] = left[i++];
         }
         else {
@@ -19,23 +19,23 @@ void merge(vector<T> &a, int l, int r, int m) {
     }
 }
 
-template <typename T>
-void merge_sort(vector<T> &a, int l, int r) {
-    if (l == r) {
+template <typename T, typename Compare>
+void merge_sort(vector<T> &a, int l, int r, Compare cmp) {
+    if (l >= r) {
         return;
     }
     int m = l + (r - l) / 2;
-    merge_sort(a, l, m);
-    merge_sort(a, m + 1, r);
-    merge(a, l, r, m);
+    merge_sort(a, l, m, cmp);
+    merge_sort(a, m + 1, r, cmp);
+    merge(a, l, r, m, cmp);
 }
 
-template <typename T>
-void merge_sort(vector<T> &a) {
+template <typename T, typename Compare = less<T>>
+void merge_sort(vector<T> &a, Compare cmp = Compare()) {
     if (a.size() == 0) {
         return;
     }
-    merge_sort(a, 0, a.size() - 1);
+    merge_sort(a, 0, a.size() - 1, cmp);
 }
 
 void solve() {
