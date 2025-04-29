@@ -4,8 +4,8 @@ using namespace std;
 // Counting Sort, Stable, O(n + M)
 template <typename T>
 void counting_sort(vector<T> &a) {
-    static_assert(is_integral_v<T> && is_signed_v<T>,
-                  "counting_sort requires signed integral type");
+    static_assert(is_integral_v<T>,
+                  "counting_sort requires integral type");
 
     int n = a.size();
     int M = *max_element(a.begin(), a.end());
