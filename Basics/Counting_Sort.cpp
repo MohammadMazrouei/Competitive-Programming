@@ -16,8 +16,7 @@ void counting_sort(vector<T> &a) {
     }
     vector<T> tmp = a;
     for (int i = n - 1; i >= 0; i--) {
-        a[cnt[tmp[i]] - 1] = tmp[i];
-        cnt[tmp[i]]--;
+        a[--cnt[tmp[i]]] = tmp[i];
     }
 }
 
