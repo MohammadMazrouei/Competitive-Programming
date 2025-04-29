@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Counting Sort, Stable, O(n + MAX)
+// Counting Sort, Stable, O(n + M)
 template <typename T>
 void counting_sort(vector<T> &a) {
     int n = a.size();
-    int K = *max_element(a.begin(), a.end());
-    vector<int> cnt(K + 1);
+    int M = *max_element(a.begin(), a.end());
+    vector<int> cnt(M + 1);
 
     for (int i = 0; i < n; i++) {
         cnt[a[i]]++;
     }
-    for (int i = 1; i <= K; i++) {
+    for (int i = 1; i <= M; i++) {
         cnt[i] += cnt[i - 1];
     }
     vector<T> tmp = a;
