@@ -2,35 +2,35 @@
 using namespace std;
 
 // Heap Sort, Not Stable, O(n*log(n))
-template <typename T>
-void heapify(vector<T> &a, int n, int i) {
-    int largest = i;
+template <typename T, typename Compare>
+void heapify(vector<T> &a, int n, int i, Compare cmp) {
+    int extreme = i;
     int left = 2 * i + 1, right = 2 * i + 2;
   
-    if (left < n && a[left] > a[largest]) {
-      largest = left;
+    if (left < n && cmp(a[extreme], a[left])) {
+        extreme = left;
     }
-    if (right < n && a[right] > a[largest]) {
-      largest = right;
+    if (right < n && cmp(a[extreme], a[right])) {
+        extreme = right;
     }
   
-    if (largest != i) {
-      swap(a[i], a[largest]);
-      heapify(a, n, largest);
+    if (extreme != i) {
+        swap(a[extreme], a[i]);
+        heapify(a, n, extreme, cmp);
     }
   }
   
-template <typename T>
-void heap_sort(vector<T> &a) {
+template <typename T, typename Compare = less<T>>
+void heap_sort(vector<T> &a, Compare cmp = Compare()) {
     int n = a.size();
-    // Build Max Heap
+    // Build Heap
     for (int i = n / 2 - 1; i >= 0; i--) {
-      heapify(a, n, i);
+        heapify(a, n, i, cmp);
     }
     // Heap Sort
     for (int i = n - 1; i >= 0; i--) {
-      swap(a[0], a[i]);
-      heapify(a, i, 0);
+        swap(a[0], a[i]);
+        heapify(a, i, 0, cmp);
     }
 }
 
