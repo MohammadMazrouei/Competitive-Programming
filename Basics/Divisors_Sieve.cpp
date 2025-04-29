@@ -15,7 +15,7 @@ void solve() {
         return res;
     };
 
-    // Find divisors of nmubers up to n, O(n*log(n))
+    // Find divisors of numbers up to n, O(n*log(n))
     vector<vector<int>> divs(n + 1);
     for (int i = 1; i <= n; i++) {
         for (int j = i; j <= n; j += i) {
