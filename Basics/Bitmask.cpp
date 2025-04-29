@@ -10,20 +10,14 @@ void solve() {
         cin >> a[i];
     }
 
-    // Calculate sum of every subset, O(2^n * n)
-    vector<int64_t> sums;
-    for (int mask = 0; mask < (1 << n); mask++) {
-        int64_t sum = 0;
-        for (int i = 0; i < n; i++) {
-            if (mask >> i & 1) {
-                sum += a[i];
-            }
-        }
-        sums.push_back(sum);
+    // Calculate sum of every subset, O(2^n)
+    vector<int64_t> sums(1 << n);
+    for (int mask = 1; mask < (1 << n); mask++) {
+        int b = __builtin_ctz(mask);
+        sums[mask] = sums[mask & (mask - 1)] + a[b];
     }
-
-    for (auto x : sums) {
-        cout << x << " \n"[sums.back() == x];
+    for (int i = 0; i < (1 << n); i++) {
+        cout << sums[i] << " \n"[i == (1 << n) - 1];
     }
 
     /*
