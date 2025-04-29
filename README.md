@@ -110,6 +110,7 @@ Templates, algorithms and data structures implemented and collected for programm
 ## Miscellaneous
 - [MEX](Miscellaneous/Mex.cpp)
 - [MEX with Update](Miscellaneous/Mex_with_Update.cpp)
+- [Gray Code](Miscellaneous/Gray_code.cpp)
 - [Arpa Trick](Miscellaneous/Arpa_Trick.cpp)
 - [Josephus Problem](Miscellaneous/Josephus_Problem.cpp)
-- [Fast IO](Basics/Fast_IO.cpp)
+- [Fast IO](Miscellaneous/Fast_IO.cpp)
