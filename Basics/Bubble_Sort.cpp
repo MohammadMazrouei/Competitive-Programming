@@ -2,13 +2,13 @@
 using namespace std;
 
 // Bubble Sort, Stable, O(n^2)
-template <typename T>
-void bubble_sort(vector<T> &a) {
+template <typename T, typename Compare = less<T>>
+void bubble_sort(vector<T> &a, Compare cmp = Compare()) {
     int n = a.size();
     for (int i = 0; i < n - 1; i++) {
         bool swapped = false;
         for (int j = 0; j < n - 1 - i; j++) {
-            if (a[j] > a[j + 1]) {
+            if (cmp(a[j + 1], a[j])) {
                 swap(a[j], a[j + 1]);
                 swapped = true;
             }
