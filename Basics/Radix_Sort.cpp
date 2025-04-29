@@ -1,11 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Radix Sort, Stable, O((n + base) * log(MAX))
+// Radix Sort, Stable, O((n + base) * log(M))
 template <typename T>
 void counting_sort(vector<T> &a, int n, T place, T base) {
     vector<int> cnt(base);
-
     for (int i = 0; i < n; i++) {
         cnt[(a[i] / place) % base]++;
     }
@@ -14,17 +13,20 @@ void counting_sort(vector<T> &a, int n, T place, T base) {
     }
     vector<T> tmp = a;
     for (int i = n - 1; i >= 0; i--) {
-        a[cnt[(tmp[i] / place) % base] - 1] = tmp[i];
-        cnt[(tmp[i] / place) % base]--;
+        a[--cnt[(tmp[i] / place) % base]] = tmp[i];
     }
 }
 
 template <typename T>
 void radix_sort(vector<T> &a, T base = 10) {
-    int n = a.size();
-    T mx = *max_element(a.begin(), a.end());
-    for (T place = 1; mx / place > 0; place *= base) {
-        counting_sort(a, n, place, base);
+    static_assert(is_integral_v<T>,
+                  "radix_sort requires integral type");
+    if (a.size() == 0) {
+        return;
+    }
+    T M = *max_element(a.begin(), a.end());
+    for (T place = 1; place <= M; place *= base) {
+        counting_sort(a, a.size(), place, base);
     }
 }
 
