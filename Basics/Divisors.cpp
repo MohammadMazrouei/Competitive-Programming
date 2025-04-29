@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Find Divisors, O(sqrt(n))
+// Find divisors of n, O(sqrt(n))
 template <typename T>
 vector<T> divisors(const T n) {
     vector<T> d;
@@ -20,11 +20,11 @@ void solve() {
     int64_t n;
     cin >> n;
 
-    vector<int64_t> div = divisors(n);
-    sort(div.begin(), div.end());
-    cout << div.size() << '\n';
-    for (auto d : div) {
-        cout << d << " \n"[d == div.back()];
+    vector<int64_t> divs = divisors(n);
+    sort(divs.begin(), divs.end());
+    cout << divs.size() << '\n';
+    for (auto d : divs) {
+        cout << d << " \n"[d == divs.back()];
     }
 }
 
