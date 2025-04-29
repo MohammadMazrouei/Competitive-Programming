@@ -2,23 +2,8 @@
 using namespace std;
 
 void solve() {
-    // Minimum of Unimodal Function f, O(log(n))
+    // Maximum of unimodal function f, O(log(n))
     auto ternary_search1 = [&](int low, int high, const function<int(const int)> &f) -> int {
-        int lo = low - 1, hi = high + 1;
-        while (hi - lo > 1) {
-            int mid = lo + (hi - lo) / 2;
-            if (f(mid) < f(mid + 1)) {
-                hi = mid;
-            }
-            else {
-                lo = mid;
-            }
-        }
-        return hi;
-    };
-
-    // Maximum of Unimodal Function f, O(log(n))
-    auto ternary_search2 = [&](int low, int high, const function<int(const int)> &f) -> int {
         int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
@@ -32,7 +17,22 @@ void solve() {
         return lo + 1;
     };
 
-    // Real Ternary Search for Find Max(f), O(log(n / eps))
+    // Minimum of unimodal function f, O(log(n))
+    auto ternary_search2 = [&](int low, int high, const function<int(const int)> &f) -> int {
+        int lo = low - 1, hi = high + 1;
+        while (hi - lo > 1) {
+            int mid = lo + (hi - lo) / 2;
+            if (f(mid) < f(mid + 1)) {
+                hi = mid;
+            }
+            else {
+                lo = mid;
+            }
+        }
+        return hi;
+    };
+
+    // Real value ternary search for find max(f), O(log(n / eps))
     const double eps = 1e-9;
     auto ternary_search = [&](double low, double high, const function<double(const double)> &f) -> double {
         double lo = low, hi = high;
@@ -49,11 +49,13 @@ void solve() {
         return lo;
     };
 
-    cout << ternary_search1(0, 100, [&](int x) { return abs(x - 10); }) << '\n';  // max(|x - 10|) = f(10)
-    cout << ternary_search2(0, 100, [&](int x) { return -abs(x - 10); }) << '\n'; // min(-|x - 10|) = f(10)
+    // max(-|x - 10|) = f(10), min(|x - 10|) = f(10)
+    cout << ternary_search1(0, 100, [](int x) { return -abs(x - 10); }) << '\n';
+    cout << ternary_search2(0, 100, [](int x) { return abs(x - 10); }) << '\n';
 
+    // max(-2x^2 + 10x + 3) = f(2.5)
     cout << fixed << setprecision(9);
-    cout << ternary_search(0, 100, [&](double x) { return -2 * (x * x) + 10 * x + 3; }) << '\n'; // max(-2x^2 + 10x + 3) = f(2.5)
+    cout << ternary_search(0, 100, [](double x) { return -2 * (x * x) + 10 * x + 3; }) << '\n';
 }
 
 int32_t main() {
