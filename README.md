@@ -11,7 +11,6 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Divisors](Basics/Divisors.cpp)
 - [Divisors Sieve](Basics/Divisors_Sieve.cpp)
 - [GCD and LCM](Basics/GCD_and_LCM.cpp)
-- [Harmonic Number](Basics/Harmonic_Number.cpp)
 - [Prefix Sum](Basics/Prefix_Sum.cpp)
 - [Prefix Sum 2D](Basics/Prefix_Sum_2D.cpp)
 - [Prefix Sum 3D](Basics/Prefix_Sum_3D.cpp)
