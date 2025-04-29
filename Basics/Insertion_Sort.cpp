@@ -2,13 +2,13 @@
 using namespace std;
 
 // Insertion Sort, Stable, O(n^2)
-template <typename T>
-void insertion_sort(vector<T> &a) {
+template <typename T, typename Compare = less<T>>
+void insertion_sort(vector<T> &a, Compare cmp = Compare()) {
     int n = a.size();
     for (int i = 1; i < n; i++) {
         T x = a[i];
         int j = i - 1;
-        while (j >= 0 && a[j] > x) {
+        while (j >= 0 && cmp(x, a[j])) {
             a[j + 1] = a[j];
             j--;
         }
