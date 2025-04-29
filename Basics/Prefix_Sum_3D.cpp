@@ -18,7 +18,11 @@ void solve() {
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
             for (int k = 1; k <= n; k++) {
-                p[i][j][k] = p[i - 1][j][k] + p[i][j - 1][k] + p[i][j][k - 1] - p[i - 1][j - 1][k] - p[i - 1][j][k - 1] - p[i][j - 1][k - 1] + p[i - 1][j - 1][k - 1] + a[i - 1][j - 1][k - 1];
+                p[i][j][k] 
+                    = p[i - 1][j][k] + p[i][j - 1][k] + p[i][j][k - 1] 
+                    - p[i - 1][j - 1][k] - p[i - 1][j][k - 1] - p[i][j - 1][k - 1] 
+                    + p[i - 1][j - 1][k - 1] 
+                    + a[i - 1][j - 1][k - 1];
             }
         }
     }
@@ -28,7 +32,11 @@ void solve() {
         cin >> l1 >> r1 >> l2 >> r2 >> l3 >> r3;
         l1--, l2--, l3--;
 
-        int64_t ans = p[r1][r2][r3] - p[l1][r2][r3] - p[r1][l2][r3] - p[r1][r2][l3] + p[l1][l2][r3] + p[l1][r2][l3] + p[r1][l2][l3] - p[l1][l2][l3];
+        int64_t ans 
+            = p[r1][r2][r3] 
+            - p[l1][r2][r3] - p[r1][l2][r3] - p[r1][r2][l3] 
+            + p[l1][l2][r3] + p[l1][r2][l3] + p[r1][l2][l3] 
+            - p[l1][l2][l3];
         cout << ans << '\n';
     }
 }
