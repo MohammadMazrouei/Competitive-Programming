@@ -8,11 +8,10 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Debug Template](Basics/Debug_Template.cpp)
 - [Random Generator](Basics/Random_Generator.cpp)
 - [Binary Exponentiation](Basics/Binary_Exponentiation.cpp)
-- [Mint](Basics/Mint.cpp)
 - [Harmonic Number](Basics/Harmonic_Number.cpp)
-- [GCD and LCM](Basics/GCD_and_LCM.cpp)
 - [Divisors](Basics/Divisors.cpp)
 - [Divisors Upto N](Basics/Divisors_Upto_N.cpp)
+- [GCD and LCM](Basics/GCD_and_LCM.cpp)
 - [Prefix Sum](Basics/Prefix_Sum.cpp)
 - [Prefix Sum 2D](Basics/Prefix_Sum_2D.cpp)
 - [Prefix Sum 3D](Basics/Prefix_Sum_3D.cpp)
@@ -102,6 +101,9 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Extended Euclidean Algorithm](Number_Theory/Extended_Euclidean_Algorithm.cpp)
 - [Sieve](Number_Theory/Sieve.cpp)
 - [Linear Sieve](Number_Theory/Linear_Sieve.cpp)
+
+## Math
+- [Mint](Math/Mint.cpp)
 
 ## Game Theory
 - [Sprague Grundy Theorem](Game_Theory/Sprague_Grundy_Theorem.cpp)
