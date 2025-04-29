@@ -2,13 +2,13 @@
 using namespace std;
 
 // Selection Sort, Not Stable, O(n^2)
-template <typename T>
-void selection_sort(vector<T> &a) {
+template <typename T, typename Compare = less<T>>
+void selection_sort(vector<T> &a, Compare cmp = Compare()) {
     int n = a.size();
     for (int i = 0; i < n; i++) {
         int min_index = i;
         for (int j = i + 1; j < n; j++) {
-            if (a[j] < a[min_index]) {
+            if (cmp(a[j], a[min_index])) {
                 min_index = j;
             }
         }
