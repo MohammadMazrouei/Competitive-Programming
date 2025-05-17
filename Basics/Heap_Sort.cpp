@@ -3,7 +3,7 @@ using namespace std;
 
 // Heap Sort, Not Stable, O(n*log(n))
 template <typename T, typename Compare>
-void heapify(vector<T> &a, int n, int i, Compare cmp) {
+void heapify(vector<T>& a, int n, int i, Compare cmp) {
     int extreme = i;
     int left = 2 * i + 1, right = 2 * i + 2;
   
@@ -21,7 +21,7 @@ void heapify(vector<T> &a, int n, int i, Compare cmp) {
   }
   
 template <typename T, typename Compare = less<T>>
-void heap_sort(vector<T> &a, Compare cmp = Compare()) {
+void heap_sort(vector<T>& a, Compare cmp = Compare()) {
     int n = a.size();
     // Build Heap
     for (int i = n / 2 - 1; i >= 0; i--) {
