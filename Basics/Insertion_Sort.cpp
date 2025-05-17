@@ -3,7 +3,7 @@ using namespace std;
 
 // Insertion Sort, Stable, O(n^2)
 template <typename T, typename Compare = less<T>>
-void insertion_sort(vector<T> &a, Compare cmp = Compare()) {
+void insertion_sort(vector<T>& a, Compare cmp = Compare()) {
     int n = a.size();
     for (int i = 1; i < n; i++) {
         T x = a[i];
