@@ -6,7 +6,7 @@ void solve() {
     cin >> n;
 
     // Highest x satisfy f(x), O(log(n))
-    auto binary_search1 = [&](int low, int high, const function<bool(const int)> &f) -> int {
+    auto binary_search1 = [](int low, int high, const function<bool(const int)> &f) -> int {
         int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
@@ -21,7 +21,7 @@ void solve() {
     };
 
     // Lowest x satisfy f(x), O(log(n))
-    auto binary_search2 = [&](int low, int high, const function<bool(const int)> &f) -> int {
+    auto binary_search2 = [](int low, int high, const function<bool(const int)> &f) -> int {
         int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
@@ -36,8 +36,8 @@ void solve() {
     };
 
     // Real value binary search, O(log(n / eps))
-    const double eps = 1e-9;
-    auto binary_search = [&](double low, double high, const function<bool(const double)> &f) -> double {
+    auto binary_search = [](double low, double high, const function<bool(const double)> &f) -> double {
+        const double eps = 1e-9;
         double lo = low, hi = high;
         while (hi - lo > eps) {
             double mid = lo + (hi - lo) / 2;
@@ -52,11 +52,11 @@ void solve() {
     };
 
     // Calculate floor sqrt & ceil sqrt
-    cout << binary_search1(0, n, [&](int x) { return (int64_t)x * x <= n; }) << '\n';
-    cout << binary_search2(0, n, [&](int x) { return (int64_t)x * x >= n; }) << '\n';
+    cout << binary_search1(0, n, [&n](int x) { return (int64_t)x * x <= n; }) << '\n';
+    cout << binary_search2(0, n, [&n](int x) { return (int64_t)x * x >= n; }) << '\n';
 
     cout << fixed << setprecision(9);
-    cout << binary_search(0, n, [&](double x) { return x * x <= n; }) << '\n';
+    cout << binary_search(0, n, [&n](double x) { return x * x <= n; }) << '\n';
 }
 
 int32_t main() {
