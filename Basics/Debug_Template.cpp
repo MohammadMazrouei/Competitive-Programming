@@ -60,18 +60,18 @@ namespace debug_util {
                 cerr << "}";
             }
         } else if constexpr (requires { x.pop(); }) {
-            auto temp = x;
+            auto tmp = x;
             int f = 0;
             cerr << "{";
             if constexpr (requires { x.top(); }) {
                 // Stack, Priority Queue
-                while (!temp.empty()) {
-                    cerr << (f++ ? ", " : ""), print(temp.top()), temp.pop();
+                while (!tmp.empty()) {
+                    cerr << (f++ ? ", " : ""), print(tmp.top()), tmp.pop();
                 }
             } else {
                 // Queue
-                while (!temp.empty()) {
-                    cerr << (f++ ? ", " : ""), print(temp.front()), temp.pop();
+                while (!tmp.empty()) {
+                    cerr << (f++ ? ", " : ""), print(tmp.front()), tmp.pop();
                 }
             }
             cerr << "}";
