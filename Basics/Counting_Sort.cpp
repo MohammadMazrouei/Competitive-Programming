@@ -3,7 +3,7 @@ using namespace std;
 
 // Counting Sort, Stable, O(n + M)
 template <typename T>
-void counting_sort(vector<T> &a) {
+void counting_sort(vector<T>& a) {
     static_assert(is_integral_v<T>,
                   "counting_sort requires integral type");
 
