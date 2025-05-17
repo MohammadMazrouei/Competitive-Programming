@@ -3,7 +3,7 @@ using namespace std;
 
 // Selection Sort, Not Stable, O(n^2)
 template <typename T, typename Compare = less<T>>
-void selection_sort(vector<T> &a, Compare cmp = Compare()) {
+void selection_sort(vector<T>& a, Compare cmp = Compare()) {
     int n = a.size();
     for (int i = 0; i < n; i++) {
         int min_index = i;
