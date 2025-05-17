@@ -3,7 +3,7 @@ using namespace std;
 
 void solve() {
     // Maximum of unimodal function f, O(log(n))
-    auto ternary_search1 = [&](int low, int high, const function<int(const int)> &f) -> int {
+    auto ternary_search1 = [](int low, int high, const function<int(const int)> &f) -> int {
         int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
@@ -18,7 +18,7 @@ void solve() {
     };
 
     // Minimum of unimodal function f, O(log(n))
-    auto ternary_search2 = [&](int low, int high, const function<int(const int)> &f) -> int {
+    auto ternary_search2 = [](int low, int high, const function<int(const int)> &f) -> int {
         int lo = low - 1, hi = high + 1;
         while (hi - lo > 1) {
             int mid = lo + (hi - lo) / 2;
@@ -33,8 +33,8 @@ void solve() {
     };
 
     // Real value ternary search for find max(f), O(log(n / eps))
-    const double eps = 1e-9;
-    auto ternary_search = [&](double low, double high, const function<double(const double)> &f) -> double {
+    auto ternary_search = [](double low, double high, const function<double(const double)> &f) -> double {
+        const double eps = 1e-9;
         double lo = low, hi = high;
         while (hi - lo > eps) {
             double m1 = lo + (hi - lo) / 3;
