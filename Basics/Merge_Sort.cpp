@@ -3,7 +3,7 @@ using namespace std;
 
 // Merge Sort, Stable, O(n*log(n))
 template <typename T, typename Compare>
-void merge(vector<T> &a, int l, int r, int m, Compare cmp) {
+void merge(vector<T>& a, int l, int r, int m, Compare cmp) {
     vector<T> left(a.begin() + l, a.begin() + m + 1);
     vector<T> right(a.begin() + m + 1, a.begin() + r + 1);
     int n1 = left.size(), n2 = right.size();
@@ -12,15 +12,14 @@ void merge(vector<T> &a, int l, int r, int m, Compare cmp) {
     while (i < n1 || j < n2) {
         if (i < n1 && (j >= n2 || cmp(left[i], right[j]))) {
             a[k++] = left[i++];
-        }
-        else {
+        } else {
             a[k++] = right[j++];
         }
     }
 }
 
 template <typename T, typename Compare>
-void merge_sort(vector<T> &a, int l, int r, Compare cmp) {
+void merge_sort(vector<T>& a, int l, int r, Compare cmp) {
     if (l >= r) {
         return;
     }
@@ -31,7 +30,7 @@ void merge_sort(vector<T> &a, int l, int r, Compare cmp) {
 }
 
 template <typename T, typename Compare = less<T>>
-void merge_sort(vector<T> &a, Compare cmp = Compare()) {
+void merge_sort(vector<T>& a, Compare cmp = Compare()) {
     if (a.size() == 0) {
         return;
     }
