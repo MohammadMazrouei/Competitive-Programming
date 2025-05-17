@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define dbg(...) cerr << __DEBUG_UTIL__::outer << __LINE__ << ": [", \
-                 __DEBUG_UTIL__::printer(#__VA_ARGS__, __VA_ARGS__), \
-                 cerr << __DEBUG_UTIL__::outer << "]\n" << __DEBUG_UTIL__::reset
+#define dbg(...) cerr << debug_util::outer << __LINE__ << ": [", \
+                 debug_util::printer(#__VA_ARGS__, __VA_ARGS__), \
+                 cerr << debug_util::outer << "]\n" << debug_util::reset
 
-namespace __DEBUG_UTIL__ {
+namespace debug_util {
     const string WHITE = "\033[0;m";
     const string RED = "\033[0;31m";
     const string BLUE = "\033[0;34m";
@@ -18,50 +18,48 @@ namespace __DEBUG_UTIL__ {
     string var_value = colored_output ? GREEN : "";
 
     template <typename T>
-    concept is_iterable = requires(T &&x) { begin(x); } && !is_same_v<remove_cvref_t<T>, string>;
+    concept is_iterable = requires(T&& x) { begin(x); } && !is_same_v<remove_cvref_t<T>, string>;
 
     template <typename T>
-    void print(T *p);
+    void print(T* p);
 
-    void print(const char *x) { cerr << x; }
+    void print(const char* x) { cerr << x; }
     void print(char x) { cerr << "\'" << x << "\'"; }
-    void print(bool x) { cerr << (x ? "true" : "false"); }
     void print(string x) { cerr << "\"" << x << "\""; }
+    void print(bool x) { cerr << (x ? "true" : "false"); }
 
-    void print(vector<bool> &&v) { 
-        // Vector<bool>, stl optimizes this by using _Bit_reference
+    // Print vector<bool>, stl optimizes this by using _Bit_reference
+    void print(vector<bool>& v) { 
         int f = 0;
         cerr << "{";
-        for (auto &&i : v) {
+        for (auto&& i : v) {
             cerr << (f++ ? ", " : "") << (i ? "true" : "false");
         }
         cerr << "}";
     }
 
     template <typename T>
-    void print(T &&x) {
+    void print(T&& x) {
         if constexpr (is_iterable<T>) {
             if (size(x) && is_iterable<decltype(*(begin(x)))>) { 
                 // Iterable inside Iterable
                 int f = 0;
                 int w = max(0, (int)log10(size(x) - 1)) + 2;
                 cerr << "\n~~~~~~~~\n";
-                for (auto &&i : x) {
+                for (auto&& i : x) {
                     cerr << setw(w) << left << f++, print(i), cerr << "\n";
                 }
                 cerr << "~~~~~~~~\n";
-            } 
-            else { 
+            } else { 
                 // Normal Iterable
                 int f = 0;
                 cerr << "{";
-                for (auto &&i : x) {
+                for (auto&& i : x) {
                     cerr << (f++ ? ", " : ""), print(i);
                 }
                 cerr << "}";
             }
-        } 
-        else if constexpr (requires { x.pop(); }) {
+        } else if constexpr (requires { x.pop(); }) {
             auto temp = x;
             int f = 0;
             cerr << "{";
@@ -70,20 +68,17 @@ namespace __DEBUG_UTIL__ {
                 while (!temp.empty()) {
                     cerr << (f++ ? ", " : ""), print(temp.top()), temp.pop();
                 }
-            } 
-            else {
+            } else {
                 // Queue
                 while (!temp.empty()) {
                     cerr << (f++ ? ", " : ""), print(temp.front()), temp.pop();
                 }
             }
             cerr << "}";
-        } 
-        else if constexpr (requires { x.first; x.second; }) {
+        } else if constexpr (requires { x.first; x.second; }) {
             // Pair
             cerr << "(", print(x.first), cerr << ", ", print(x.second), cerr << ")";
-        } 
-        else if constexpr (requires { get<0>(x); }) {
+        } else if constexpr (requires { get<0>(x); }) {
             // Tuple
             int f = 0;
             cerr << "("; 
@@ -91,32 +86,29 @@ namespace __DEBUG_UTIL__ {
                 ((cerr << (f++ ? ", " : ""), print(args)), ...);
             }, x);
             cerr << ")";
-        } 
-        else {
+        } else {
             cerr << x;
         }
     }
 
+    // Print pointers address and, if not null, pointed value
     template <typename T>
-    void print(T *p) {
-        // Pointers: address and, if not null, pointed value
+    void print(T* p) {
         if (!p) {
             cerr << "(nullptr)";
-        } 
-        else {
+        } else {
             cerr << "(" << p << ") -> ";
             print(*p);
         }
     }
 
     template <typename T, typename... V>
-    void printer(const char *names, T &&head, V &&...tail) {
+    void printer(const char* names, T&& head, V&&... tail) {
         int i = 0;
         for (int bracket = 0; names[i] != '\0' && (names[i] != ',' || bracket != 0); i++) {
             if (names[i] == '(' || names[i] == '<' || names[i] == '{') {
                 bracket++;
-            }
-            else if (names[i] == ')' || names[i] == '>' || names[i] == '}') {
+            } else if (names[i] == ')' || names[i] == '>' || names[i] == '}') {
                 bracket--;
             }
         }
@@ -131,15 +123,16 @@ namespace __DEBUG_UTIL__ {
 }
 
 void solve() {
-    pair<int, bool> x1 = {1, false};
-    pair<char, string> x2 = {'a', "mmd"};
-    vector<int> v = {1, 2, 3, 4};
-    dbg(x1, x2, v);
+    pair<int, bool> p1 = {1, true};
+    pair<char, string> p2 = {'a', "mmd"};
+    vector<int> v1(2);
+    vector<bool> v2(2);
+    dbg(p1, p2, v1, v2);
 
-    int a = 100;
-    int *p = &a;
-    int **pp = &p;
-    dbg(p, pp);
+    int n = 100;
+    int* ptr = &n;
+    int** pptr = &ptr;
+    dbg(ptr, pptr);
 
     vector<vector<vector<int>>> vv;
     vv = {{{111, 112}, {121, 122}}, {{211, 212}, {221, 222}}};
