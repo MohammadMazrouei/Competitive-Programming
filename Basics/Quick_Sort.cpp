@@ -3,7 +3,7 @@ using namespace std;
 
 // Quick Sort, Not Stable, O(n^2)
 template <typename T, typename Compare>
-int partition(vector<T> &a, int l, int r, Compare cmp) {
+int partition(vector<T>& a, int l, int r, Compare cmp) {
     //mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
     //swap(a[rng() % (r - l) + l], a[r]);
     T pivot = a[r];    
@@ -20,7 +20,7 @@ int partition(vector<T> &a, int l, int r, Compare cmp) {
 
 
 template <typename T, typename Compare>
-void quick_sort(vector<T> &a, int l, int r, Compare cmp) {
+void quick_sort(vector<T>& a, int l, int r, Compare cmp) {
     if (l >= r) {
         return;
     }
@@ -30,7 +30,7 @@ void quick_sort(vector<T> &a, int l, int r, Compare cmp) {
 }
 
 template <typename T, typename Compare = less<T>>
-void quick_sort(vector<T> &a, Compare cmp = Compare()) {
+void quick_sort(vector<T>& a, Compare cmp = Compare()) {
     if (a.size() == 0) {
         return;
     }
