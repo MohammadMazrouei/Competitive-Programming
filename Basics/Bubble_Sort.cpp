@@ -3,7 +3,7 @@ using namespace std;
 
 // Bubble Sort, Stable, O(n^2)
 template <typename T, typename Compare = less<T>>
-void bubble_sort(vector<T> &a, Compare cmp = Compare()) {
+void bubble_sort(vector<T>& a, Compare cmp = Compare()) {
     int n = a.size();
     for (int i = 0; i < n - 1; i++) {
         bool swapped = false;
