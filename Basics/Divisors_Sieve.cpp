@@ -6,7 +6,7 @@ void solve() {
     cin >> n;
 
     // Find sum of divisor counts up to n, O(sqrt(n))
-    auto sum_of_divisor_counts = [&](const int64_t x) -> int64_t {
+    auto sum_of_divisor_counts = [](const int64_t x) -> int64_t {
         int64_t res = 0, i = 1;
         for (; i * i <= x; i++) {
             res += x / i;
