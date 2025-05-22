@@ -6,11 +6,14 @@ template <typename T>
 void counting_sort(vector<T>& a) {
     static_assert(is_integral_v<T>,
                   "counting_sort requires integral type");
+    if (a.empty()) {
+        return;
+    }
 
-    int n = a.size();
-    int M = *max_element(a.begin(), a.end());
+    const T M = *max_element(a.begin(), a.end());
     vector<int> cnt(M + 1);
 
+    int n = a.size();
     for (int i = 0; i < n; i++) {
         cnt[a[i]]++;
     }
