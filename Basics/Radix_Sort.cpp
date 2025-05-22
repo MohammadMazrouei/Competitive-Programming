@@ -3,7 +3,8 @@ using namespace std;
 
 // Radix Sort, Stable, O((n + base) * log(M))
 template <typename T>
-void counting_sort(vector<T>& a, int n, T place, T base) {
+void counting_sort(vector<T>& a, T place, T base) {
+    int n = a.size();
     vector<int> cnt(base);
     for (int i = 0; i < n; i++) {
         cnt[(a[i] / place) % base]++;
@@ -21,12 +22,13 @@ template <typename T>
 void radix_sort(vector<T>& a, T base = 10) {
     static_assert(is_integral_v<T>,
                   "radix_sort requires integral type");
-    if (a.size() == 0) {
+    if (a.empty()) {
         return;
     }
-    T M = *max_element(a.begin(), a.end());
+
+    const T M = *max_element(a.begin(), a.end());
     for (T place = 1; place <= M; place *= base) {
-        counting_sort(a, a.size(), place, base);
+        counting_sort(a, place, base);
     }
 }
 
