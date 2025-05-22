@@ -31,9 +31,6 @@ void merge_sort(vector<T>& a, int l, int r, Compare cmp) {
 
 template <typename T, typename Compare = less<T>>
 void merge_sort(vector<T>& a, Compare cmp = Compare()) {
-    if (a.size() == 0) {
-        return;
-    }
     merge_sort(a, 0, a.size() - 1, cmp);
 }
 
