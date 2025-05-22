@@ -18,7 +18,6 @@ int partition(vector<T>& a, int l, int r, Compare cmp) {
     return i;
 }
 
-
 template <typename T, typename Compare>
 void quick_sort(vector<T>& a, int l, int r, Compare cmp) {
     if (l >= r) {
@@ -31,9 +30,6 @@ void quick_sort(vector<T>& a, int l, int r, Compare cmp) {
 
 template <typename T, typename Compare = less<T>>
 void quick_sort(vector<T>& a, Compare cmp = Compare()) {
-    if (a.size() == 0) {
-        return;
-    }
     quick_sort(a, 0, a.size() - 1, cmp);
 }
 
