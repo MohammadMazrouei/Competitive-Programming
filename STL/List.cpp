@@ -2,28 +2,43 @@
 using namespace std;
 
 void solve() {
-    list<int> l = {1, 2, 3, 4}, l2(10), l3(10, 1);
+    // --- Initialization ---
+    list<int> l1(4),
+              l2(4, 1), 
+              l3 = {1, 2, 3, 4};
+    // assign(n, value)
 
-    // begin, end, rbegin, rend
-    // front, back
-    // size, empty, clear
-    // push_back, push_front, pop_back, pop_front, emplace_back, emplace_front
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(pos, data), insert(pos, n, data), insert(pos, initial_list), insert(pos, it_begin, it_end)
-    // erase(pos), erase(pos_begin, pos_end)
-    // emplace(pos, data)
+    // --- Capacity ---
+    // size(), empty()
 
-    // remove(data), remove_if(const function<int(bool)> f)
-    // sort, reverse, unique, merge(other_sorted_list)
+    // --- Element accessa ---
+    // front(), back()
 
-    // Transfers(Not copy) elements from one list to another in O(1).
-    // l.splice(pos, other_list), l.splice(pos, other_list, it_begin(), it_end())
+    // --- Modifiers ---
+    // push_front(value), push_back(value)
+    // emplace_front(args...), emplace_back(args...)
+    // insert(pos, value), insert(pos, n, value), insert(pos, initial_list)
+    // insert(pos, it_first, it_last), emplace(pos, args...)
+    // pop_front(), pop_back()
+    // erase(pos), erase(pos_first, pos_last)
+    // resize(n, value), clear()
 
-    // Assign replacing a list with new properties (size and elements). 
-    // Resize holding old data and expanding the new list with new elements.
-    l.assign(4, 2);
-    l.resize(10, 4);
-    for (auto x : l) {
+    // --- Operations ---
+    // sort(), reverse(), unique(), merge(sorted_list)
+    // Remove all elements satisfying criteria.
+    // remove(value), remove_if(UnaryPred)
+    // Transfers(Not copy) elements from another list to this list.
+    // splice(pos, list), splice(pos, list, it_first, it_last)
+
+    // --- Hints ---
+    // assign replacing a list with new properties (size and elements). 
+    // resize holding old data and expanding the new list with new elements.
+
+    for (auto x : l1) {
         cout << x << '\n';
     }
 }
