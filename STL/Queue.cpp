@@ -2,14 +2,15 @@
 using namespace std;
 
 void solve() {
-    // queue<int, deque<int>> q1;
-    // queue<int, list<int>> q2;
+    // --- Initialization ---
     queue<int> q;    
+    queue<int, deque<int>> q1;
+    queue<int, list<int>> q2;
 
     // --- Capacity ---
     // size(), empty()
 
-    // --- Element accessa ---
+    // --- Element access ---
     // front(), back()
 
     // --- Modifiers ---
