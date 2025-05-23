@@ -2,28 +2,42 @@
 using namespace std;
 
 void solve() {
-    forward_list<int> l = {1, 2, 3, 4}, l2(10), l3(10, 1);
+    // --- Initialization ---
+    forward_list<int> l1(4),
+                      l2(4, 1), 
+                      l3 = {1, 2, 3, 4};
+    // assign(n, value)
 
-    // begin, end, before_begin
-    // front
-    // size, empty, clear
-    // push_front, pop_front, emplace_front
+    // --- Iterators ---
+    // begin(), end()
+    // before_begin()
 
-    // insert_after(pos, data), insert_after(pos, n, data), insert_after(pos, initial_list), insert_after(pos, it_begin, it_end)
-    // erase_after(pos), erase_after(pos_begin, pos_end)
-    // emplace_after(pos, data)
+    // --- Capacity ---
+    // empty()
 
-    // remove(data), remove_if(const function<int(bool)> f)
-    // sort, reverse, unique, merge(other_sorted_forward_list)
+    // --- Element accessa ---
+    // front()
 
-    // Transfers(Not copy) elements from one forward_list to another in O(1).
-    // l.splice_after(pos, other_forward_list), l.splice_after(pos, other_forward_list, it_begin(), it_end())
+    // --- Modifiers ---
+    // push_front(value), emplace_front(args...)
+    // insert_after(pos, value), insert_after(pos, n, value), insert_after(pos, initial_list)
+    // insert_after(pos, it_first, it_last), emplace_after(pos, args...)
+    // pop_front()
+    // erase_after(pos), erase_after(pos_first, pos_last)
+    // resize(n, value), clear()
 
-    // Assign replacing a forward_list with new properties (size and elements). 
-    // Resize holding old data and expanding the new forward_list with new elements.
-    l.assign(4, 2);
-    l.resize(10, 4);
-    for (auto x : l) {
+    // --- Operations ---
+    // sort(), reverse(), unique(), merge(sorted_forward_list)
+    // Remove all elements satisfying criteria.
+    // remove(value), remove_if(UnaryPred)
+    // Transfers(Not copy) elements from another forward_list to this forward_list.
+    // splice_after(pos, forward_list), splice_after(pos, forward_list, it_first, it_last)
+
+    // --- Hints ---
+    // assign replacing a forward_list with new properties (size and elements). 
+    // resize holding old data and expanding the new forward_list with new elements.
+
+    for (auto x : l1) {
         cout << x << '\n';
     }
 }
