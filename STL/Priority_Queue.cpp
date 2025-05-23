@@ -2,13 +2,14 @@
 using namespace std;
 
 void solve() {
+    // --- Initialization ---
     priority_queue<int> pq_max;
     priority_queue<int, vector<int>, greater<int>> pq_min;
 
     // --- Capacity ---
     // size(), empty()
 
-    // --- Element accessa ---
+    // --- Element access ---
     // top()
 
     // --- Modifiers ---
