@@ -2,10 +2,20 @@
 using namespace std;
 
 void solve() {
-    stack<int> st;    
+    // stakc<int, deque<int>> st1;
+    // stakc<int, list<int>> st2;
+    // stakc<int, vector<int>> st3;
+    stack<int> st;
 
-    // push, emplace, pop, top
-    // size, empty
+    // --- Capacity ---
+    // size(), empty()
+
+    // --- Element accessa ---
+    // top()
+
+    // --- Modifiers ---
+    // push(value), emplace(args...)
+    // pop()
 }
 
 int32_t main() {
