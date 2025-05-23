@@ -2,11 +2,18 @@
 using namespace std;
 
 void solve() {
-    priority_queue<int> pqg;    
-    priority_queue<int, vector<int>, greater<int>> pql;    
+    priority_queue<int> pq_max;
+    priority_queue<int, vector<int>, greater<int>> pq_min;
 
-    // push, emplace, pop, top
-    // size, empty
+    // --- Capacity ---
+    // size(), empty()
+
+    // --- Element accessa ---
+    // top()
+
+    // --- Modifiers ---
+    // push(value), emplace(args...)
+    // pop()
 }
 
 int32_t main() {
