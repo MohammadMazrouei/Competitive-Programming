@@ -60,6 +60,10 @@ void solve() {
     // reserve change capacity of string.
     // string s_reverse = string(s.rbegin(), s.rend());
     // getline(cin, s)
+
+    for (auto ch : s1) {
+        cout << ch << '\n';
+    }
 }
 
 int32_t main() {
