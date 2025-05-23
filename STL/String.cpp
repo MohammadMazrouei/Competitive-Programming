@@ -2,47 +2,64 @@
 using namespace std;
 
 void solve() {
-    string s = "abcdefgbc", s2(10, 'x');
-    string reverse_s = string(s.rbegin(), s.rend());
+    // --- Initialization ---
+    string s1(4, 'x'), 
+           s2 = "abcdefghij";
+    // assign(n, char), assign(string)
 
-    // begin, end, rbegin, rend
-    // front, back, [], at
-    // size, empty, clear
-    // push_back, pop_back, +=
-    // getline(cin, s)
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(pos, char), insert(pos, n, char), insert(pos, initial_list), insert(pos, it_begin, it_end)
-    // erase(pos), erase(pos_begin, pos_end)
-    // append(str), append(n, char)
+    // --- Capacity ---
+    // size(), empty()
+    // reserve(n), capacity()
 
-    // replace(start_index, length, str), replace(start_index, length, n, char)
-    // replace(pos_begin, pos_end, str), replace(pos_begin, pos_end, n, char)
-    // replace(pos_begin, pos_end, it_begin, it_end)
+    // --- Element accessa ---
+    // front(), back()
+    // [index], at(index)
 
-    // Assign replacing a string with new properties (size and elements). 
-    // Resize holding old data and expanding the new string with new elements.
-    // Reserve change capacity of string.
-    s.assign(4, 'a');
-    s.resize(10, 'b');
-    s.reserve(100);
-    cout << s << '\n';
+    // --- Modifiers ---
+    // push_back(char), += char, += string
+    // append(n, char), append(string)
+    // insert(pos, char), insert(pos, n, char), insert(pos, initial_list)
+    // insert(pos, it_first, it_last)
+    // insert(index, n, char), insert(index, string), insert(index, initial_list)
+    // pop_back()
+    // erase(pos), erase(pos_first, pos_last), erase(index, length)
+    // replace(pos_first, pos_last, n, char), replace(pos_first, pos_last, string)
+    // replace(index, length, n, char), replace(index, length, string)
+    // replace(pos_first, pos_last, it_first, it_last)
+    // resize(n, char), clear()
 
-    // Return index of first & last occurrence of a string (-1 if not found)
-    // s.find(str, start_index=0), s.rfind(str, start_index=0)
-    cout << s.find("aa") << ' ' << s.rfind("aa") << '\n';
-    cout << s.contains("aabb") << ' ' << s.starts_with("aa") << ' ' << s.ends_with("aa") << '\n';
+    // --- Search ---
+    // Return index of first & last occurrence of a string (string::npos if not found)
+    // s.find(string, start_index=0), s.rfind(string, start_index=npos)
+    cout << s1.find("xx") << ' ' << s1.rfind("xx") << '\n';
+    
+    // --- Operations ---
+    // contains(string)
+    // starts_with(string), ends_with(string)
+    // substr(index, length)
 
-    // s.substr(strat_index, length)
-    cout << s.substr(2, 4) << '\n';
-
-    // stoi, stol, stoll, stoul, stoull, stof, stod, stold
-    int n1 = stoi("1234"), n2 = stoi("10010", nullptr, 2);
+    // --- Numeric conversions ---
+    // stoi(string), stol(string), stoll(string)
+    // stoul(string), stoull(string)
+    // stof(string), stod(string), stold(string)
+    // to_string(number)
+    int n1 = stoi("1234");
+    int n2 = stoi("10010", nullptr, 2);
     cout << n1 << ' ' << n2 << '\n';
-
-    // to_string
     string s_int = to_string(1111);
     string s_float = to_string(2222.22);
     cout << s_int << ' ' << s_float << '\n';
+
+    // --- Hints ---
+    // assign replacing a string with new properties (size and elements). 
+    // resize holding old data and expanding the new string with new elements.
+    // reserve change capacity of string.
+    // string s_reverse = string(s.rbegin(), s.rend());
+    // getline(cin, s)
 }
 
 int32_t main() {
