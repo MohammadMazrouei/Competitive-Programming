@@ -2,18 +2,16 @@
 using namespace std;
 
 void solve() {
-    pair<string, int> p("way1", 1), p2 = make_pair("way2", 2), p3 = {"way3", 3};
-    p.first = "way4";
-    p.second = 4;
-    get<0>(p) = "way5";
-    get<1>(p) = 5;
+    pair<int, string> p1(1, "p1"), 
+                      p2 = {2, "p2"},
+                      p3 = make_pair(3, "p3");
 
-    string s; int n;
-    tie(s, n) = p;
-    auto [s2, n2] = p;
+    int a1; string s1;
+    tie(a1, s1) = p1;
+    auto [a2, s2] = p2;
 
-    cout << p.first << ' ' << p.second << '\n';
-    cout << get<0>(p) << ' ' << get<1>(p) << '\n';
+    cout << p1.first << ' ' << p1.second << '\n';
+    cout << get<0>(p1) << ' ' << get<1>(p1) << '\n';
 }
 
 int32_t main() {
