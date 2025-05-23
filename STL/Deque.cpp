@@ -2,22 +2,37 @@
 using namespace std;
 
 void solve() {
-    deque<int> dq = {1, 2, 3, 4}, dq2(10), dq3(10, 1);
+    // --- Initialization ---
+    deque<int> dq1(4),
+                dq2(4, 1), 
+                dq3 = {1, 2, 3, 4};
+    // assign(n, value)
 
-    // begin, end, rbegin, rend
-    // front, back, [], at
-    // size, empty, clear
-    // push_back, push_front, pop_back, pop_front, emplace_back, emplace_front
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(pos, data), insert(pos, n, data), insert(pos, initial_list), insert(pos, it_begin, it_end)
-    // erase(pos), erase(pos_begin, pos_end)
-    // emplace(pos, data)
+    // --- Capacity ---
+    // size(), empty()
 
-    // Assign replacing a deque with new properties (size and elements). 
-    // Resize holding old data and expanding the new deque with new elements.
-    dq.assign(4, 2);
-    dq.resize(10, 4);
-    for (auto x : dq) {
+    // --- Element accessa ---
+    // front(), back()
+    // [index], at(index)
+
+    // --- Modifiers ---
+    // push_front(value), push_back(value)
+    // emplace_front(args...), emplace_back(args...)
+    // insert(pos, value), insert(pos, n, value), insert(pos, initial_list)
+    // insert(pos, it_first, it_last), emplace(pos, args...)
+    // pop_front(), pop_back()
+    // erase(pos), erase(pos_first, pos_last)
+    // resize(n, value), clear()
+
+    // --- Hints ---
+    // assign replacing a deque with new properties (size and elements). 
+    // resize holding old data and expanding the new deque with new elements.
+
+    for (auto x : dq1) {
         cout << x << '\n';
     }
 }
