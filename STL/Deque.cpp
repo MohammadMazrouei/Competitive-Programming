@@ -4,8 +4,8 @@ using namespace std;
 void solve() {
     // --- Initialization ---
     deque<int> dq1(4),
-                dq2(4, 1), 
-                dq3 = {1, 2, 3, 4};
+               dq2(4, 1), 
+               dq3 = {1, 2, 3, 4};
     // assign(n, value)
 
     // --- Iterators ---
