@@ -2,11 +2,22 @@
 using namespace std;
 
 void solve() {
-    array<int, 6> arr = {1, 2, 3, 4, 5, 6};
+    // --- Initialization ---
+    array<int, 4> arr = {1, 2, 3, 4};
 
-    // begin, end, rbegin, rend
-    // front, back, [], at
-    // size, empty
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
+
+    // --- Capacity ---
+    // size(), empty()
+
+    // --- Element access ---
+    // front(), back()
+    // [index], at(index)
+
+    // --- Operations ---
+    // fill(value)
 
     arr.fill(10);
     for (auto x : arr) {
