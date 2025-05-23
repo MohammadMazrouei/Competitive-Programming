@@ -5,7 +5,7 @@ void solve() {
     // --- Initialization ---
     string s1(4, 'x'), 
            s2 = "abcdefghij";
-    // assign(n, char), assign(string)
+    // assign(n, char)
 
     // --- Iterators ---
     // begin(), end()
