@@ -2,24 +2,38 @@
 using namespace std;
 
 void solve() {
-    vector<int> v = {1, 2, 3, 4}, v2(10), v3(10, 1);
+    // --- Initialization ---
+    vector<int> v1(4),
+                v2(4, 1), 
+                v3 = {1, 2, 3, 4};
+    // assign(n, value)
 
-    // begin, end, rbegin, rend
-    // front, back, [], at
-    // size, empty, clear
-    // push_back, pop_back, emplace_back
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(pos, data), insert(pos, n, data), insert(pos, initial_list), insert(pos, it_begin, it_end)
-    // erase(pos), erase(pos_begin, pos_end)
-    // emplace(pos, data)
+    // --- Capacity ---
+    // size(), empty()
+    // reserve(n), capacity()
 
-    // Assign replacing a vector with new properties (size and elements). 
-    // Resize holding old data and expanding the new vector with new elements.
-    // Reserve change capacity of vector.
-    v.assign(4, 2);
-    v.resize(10, 4);
-    v.reserve(100);
-    for (auto x : v) {
+    // --- Element accessa ---
+    // front(), back()
+    // [index], at(index)
+
+    // --- Modifiers ---
+    // push_back(value), emplace_back(args...)
+    // insert(pos, value), insert(pos, n, value), insert(pos, initial_list)
+    // insert(pos, it_first, it_last), emplace(pos, args...)
+    // pop_back()
+    // erase(pos), erase(pos_first, pos_last)
+    // resize(n, value), clear()
+
+    // --- Hints ---
+    // assign replacing a vector with new properties (size and elements). 
+    // resize holding old data and expanding the new vector with new elements.
+    // reserve change capacity of vector.
+
+    for (auto x : v1) {
         cout << x << '\n';
     }
 }
