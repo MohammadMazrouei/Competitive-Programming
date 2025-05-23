@@ -3,9 +3,9 @@ using namespace std;
 
 void solve() {
     // --- Initialization ---
-    forward_list<int> l1(4),
-                      l2(4, 1), 
-                      l3 = {1, 2, 3, 4};
+    forward_list<int> fl1(4),
+                      fl2(4, 1), 
+                      fl3 = {1, 2, 3, 4};
     // assign(n, value)
 
     // --- Iterators ---
@@ -37,7 +37,7 @@ void solve() {
     // assign replacing a forward_list with new properties (size and elements). 
     // resize holding old data and expanding the new forward_list with new elements.
 
-    for (auto x : l1) {
+    for (auto x : fl1) {
         cout << x << '\n';
     }
 }
