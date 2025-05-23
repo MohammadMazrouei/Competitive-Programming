@@ -2,10 +2,19 @@
 using namespace std;
 
 void solve() {
+    // queue<int, deque<int>> q1;
+    // queue<int, list<int>> q2;
     queue<int> q;    
 
-    // push, emplace, pop, front, back
-    // size, empty
+    // --- Capacity ---
+    // size(), empty()
+
+    // --- Element accessa ---
+    // front(), back()
+
+    // --- Modifiers ---
+    // push(value), emplace(args...)
+    // pop()
 }
 
 int32_t main() {
