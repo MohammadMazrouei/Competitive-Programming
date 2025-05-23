@@ -2,15 +2,16 @@
 using namespace std;
 
 void solve() {
-    // stakc<int, deque<int>> st1;
-    // stakc<int, list<int>> st2;
-    // stakc<int, vector<int>> st3;
+    // --- Initialization ---
     stack<int> st;
+    stack<int, deque<int>> st1;
+    stack<int, list<int>> st2;
+    stack<int, vector<int>> st3;
 
     // --- Capacity ---
     // size(), empty()
 
-    // --- Element accessa ---
+    // --- Element access ---
     // top()
 
     // --- Modifiers ---
