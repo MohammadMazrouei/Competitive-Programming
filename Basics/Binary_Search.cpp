@@ -12,8 +12,7 @@ void solve() {
             int mid = lo + (hi - lo) / 2;
             if (f(mid)) {
                 lo = mid;
-            }
-            else {
+            } else {
                 hi = mid;
             }
         }
@@ -27,8 +26,7 @@ void solve() {
             int mid = lo + (hi - lo) / 2;
             if (f(mid)) {
                 hi = mid;
-            }
-            else {
+            } else {
                 lo = mid;
             }
         }
@@ -43,8 +41,7 @@ void solve() {
             double mid = lo + (hi - lo) / 2;
             if (f(mid)) {
                 lo = mid;
-            }
-            else {
+            } else {
                 hi = mid;
             }
         }
