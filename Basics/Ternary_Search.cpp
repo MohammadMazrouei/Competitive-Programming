@@ -9,8 +9,7 @@ void solve() {
             int mid = lo + (hi - lo) / 2;
             if (f(mid) < f(mid + 1)) {
                 lo = mid;
-            }
-            else {
+            } else {
                 hi = mid;
             }
         }
@@ -24,8 +23,7 @@ void solve() {
             int mid = lo + (hi - lo) / 2;
             if (f(mid) < f(mid + 1)) {
                 hi = mid;
-            }
-            else {
+            } else {
                 lo = mid;
             }
         }
@@ -41,8 +39,7 @@ void solve() {
             double m2 = hi - (hi - lo) / 3;
             if (f(m1) <= f(m2)) {
                 lo = m1;
-            }
-            else {
+            } else {
                 hi = m2;
             }
         }
