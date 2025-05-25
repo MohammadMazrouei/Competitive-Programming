@@ -51,6 +51,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Unordered Set](STL/Unordered_Set.cpp)
 - [Unordered Multiset](STL/Unordered_Multiset.cpp)
 - [Unordered Map](STL/Unordered_Map.cpp)
+- [Unordered Multimap](STL/Unordered_Multimap.cpp)
 
 ## Data Structures
 - [Minimum Stack](Data_Structures/Minimum_Stack.cpp)
