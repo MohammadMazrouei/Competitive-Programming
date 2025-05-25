@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Multiset is an associative container that contains a sorted set of objects.
+// multiset is an associative container that contains a sorted set of objects.
 void solve() {
     // --- Initialization ---
     multiset<int> ms1 = {1, 2, 3, 4, 5, 10, 10};
@@ -15,7 +15,7 @@ void solve() {
     // size(), empty()
 
     // --- Modifiers ---
-    // insert(value), insert(initial_list), insert(it_first, it_last),
+    // insert(value), insert(initializer_list), insert(it_first, it_last),
     // insert(pos, value), emplace(args...), emplace_hint(pos, args...)
     // erase(value), erase(pos), erase(pos_first, pos_last)
     // merge(multiset) -> O(n*log(n))
@@ -35,6 +35,8 @@ void solve() {
     // O(1) if the insertion happens in the position just after or before pos, O(log(n)) otherwise.
     // erase(value), removes all occurrences of 'value', returns count of removed elements.
     // erase(value), count(value) -> O(log(n) + count(value))
+    // When using a custom class with a multiset, it's necessary to define a comparator for that class,
+    // as the default comparison often relies on the less-than operator (<).
 
     for (auto x : ms1) {
         cout << x << '\n';
