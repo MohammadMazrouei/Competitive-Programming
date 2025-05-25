@@ -4,33 +4,45 @@ using namespace std;
 /*
 Store each bool as a single bit.
 The bitfield representation necessitates extra bit manipulation.
-Standard algorithms and functions that expect regular references may encounter issues with the proxy object, 
-leading to unexpected behavior or compilation errors.
+Standard algorithms and functions that expect regular references may encounter 
+issues with the proxy object, leading to unexpected behavior or compilation errors.
 */
 void solve() {
-    vector<bool> v = {true, false, true, false}, v2(10), v3(10, true);
+    // --- Initialization ---
+    vector<bool> v1(4),
+                 v2(4, true), 
+                 v3 = {false, true, false, true};
+    // assign(n, value)
 
-    // begin, end, rbegin, rend
-    // front, back, [], at
-    // size, empty, clear
-    // push_back, pop_back, emplace_back
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(pos, data), insert(pos, n, data), insert(pos, initial_list), insert(pos, it_begin, it_end)
-    // erase(pos), erase(pos_begin, pos_end)
-    // emplace(pos, data)
+    // --- Capacity ---
+    // size(), empty()
+    // reserve(n), capacity()
 
-    // flip() -> filp all bits
+    // --- Element accessa ---
+    // front(), back()
+    // [index], at(index)
 
-    // Assign replacing a vector<bool> with new properties (size and elements). 
-    // Resize holding old data and expanding the new vector<bool> with new elements.
-    // Reserve change capacity of vector<bool>.
-    v.assign(4, true);
-    v.resize(10, false);
-    v.reserve(100);
-    for (auto x : v) {
-        cout << x;
+    // --- Modifiers ---
+    // push_back(value), emplace_back(args...)
+    // insert(pos, value), insert(pos, n, value), insert(pos, initial_list)
+    // insert(pos, it_first, it_last), emplace(pos, args...)
+    // pop_back()
+    // erase(pos), erase(pos_first, pos_last)
+    // resize(n, value), clear()
+    // flip()
+
+    // --- Hints ---
+    // assign replacing a vector<bool> with new properties (size and elements). 
+    // resize holding old data and expanding the new vector<bool> with new elements.
+    // reserve change capacity of vector<bool>.
+
+    for (auto x : v1) {
+        cout << x << '\n';
     }
-    cout << '\n';
 }
 
 int32_t main() {
