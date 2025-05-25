@@ -1,35 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Set is an associative container that contains a sorted set of unique objects.
 void solve() {
-    // Set is an associative container that contains a sorted set of unique objects
-    set<int> s = {1, 2, 3, 4, 5, 10};
+    // --- Initialization ---
+    set<int> s1 = {1, 2, 3, 4, 5, 10};
     set<int, greater<int>> s2 = {10, 5, 4, 3, 2, 1};
 
-    // begin, end, rbegin, rend
-    // size, empty, clear
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(key), insert(initial_list), insert(it_begin, it_end), insert(pos, key)
-    // erase(key), erase(pos), erase(pos_begin, pos_end)
-    // emplace(key), emplace_hint(pos, key)
+    // --- Capacity ---
+    // size(), empty()
 
-    // insert(pos, key), emplace_hint(pos, key), erase(pos) -> O(1)
+    // --- Modifiers ---
+    // insert(value), insert(initial_list), insert(it_first, it_last),
+    // insert(pos, value), emplace(args...), emplace_hint(pos, args...)
+    // erase(value), erase(pos), erase(pos_first, pos_last)
+    // merge(set) -> O(n*log(n))
+    // clear()
  
-    // s.contains(key)
-    // s.merge(s0), O(n*log(n))
-
-    int cnt = s.count(5);
-    set<int>::iterator it = s.find(5);
-    cout << cnt << ' ' << *it << '\n';
-
-    // lower_bound(x) -> The first element greater than or equal to x
-    // upper_bound(x) -> The first element greater than to x
-    set<int>::iterator lb = s.lower_bound(5);
-    set<int>::iterator ub = s.upper_bound(5);
+    // --- Lookup ---
+    // count(value), contains(value)
+    // find(value)
+    // lower_bound(value) -> The first element greater than or equal to value.
+    // upper_bound(value) -> The first element greater than to value.
+    set<int>::iterator lb = s1.lower_bound(5);
+    set<int>::iterator ub = s1.upper_bound(5);
     cout << *lb << ' ' << *ub << '\n';
 
-    for (auto x : s) {
-        cout << x << " \n"[x == *s.rbegin()];
+    // --- Hints ---
+    // insert(pos, value), emplace_hint(pos, args...), erase(pos)
+    // O(1) if the insertion happens in the position just after or before pos, O(log(n)) otherwise.
+
+    for (auto x : s1) {
+        cout << x << '\n';
     }
 }
 
