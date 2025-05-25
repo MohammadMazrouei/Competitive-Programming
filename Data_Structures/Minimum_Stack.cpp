@@ -2,29 +2,29 @@
 using namespace std;
 
 // Minimum Stack, O(1)
-template <typename T, typename Cmp = less<T>>
+template <typename T, typename Compare = less<T>>
 struct MStack {
     stack<pair<T, T>> st;
-    const Cmp cmp = Cmp();
+    Compare cmp = Compare();
     
-    void push(const T &v) {
-        T mn = st.empty() ? v : min(v, st.top().second, cmp);
-        st.emplace(v, mn);
+    void push(const T& x) {
+        T mn = st.empty() ? x : min(x, st.top().second, cmp);
+        st.emplace(x, mn);
     }
     void pop() {
         st.pop();
     }
-    T top() {
+    T top() const {
         return st.top().first;
     }
-    T get() {
+    T get() const {
         return st.top().second;
-    }
-    bool empty() const {
-        return st.empty();
     }
     int size() const {
         return st.size();
+    }
+    bool empty() const {
+        return st.empty();
     }
 };
 
@@ -32,20 +32,18 @@ void solve() {
     int q;
     cin >> q;
 
-    MStack<int> st;
+    MStack<int> mst;
     while (q--) {
         int op;
         cin >> op;
         if (op == 1) {
             int x;
             cin >> x;
-            st.push(x);
-        }
-        else if (op == 2) {
-            st.pop();
-        }
-        else if (op == 3) {
-            cout << st.get() << '\n';
+            mst.push(x);
+        } else if (op == 2) {
+            mst.pop();
+        } else if (op == 3) {
+            cout << mst.get() << '\n';
         }
     }
 }
