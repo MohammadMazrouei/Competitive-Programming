@@ -30,7 +30,7 @@ void solve() {
     // sort(), reverse(), unique(), merge(sorted_forward_list)
     // Remove all elements satisfying criteria.
     // remove(value), remove_if(UnaryPred)
-    // Transfers(Not copy) elements from another forward_list to this forward_list.
+    // Transfers(not copy) elements from another forward_list to this forward_list.
     // splice_after(pos, forward_list), splice_after(pos, forward_list, it_first, it_last)
 
     // --- Hints ---
