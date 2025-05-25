@@ -2,22 +2,22 @@
 using namespace std;
 
 // Minimum Queue, O(1)
-template <typename T, typename Cmp = less<T>>
+template <typename T, typename Compare = less<T>>
 struct MQueue {
     stack<pair<T, T>> st1, st2;
-    const Cmp cmp = Cmp();
+    Compare cmp = Compare();
     
-    void push(const T &v) {
-        T mn = st1.empty() ? v : min(v, st1.top().second, cmp);
-        st1.emplace(v, mn);
+    void push(const T& x) {
+        T mn = st1.empty() ? x : min(x, st1.top().second, cmp);
+        st1.emplace(x, mn);
     }
     void pop() {
         if (st2.empty()) {
             while (!st1.empty()) {
-                T v = st1.top().first;
-                T mn = st2.empty() ? v : min(v, st2.top().second, cmp);
+                T x = st1.top().first;
+                T mn = st2.empty() ? x : min(x, st2.top().second, cmp);
                 st1.pop();
-                st2.emplace(v, mn);
+                st2.emplace(x, mn);
             }
         }
         st2.pop();
@@ -25,25 +25,25 @@ struct MQueue {
     T front() {
         if (st2.empty()) {
             while (!st1.empty()) {
-                T v = st1.top().first;
-                T mn = st2.empty() ? v : min(v, st2.top().second, cmp);
+                T x = st1.top().first;
+                T mn = st2.empty() ? x : min(x, st2.top().second, cmp);
                 st1.pop();
-                st2.emplace(v, mn);
+                st2.emplace(x, mn);
             }
         }
         return st2.top().first;
     }
-    T get() {
+    T get() const {
         if (st1.empty() || st2.empty()) {
             return st1.empty() ? st2.top().second : st1.top().second;
         }
         return min(st1.top().second, st2.top().second, cmp);
     }
-    bool empty() const {
-        return st1.empty() && st2.empty();
-    }
     int size() const {
         return st1.size() + st2.size();
+    }
+    bool empty() const {
+        return st1.empty() && st2.empty();
     }
 };
 
@@ -51,20 +51,18 @@ void solve() {
     int q;
     cin >> q;
 
-    MQueue<int> qu;
+    MQueue<int> mq;
     while (q--) {
         int op;
         cin >> op;
         if (op == 1) {
             int x;
             cin >> x;
-            qu.push(x);
-        }
-        else if (op == 2) {
-            qu.pop();
-        }
-        else if (op == 3) {
-            cout << qu.get() << '\n';
+            mq.push(x);
+        } else if (op == 2) {
+            mq.pop();
+        } else if (op == 3) {
+            cout << mq.get() << '\n';
         }
     }
 }
