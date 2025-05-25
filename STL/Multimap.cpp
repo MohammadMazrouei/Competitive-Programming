@@ -1,36 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Multimap is an associative container that contains a sorted set of keys & their values.
 void solve() {
-    // Multimap is an associative container that contains a sorted set of keys & their values
-    multimap<int, char> mp = {{1, 'x'}, {2, 'y'}, {3, 'z'}, {10, 'w'}, {10, 'v'}};
-    multimap<int, char, greater<int>> mp2 = {{10, 'v'}, {10, 'w'}, {3, 'z'}, {2, 'y'}, {1, 'x'}};
+    // --- Initialization ---
+    multimap<int, char> mmp1 = {{1, 'a'}, {2, 'b'}, {3, 'c'}, {4, 'd'}, {4, 'd'}};
+    multimap<int, char, greater<int>> mmp2 = {{4, 'd'}, {4, 'd'}, {3, 'c'}, {2, 'b'}, {1, 'a'}};
 
-    // begin, end, rbegin, rend
-    // size, empty, clear
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert({key, value}), insert(initial_list), insert(it_begin, it_end), insert(pos, {key, value})
-    // erase(key), erase(pos), erase(pos_begin, pos_end)
-    // emplace(key, value), emplace_hint(pos, key, value)
+    // --- Capacity ---
+    // size(), empty()
 
-    // insert(pos, {key, value}), emplace_hint(pos, key, value), erase(pos) -> O(1)
-    // erase(key), count(key) -> O(log(n)+count(key))
+    // --- Modifiers ---
+    // insert({key, value}), insert(initial_list), insert(it_first, it_last),
+    // insert(pos, {key, value}), emplace(args...), emplace_hint(pos, args...)
+    // erase(key), erase(pos), erase(pos_first, pos_last)
+    // merge(multimap) -> O(n*log(n))
+    // clear()
  
-    // mp.contains(key)
-    // mp.merge(mp0), O(n*log(n))
-
-    int cnt = mp.count(10);
-    multimap<int, char>::iterator it = mp.find(10);
-    cout << cnt << ' ' << it->first << ' ' << it->second << '\n';
-
-    // lower_bound(key) -> The first element greater than or equal to key 
-    // upper_bound(key) -> The first element greater than to key 
-    multimap<int, char>::iterator lb = mp.lower_bound(3);
-    multimap<int, char>::iterator ub = mp.upper_bound(3);
+    // --- Lookup ---
+    // count(key), contains(key)
+    // find(key)
+    // lower_bound(key) -> The first element greater than or equal to key.
+    // upper_bound(key) -> The first element greater than to key.
+    multimap<int, char>::iterator lb = mmp1.lower_bound(2);
+    multimap<int, char>::iterator ub = mmp1.upper_bound(2);
     cout << lb->first << ' ' << lb->second << '\n'; 
     cout << ub->first << ' ' << ub->second  << '\n';
 
-    for (auto [key, value] : mp) {
+    // --- Hints ---
+    // insert(pos, {key, value}), emplace_hint(pos, args...), erase(pos)
+    // O(1) if the insertion happens in the position just after or before pos, O(log(n)) otherwise.
+    // erase(key), removes all occurrences of 'key', returns count of removed elements.
+    // erase(key), count(key) -> O(log(n) + count(key))
+
+    for (auto [key, value] : mmp1) {
         cout << key << ' ' << value << '\n';;
     }
 }
