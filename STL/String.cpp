@@ -3,7 +3,7 @@ using namespace std;
 
 void solve() {
     // --- Initialization ---
-    string s1(4, 'x'), 
+    string s1(4, 'a'), 
            s2 = "abcdefghij";
     // assign(n, char)
 
@@ -35,7 +35,7 @@ void solve() {
     // --- Search ---
     // Return index of first & last occurrence of a string (string::npos if not found)
     // s.find(string, start_index=0), s.rfind(string, start_index=npos)
-    cout << s1.find("xx") << ' ' << s1.rfind("xx") << '\n';
+    cout << s1.find("aa") << ' ' << s1.rfind("aa") << '\n';
     
     // --- Operations ---
     // contains(string)
@@ -58,7 +58,6 @@ void solve() {
     // assign replacing a string with new properties (size and elements). 
     // resize holding old data and expanding the new string with new elements.
     // reserve change capacity of string.
-    // string s_reverse = string(s.rbegin(), s.rend());
     // getline(cin, s)
 
     for (auto ch : s1) {
