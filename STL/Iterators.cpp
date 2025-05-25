@@ -3,17 +3,17 @@ using namespace std;
 
 /*
 Input Iterators
-    (++, *, ->, ==, !=)
+    (*, ->, ++, ==, !=)
 Output Iterators
-    (++, *)
+    (*, ++)
 Forward Iterators
-    (++, *, ->, ==, !=)
+    (*, ->, ++, ==, !=)
     forward_list
 Bidirectional Iteartors
-    (++, --, *, ->, ==, !=)
+    (*, ->, ++, --, ==, !=)
     list, set, multiset, map, multimap
 Random-Access Iterators
-    (++, --, *, ->, [], +, -, ==, !=, <, >, <=, >=)
+    (*, ->, [], ++, --, +, -, ==, !=, <, >, <=, >=)
     array, vector, deque, string
 */
 void solve() {
@@ -24,7 +24,12 @@ void solve() {
     vector<int>::reverse_iterator it_rbegin = v.rbegin();
     vector<int>::reverse_iterator it_rend = v.rend();
 
-    // Random-Access -> O(1), Bidirectional -> O(n), (distance, next, prev, advance)
+    // Bidirectional -> O(n), Random-Access -> O(1)
+    // distance(it_first, it_last), can be negative for random-access iterators
+    // next(it), next(it, n)
+    // prev(it), prev(it, n)
+    // advance(it, n)
+
     cout << distance(it_begin, it_end) << '\n';
     cout << distance(it_end, it_begin) << '\n';
 
