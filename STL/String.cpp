@@ -22,9 +22,9 @@ void solve() {
     // --- Modifiers ---
     // push_back(char), += char, += string
     // append(n, char), append(string)
-    // insert(pos, char), insert(pos, n, char), insert(pos, initial_list)
+    // insert(pos, char), insert(pos, n, char), insert(pos, initializer_list)
     // insert(pos, it_first, it_last)
-    // insert(index, n, char), insert(index, string), insert(index, initial_list)
+    // insert(index, n, char), insert(index, string), insert(index, initializer_list)
     // pop_back()
     // erase(pos), erase(pos_first, pos_last), erase(index, length)
     // replace(pos_first, pos_last, n, char), replace(pos_first, pos_last, string)
