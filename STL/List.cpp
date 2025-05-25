@@ -31,7 +31,7 @@ void solve() {
     // sort(), reverse(), unique(), merge(sorted_list)
     // Remove all elements satisfying criteria.
     // remove(value), remove_if(UnaryPred)
-    // Transfers(Not copy) elements from another list to this list.
+    // Transfers(not copy) elements from another list to this list.
     // splice(pos, list), splice(pos, list, it_first, it_last)
 
     // --- Hints ---
