@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Set is an associative container that contains a sorted set of unique objects.
+// set is an associative container that contains a sorted set of unique objects.
 void solve() {
     // --- Initialization ---
     set<int> s1 = {1, 2, 3, 4, 5, 10};
@@ -15,7 +15,7 @@ void solve() {
     // size(), empty()
 
     // --- Modifiers ---
-    // insert(value), insert(initial_list), insert(it_first, it_last),
+    // insert(value), insert(initializer_list), insert(it_first, it_last),
     // insert(pos, value), emplace(args...), emplace_hint(pos, args...)
     // erase(value), erase(pos), erase(pos_first, pos_last)
     // merge(set) -> O(n*log(n))
@@ -33,6 +33,8 @@ void solve() {
     // --- Hints ---
     // insert(pos, value), emplace_hint(pos, args...), erase(pos)
     // O(1) if the insertion happens in the position just after or before pos, O(log(n)) otherwise.
+    // When using a custom class with a set, it's necessary to define a comparator for that class,
+    // as the default comparison often relies on the less-than operator (<).
 
     for (auto x : s1) {
         cout << x << '\n';
