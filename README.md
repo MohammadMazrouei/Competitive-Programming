@@ -48,6 +48,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Multiset](STL/Multiset.cpp)
 - [Map](STL/Map.cpp)
 - [Multimap](STL/Multimap.cpp)
+- [Unordered Set](STL/Unordered_Set.cpp)
 
 ## Data Structures
 - [Minimum Stack](Data_Structures/Minimum_Stack.cpp)
