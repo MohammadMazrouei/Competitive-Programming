@@ -22,7 +22,7 @@ void solve() {
 
     // --- Modifiers ---
     // push_back(value), emplace_back(args...)
-    // insert(pos, value), insert(pos, n, value), insert(pos, initial_list)
+    // insert(pos, value), insert(pos, n, value), insert(pos, initializer_list)
     // insert(pos, it_first, it_last), emplace(pos, args...)
     // pop_back()
     // erase(pos), erase(pos_first, pos_last)
