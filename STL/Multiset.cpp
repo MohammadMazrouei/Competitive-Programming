@@ -1,38 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Multiset is an associative container that contains a sorted set of objects.
 void solve() {
-    // Multiset is an associative container that contains a sorted set of objects
-    multiset<int> ms = {1, 2, 3, 4, 5, 5, 10};
-    multiset<int, greater<int>> ms2 = {10, 5, 5, 4, 3, 2, 1};
+    // --- Initialization ---
+    multiset<int> ms1 = {1, 2, 3, 4, 5, 10, 10};
+    multiset<int, greater<int>> ms2 = {10, 10, 5, 4, 3, 2, 1};
 
-    // begin, end, rbegin, rend
-    // size, empty, clear
+    // --- Iterators ---
+    // begin(), end()
+    // rbegin(), rend()
 
-    // insert(key), insert(initial_list), insert(it_begin, it_end), insert(pos, key)
-    // erase(key), erase(pos), erase(pos_begin, pos_end)
-    // emplace(key), emplace_hint(pos, key)
+    // --- Capacity ---
+    // size(), empty()
 
-    // insert(pos, key), emplace_hint(pos, key), erase(pos) -> O(1)
-    // erase(key), count(key) -> O(log(n)+count(key))
+    // --- Modifiers ---
+    // insert(value), insert(initial_list), insert(it_first, it_last),
+    // insert(pos, value), emplace(args...), emplace_hint(pos, args...)
+    // erase(value), erase(pos), erase(pos_first, pos_last)
+    // merge(multiset) -> O(n*log(n))
+    // clear()
  
-    // ms.contains(key)
-    // ms.merge(ms0), O(n*log(n))
-
-    int cnt = ms.count(5);
-    multiset<int>::iterator it = ms.find(5);
-    cout << cnt << ' ' << *it << '\n';
-
-    // lower_bound(x) -> The first element greater than or equal to x
-    // upper_bound(x) -> The first element greater than to x
-    multiset<int>::iterator lb = ms.lower_bound(5);
-    multiset<int>::iterator ub = ms.upper_bound(5);
+    // --- Lookup ---
+    // count(value), contains(value)
+    // find(value)
+    // lower_bound(value) -> The first element greater than or equal to value.
+    // upper_bound(value) -> The first element greater than to value.
+    multiset<int>::iterator lb = ms1.lower_bound(5);
+    multiset<int>::iterator ub = ms1.upper_bound(5);
     cout << *lb << ' ' << *ub << '\n';
 
-    for (auto x : ms) {
-        cout << x << ' ';
+    // --- Hints ---
+    // insert(pos, value), emplace_hint(pos, args...), erase(pos)
+    // O(1) if the insertion happens in the position just after or before pos, O(log(n)) otherwise.
+    // erase(value), removes all occurrences of 'value', returns count of removed elements.
+    // erase(value), count(value) -> O(log(n) + count(value))
+
+    for (auto x : ms1) {
+        cout << x << '\n';
     }
-    cout << '\n';
 }
 
 int32_t main() {
