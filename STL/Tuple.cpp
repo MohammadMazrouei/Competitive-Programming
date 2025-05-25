@@ -13,7 +13,7 @@ void solve() {
     auto [a2, b2, s2] = t2;
 
     // --- Element access ---
-    cout << get<0>(t1) << ' ' << get<1>(t1) << ' ' << get<string>(t1) << '\n';
+    cout << get<0>(t1) << ' ' << get<1>(t1) << ' ' << get<2>(t1) << '\n';
 
     // concatenated_tuple is now: tuple<int, int, string, int, int, string>
     auto concatenated_tuple = tuple_cat(t1, t2); 
