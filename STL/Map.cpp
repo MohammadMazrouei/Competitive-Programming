@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Map is an associative container that contains a sorted set of unique keys & their values.
+// map is an associative container that contains a sorted set of unique keys & their values.
 void solve() {
     // --- Initialization ---
     map<int, char> mp1 = {{1, 'a'}, {2, 'b'}, {3, 'c'}, {4, 'd'}};
@@ -15,10 +15,10 @@ void solve() {
     // size(), empty()
 
     // --- Element accessa ---
-    // [index], at(index)
+    // [key], at(key)
 
     // --- Modifiers ---
-    // insert({key, value}), insert(initial_list), insert(it_first, it_last),
+    // insert({key, value}), insert(initializer_list), insert(it_first, it_last),
     // insert(pos, {key, value}), emplace(args...), emplace_hint(pos, args...)
     // insert_or_assign({key, value})
     // erase(key), erase(pos), erase(pos_first, pos_last)
@@ -38,6 +38,8 @@ void solve() {
     // --- Hints ---
     // insert(pos, {key, value}), emplace_hint(pos, args...), erase(pos)
     // O(1) if the insertion happens in the position just after or before pos, O(log(n)) otherwise.
+    // When using a custom class with a map, it's necessary to define a comparator for that class,
+    // as the default comparison often relies on the less-than operator (<).
 
     for (auto [key, value] : mp1) {
         cout << key << ' ' << value << '\n';;
