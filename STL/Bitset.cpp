@@ -2,14 +2,32 @@
 using namespace std;
 
 void solve() {
-    // O(n / 64)
-    bitset<20> bs, bs2(1234), bs3("10101100");
+    // --- Initialization ---
+    bitset<20> bs1, 
+               bs2(1234), 
+               bs3("10101100");
 
-    // [], size, count
-    // &, |, ^, ~, <<, >>
-    // to_string, to_ulong, to_ullong
-    // all, any, none
-    // set, reset, flip, test
+    // --- Capacity ---
+    // size()
+    
+    // --- Element accessa ---
+    // [index], test(index)
+    // count(), all(), any(), none()
+    
+    // --- Modifiers ---
+    // set(), set(index)
+    // reset(), reset(index)
+    // flip(), flip(index)
+    // &, |, ^, <<, >>, ~
+    // &=, |=, ^=, <<=, >>=
+
+    // --- Conversions ---
+    // to_string()
+    // to_ulong(), to_ullong()
+
+    // --- Hints ---
+    // _Find_first(), return index of the first set bit.
+    // _Find_next(index), return index of the next set bit after index.
 
     cout << bs3 << '\n';
     cout << bs3._Find_first() << '\n';
