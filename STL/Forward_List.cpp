@@ -20,7 +20,7 @@ void solve() {
 
     // --- Modifiers ---
     // push_front(value), emplace_front(args...)
-    // insert_after(pos, value), insert_after(pos, n, value), insert_after(pos, initial_list)
+    // insert_after(pos, value), insert_after(pos, n, value), insert_after(pos, initializer_list)
     // insert_after(pos, it_first, it_last), emplace_after(pos, args...)
     // pop_front()
     // erase_after(pos), erase_after(pos_first, pos_last)
