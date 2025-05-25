@@ -57,6 +57,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Minimum Stack](Data_Structures/Minimum_Stack.cpp)
 - [Minimum Queue](Data_Structures/Minimum_Queue.cpp)
 - [DSU](Data_Structures/DSU.cpp)
+- [DSU with Rollback](Data_Structures/DSU_Rollback.cpp)
 - [Sparse Table](Data_Structures/Sparse_Table.cpp)
 - [Fenwick Tree](Data_Structures/Fenwick_Tree.cpp)
 - [Fenwick Tree with Range Update & Range Query](Data_Structures/Fenwick_Tree_Range_Update_Range_Query.cpp)
