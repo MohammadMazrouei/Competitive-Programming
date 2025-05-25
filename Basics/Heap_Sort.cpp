@@ -18,7 +18,7 @@ void heapify(vector<T>& a, int n, int i, Compare cmp) {
         swap(a[extreme], a[i]);
         heapify(a, n, extreme, cmp);
     }
-  }
+}
   
 template <typename T, typename Compare = less<T>>
 void heap_sort(vector<T>& a, Compare cmp = Compare()) {
