@@ -3,10 +3,10 @@ using namespace std;
 
 // Disjoint Set Union, O(alpha(n))
 struct DSU {
-    int c;
+    int c; // components
     vector<int> par, sz;
     
-    DSU() {}
+    DSU() : c(0) {}
     DSU(int n) {
         init(n);
     }
@@ -21,9 +21,6 @@ struct DSU {
     int find(int a) {
         return (par[a] == a ? a : (par[a] = find(par[a])));
     }
-    bool same(int a, int b) {
-        return find(a) == find(b);
-    }
     void merge(int a, int b) {
         if ((a = find(a)) == (b = find(b))) {
             return;
@@ -31,15 +28,9 @@ struct DSU {
         if (sz[a] > sz[b]) {
             swap(a, b);
         }
+        c--;
         par[a] = b;
         sz[b] += sz[a];
-        c--;
-    }
-    int size(int a) {
-        return sz[find(a)];
-    }
-    int count() {
-        return c;
     }
 };
 
@@ -56,12 +47,11 @@ void solve() {
             cin >> a >> b;
             a--, b--;
             dsu.merge(a, b);
-        }
-        else if (op == 2) {
+        } else if (op == 2) {
             int a, b;
             cin >> a >> b;
             a--, b--;
-            cout << (dsu.same(a, b) ? "YES\n" : "NO\n");
+            cout << (dsu.find(a) == dsu.find(b) ? "YES\n" : "NO\n");
         }
     }
 }
