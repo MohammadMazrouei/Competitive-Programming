@@ -59,6 +59,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [DSU](Data_Structures/DSU.cpp)
 - [DSU with Rollback](Data_Structures/DSU_Rollback.cpp)
 - [Sparse Table](Data_Structures/Sparse_Table.cpp)
+- [Sparse Table 2D](Data_Structures/Sparse_Table_2D.cpp)
 - [Fenwick Tree](Data_Structures/Fenwick_Tree.cpp)
 - [Fenwick Tree with Range Update & Range Query](Data_Structures/Fenwick_Tree_Range_Update_Range_Query.cpp)
 - [Segment Tree](Data_Structures/Segment_Tree.cpp)
