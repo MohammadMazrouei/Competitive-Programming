@@ -42,15 +42,13 @@ struct DSU {
     }
     void undo() {
         if (mark.empty()) {
-            // assert
             return;
         }
-        int sz = mark.back();
-        mark.pop_back();
-        while ((int)history.size() > sz) {
+        while ((int)history.size() > mark.back()) {
             history.back().first = history.back().second;
             history.pop_back();
         }
+        mark.pop_back();
     }
 };
 
