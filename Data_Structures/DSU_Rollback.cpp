@@ -4,9 +4,8 @@ using namespace std;
 // DSU with Rollback, O(log(n))
 struct DSU {
     int c; // components
-    vector<int> par, sz;
+    vector<int> par, sz, mark;
     vector<pair<int&, int>> history;
-    vector<int> mark;
     
     DSU() : c(0) {}
     DSU(int n) {
@@ -18,17 +17,17 @@ struct DSU {
         par.resize(n);
         iota(par.begin(), par.end(), 0);
         sz.assign(n, 1);
-        history.clear();
         mark.clear();
+        history.clear();
     }
 
     int find(int a) {
         return (par[a] == a ? a : find(par[a]));
     }
-    void merge(int a, int b) {
+    bool merge(int a, int b) {
         mark.push_back(history.size());
         if ((a = find(a)) == (b = find(b))) {
-            return;
+            return false;
         }
         if (sz[a] > sz[b]) {
             swap(a, b);
@@ -39,6 +38,7 @@ struct DSU {
         c--;
         par[a] = b;
         sz[b] += sz[a];
+        return true;
     }
     void undo() {
         if (mark.empty()) {
