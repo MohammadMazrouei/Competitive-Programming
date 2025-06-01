@@ -14,14 +14,11 @@ struct SparseTable2D {
         build(v);
     }
 
-    inline T f(initializer_list<T>&& il) const {
-        return min(il, cmp);
-    }
     void build(const vector<vector<T>>& v) {
         n = v.size();
         m = v[0].size();
-        const int lg_n = __lg(n) + 1;
-        const int lg_m = __lg(m) + 1;
+        const int lg_n = __bit_width(n);
+        const int lg_m = __bit_width(m);
         t.assign(n, vector(m, vector(lg_n, vector<T>(lg_m))));
 
         for (int i = 0; i < n; i++) {
@@ -37,9 +34,9 @@ struct SparseTable2D {
                 for (int i = 0; i + (1 << k1) - 1 < n; i++) {
                     for (int j = 0; j + (1 << k2) - 1 < m; j++) {
                         if (!k1) {
-                            t[i][j][k1][k2] = f({t[i][j][k1][k2 - 1], t[i][j + (1 << (k2 - 1))][k1][k2 - 1]});
+                            t[i][j][k1][k2] = min(t[i][j][k1][k2 - 1], t[i][j + (1 << (k2 - 1))][k1][k2 - 1], cmp);
                         } else {
-                            t[i][j][k1][k2] = f({t[i][j][k1 - 1][k2], t[i + (1 << (k1 - 1))][j][k1 - 1][k2]});
+                            t[i][j][k1][k2] = min(t[i][j][k1 - 1][k2], t[i + (1 << (k1 - 1))][j][k1 - 1][k2], cmp);
                         }
                     }
                 }
@@ -49,10 +46,12 @@ struct SparseTable2D {
     T get(int l1, int r1, int l2, int r2) const { 
         assert(l1 >= 0 && l1 <= r1 && r1 < n);
         assert(l2 >= 0 && l2 <= r2 && r2 < m);
-        int k1 = __lg(r1 - l1 + 1);
-        int k2 = __lg(r2 - l2 + 1);
-        return f({t[l1][l2][k1][k2], t[r1 - (1 << k1) + 1][l2][k1][k2],
-                 t[l1][r2 - (1 << k2) + 1][k1][k2], t[r1 - (1 << k1) + 1][r2 - (1 << k2) + 1][k1][k2]});
+        int k1 = __bit_width(r1 - l1 + 1) - 1;
+        int k2 = __bit_width(r2 - l2 + 1) - 1;
+        return min({t[l1][l2][k1][k2],
+                    t[r1 - (1 << k1) + 1][l2][k1][k2],
+                    t[l1][r2 - (1 << k2) + 1][k1][k2],
+                    t[r1 - (1 << k1) + 1][r2 - (1 << k2) + 1][k1][k2]}, cmp);
     }
 };
 
