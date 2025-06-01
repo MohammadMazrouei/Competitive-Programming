@@ -122,5 +122,6 @@ Templates, algorithms and data structures implemented and collected for programm
 - [MEX with Update](Miscellaneous/Mex_with_Update.cpp)
 - [Gray Code](Miscellaneous/Gray_code.cpp)
 - [Arpa Trick](Miscellaneous/Arpa_Trick.cpp)
+- [Custom Hash](Miscellaneous/Custom_Hash.cpp)
 - [Josephus Problem](Miscellaneous/Josephus_Problem.cpp)
 - [Fast IO](Miscellaneous/Fast_IO.cpp)
