@@ -14,12 +14,9 @@ struct SparseTable {
         build(v);
     }
 
-    inline T f(const T& a, const T& b) const {
-        return min(a, b, cmp);
-    }
     void build(const vector<T>& v) {
         n = v.size();
-        const int lg = __lg(n) + 1;
+        const int lg = __bit_width(n);
         t.assign(n, vector<T>(lg));
 
         for (int i = 0; i < n; i++) {
@@ -27,14 +24,14 @@ struct SparseTable {
         }
         for (int k = 1; k < lg; k++) {
             for (int i = 0; i + (1 << k) - 1 < n; i++) {
-                t[i][k] = f(t[i][k - 1], t[i + (1 << (k - 1))][k - 1]);
+                t[i][k] = min(t[i][k - 1], t[i + (1 << (k - 1))][k - 1], cmp);
             }
         }
     }
     T get(int l, int r) const { 
         assert(l >= 0 && l <= r && r < n);
-        int k = __lg(r - l + 1);
-        return f(t[l][k], t[r - (1 << k) + 1][k]);
+        int k = __bit_width(r - l + 1) - 1;
+        return min(t[l][k], t[r - (1 << k) + 1][k], cmp);
     }
 };
 
