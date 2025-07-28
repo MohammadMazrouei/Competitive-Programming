@@ -16,24 +16,21 @@ void solve() {
 
     // Depth First Search, O(n + m)
     vector<bool> vis(n);
-    vector<int> in(n), out(n), order;
+    vector<int> order;
     order.reserve(n);
-    int timer = 0;
-    auto dfs = [&](auto &&self, int v) -> void {
+    auto dfs = [&](auto&& self, int v) -> void {
         vis[v] = true;
-        in[v] = timer++;
         order.push_back(v);
         for (auto u : adj[v]) {
             if (!vis[u]) {
                 self(self, u);
             }
         }
-        out[v] = timer;
     };
 
-    for (int v = 0; v < n; v++) {
-        if (!vis[v]) {
-            dfs(dfs, v);
+    for (int i = 0; i < n; i++) {
+        if (!vis[i]) {
+            dfs(dfs, i);
         }
     }
 
