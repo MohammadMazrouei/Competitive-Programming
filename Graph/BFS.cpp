@@ -24,7 +24,6 @@ void solve() {
         while (!q.empty()) {
             int v = q.front();
             q.pop();
-
             for (auto u : adj[v]) {
                 if (dist[v] + 1 < dist[u]) {
                     q.push(u);
