@@ -14,12 +14,12 @@ void solve() {
     }
 
     // Topological Sorting, O(n + m)
-    // An order of vertices in DAG that every edge leads from 
-    // the vertex with a smaller index to a vertex with a larger one.
+    // An order of vertices in DAG that every edge leads from the vertex
+    // with a smaller index to a vertex with a larger one.
     vector<bool> vis(n);
     vector<int> order;
     order.reserve(n);
-    auto dfs = [&](auto &&self, int v) -> void {
+    auto dfs = [&](auto&& self, int v) -> void {
         vis[v] = true;
         for (auto u : adj[v]) {
             if (!vis[u]) {
@@ -29,9 +29,9 @@ void solve() {
         order.push_back(v);
     };
     auto topological_sorting = [&]() -> void {
-        for (int v = 0; v < n; v++) {
-            if (!vis[v]) {
-                dfs(dfs, v);
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) {
+                dfs(dfs, i);
             }
         }
         reverse(order.begin(), order.end());
