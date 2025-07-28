@@ -14,7 +14,7 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    // Check an Undirected Graph is Bipartite, O(n + m)
+    // Check an undirected graph is bipartite, O(n + m)
     vector<int> color(n, -1);
     vector<vector<int>> c(2);
     auto is_bipartite = [&]() -> bool {
@@ -27,14 +27,12 @@ void solve() {
                 while (!q.empty()) {
                     int v = q.front();
                     q.pop();
-
                     for (auto u : adj[v]) {
                         if (color[u] == -1) {
                             color[u] = color[v] ^ 1;
                             c[color[u]].push_back(u);
                             q.push(u);
-                        }
-                        else if (color[u] == color[v]) {
+                        } else if (color[u] == color[v]) {
                             return false;
                         }
                     }
@@ -53,8 +51,7 @@ void solve() {
         for (auto v : c[1]) {
             cout << v + 1 << " \n"[v == c[1].back()];
         }
-    }
-    else {
+    } else {
         cout << "NO\n";
     }
 }
