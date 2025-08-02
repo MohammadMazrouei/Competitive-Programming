@@ -13,21 +13,22 @@ void solve() {
         adj[u].push_back(v);
     }
 
-    // Find Cycle in Directed Graph, O(n + m)
+    // Find one cycle in directed graph, O(n + m)
     vector<int> color(n), par(n, -1), cycle;
     int cycle_start, cycle_end;
-    auto dfs = [&](auto &&self, int v) -> bool {
+    auto dfs = [&](auto&& self, int v) -> bool {
         color[v] = 1;
         for (auto u : adj[v]) {
             if (color[u] == 0) {
                 par[u] = v;
                 if (self(self, u)) {
+                    color[v] = 2;
                     return true;
                 }
-            } 
-            else if (color[u] == 1) {
+            } else if (color[u] == 1) {
                 cycle_end = v;
                 cycle_start = u;
+                color[v] = 2;
                 return true;
             }
         }
@@ -37,31 +38,29 @@ void solve() {
     auto find_cycle = [&]() -> bool {
         cycle.clear();
         cycle_start = -1;
-        for (int v = 0; v < n; v++) { 
-            if (color[v] == 0 && dfs(dfs, v)) {
+        for (int i = 0; i < n; i++) { 
+            if (color[i] == 0 && dfs(dfs, i)) {
                 break;
             }
         }
+
         if (cycle_start == -1) {
             return false;
         }
-
-        for (int v = cycle_end; v != cycle_start; v = par[v]) {
-            cycle.push_back(v);
+        for (int i = cycle_end; i != cycle_start; i = par[i]) {
+            cycle.push_back(i);
         }
         cycle.push_back(cycle_start);
         reverse(cycle.begin(), cycle.end());
         return true;
     };
 
-
     if (find_cycle()) {
         cout << "YES\n";
         for (auto v : cycle) {
             cout << v + 1 << " \n"[v == cycle.back()];
         }
-    }
-    else {
+    } else {
         cout << "NO\n";
     }
 }
