@@ -14,11 +14,11 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    // Find Cycle in Undirected Graph, O(n + m)
+    // Find one cycle in undirected graph, O(n + m)
     vector<bool> vis(n);
     vector<int> par(n, -1), cycle;
     int cycle_start, cycle_end;
-    auto dfs = [&](auto &&self, int v, int p) -> bool {
+    auto dfs = [&](auto&& self, int v, int p) -> bool {
         vis[v] = true;
         for (auto u : adj[v]) {
             if (u == p) {
@@ -39,17 +39,17 @@ void solve() {
     auto find_cycle = [&]() -> bool {
         cycle.clear();
         cycle_start = -1;
-        for (int v = 0; v < n; v++) {
-            if (!vis[v] && dfs(dfs, v, -1)) {
+        for (int i = 0; i < n; i++) {
+            if (!vis[i] && dfs(dfs, i, -1)) {
                 break;
             }
         }
+
         if (cycle_start == -1) {
             return false;
         } 
-
-        for (int v = cycle_end; v != cycle_start; v = par[v]) {
-            cycle.push_back(v);
+        for (int i = cycle_end; i != cycle_start; i = par[i]) {
+            cycle.push_back(i);
         }
         cycle.push_back(cycle_start);
         return true;
@@ -60,8 +60,7 @@ void solve() {
         for (auto v : cycle) {
             cout << v + 1 << " \n"[v == cycle.back()];
         }
-    }
-    else {
+    } else {
         cout << "NO\n";
     }
 }
