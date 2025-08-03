@@ -23,7 +23,7 @@ struct FenwickTree {
         }
     }
     
-    void modify(int x, const T& v) {
+    void add(int x, const T& v) {
         assert(x >= 0 && x < n);
         for (int i = x; i < n; i = i | (i + 1)) {
             f[i] += v;
@@ -72,7 +72,7 @@ void solve() {
             int x, v;
             cin >> x >> v;
             x--;
-            fen.modify(x, v);
+            fen.add(x, v);
         } else if (op == 2) {
             int l, r;
             cin >> l >> r;
