@@ -12,6 +12,7 @@ struct FenwickTree {
         f_mul.assign(n, T{});
         f_add.assign(n, T{});
     }
+    // O(n) Construction
     FenwickTree(const vector<T>& v) {
         n = v.size();
         f_mul.assign(n, T{});
