@@ -24,7 +24,6 @@ struct FenwickTree2D {
                 f[i][j] = v[i][j] - up - left + corner;
             }
         }
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 int r = j | (j + 1);
@@ -98,7 +97,6 @@ void solve() {
             cout << fen.get(x, y) << '\n';
         }
     }
-        
 }
 
 int32_t main() {
