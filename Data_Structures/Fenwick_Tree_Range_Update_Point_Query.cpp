@@ -39,7 +39,7 @@ struct FenwickTree {
     }
     T get(int x) const {
         assert(x >= 0 && x < n);
-        T res = 0;
+        T res{};
         for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
             res += f[i];
         }
