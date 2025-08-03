@@ -63,6 +63,7 @@ Templates, algorithms and data structures implemented and collected for programm
 - [Fenwick Tree with Point Update & Range Query](Data_Structures/Fenwick_Tree_Point_Update_Range_Query.cpp)
 - [Fenwick Tree with Range Update & Point Query](Data_Structures/Fenwick_Tree_Range_Update_Point_Query.cpp)
 - [Fenwick Tree with Range Update & Range Query](Data_Structures/Fenwick_Tree_Range_Update_Range_Query.cpp)
+- [Fenwick Tree 2D with Point Update & Range Query](Data_Structures/Fenwick_Tree_2D_Point_Update_Range_Query.cpp)
 - [Segment Tree](Data_Structures/Segment_Tree.cpp)
 - [Segment Tree Lazy](Data_Structures/Segment_Tree_Lazy.cpp)
 - [Segment Tree 2D](Data_Structures/Segment_Tree_2D.cpp)
