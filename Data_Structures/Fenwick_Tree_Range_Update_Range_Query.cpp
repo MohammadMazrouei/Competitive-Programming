@@ -15,9 +15,12 @@ struct FenwickTree {
     FenwickTree(const vector<T>& v) {
         n = v.size();
         f_mul.assign(n, T{});
-        f_add.assign(n, T{});
+        f_add.assign(v.begin(), v.end());
         for (int i = 0; i < n; i++) {
-            add(i, i, v[i]);
+            int r = i | (i + 1);
+            if (r < n) {
+                f_add[r] += f_add[i];
+            }
         }
     }
 
