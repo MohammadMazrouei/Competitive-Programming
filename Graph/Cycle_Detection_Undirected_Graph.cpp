@@ -14,7 +14,7 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    // Find one cycle in undirected graph, O(n + m)
+    // Find one cycle in undirected graph, O(n+m)
     vector<bool> vis(n);
     vector<int> par(n, -1), cycle;
     int cycle_start, cycle_end;

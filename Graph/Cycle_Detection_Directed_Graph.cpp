@@ -13,7 +13,7 @@ void solve() {
         adj[u].push_back(v);
     }
 
-    // Find one cycle in directed graph, O(n + m)
+    // Find one cycle in directed graph, O(n+m)
     vector<int> color(n), par(n, -1), cycle;
     int cycle_start, cycle_end;
     auto dfs = [&](auto&& self, int v) -> bool {

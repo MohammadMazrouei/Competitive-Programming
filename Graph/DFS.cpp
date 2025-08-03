@@ -14,7 +14,7 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    // Depth First Search, O(n + m)
+    // Depth First Search, O(n+m)
     vector<bool> vis(n);
     vector<int> order;
     order.reserve(n);

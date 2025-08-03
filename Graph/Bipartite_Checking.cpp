@@ -14,7 +14,7 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    // Check an undirected graph is bipartite, O(n + m)
+    // Check an undirected graph is bipartite, O(n+m)
     vector<int> color(n, -1);
     vector<vector<int>> c(2);
     auto is_bipartite = [&]() -> bool {

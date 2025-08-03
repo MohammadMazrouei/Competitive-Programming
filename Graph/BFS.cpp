@@ -14,7 +14,7 @@ void solve() {
         adj[v].push_back(u);
     }
 
-    // Breadth First Search, O(n + m)
+    // Breadth First Search, O(n+m)
     constexpr int INF = 1e9;
     vector<int> dist(n, INF), par(n, -1);
     auto bfs = [&](int s) -> void {

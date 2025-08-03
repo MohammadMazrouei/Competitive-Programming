@@ -13,7 +13,7 @@ void solve() {
         adj[u].push_back(v);
     }
 
-    // Topological Sorting, O(n + m)
+    // Topological Sorting, O(n+m)
     // An order of vertices in DAG that every edge leads from the vertex
     // with a smaller index to a vertex with a larger one.
     vector<bool> vis(n);
