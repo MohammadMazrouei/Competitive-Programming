@@ -7,32 +7,32 @@ struct FenwickTree {
     int n;
     vector<T> f_mul, f_add;
     
-    FenwickTree() {}
+    FenwickTree() : n(0) {}
     FenwickTree(int _n) : n(_n) {
         f_mul.assign(n, T{});
         f_add.assign(n, T{});
     }
-    FenwickTree(const vector<T> &v) {
+    FenwickTree(const vector<T>& v) {
         n = v.size();
         f_mul.assign(n, T{});
         f_add.assign(n, T{});
         for (int i = 0; i < n; i++) {
-            modify(i, i, v[i]);
+            add(i, i, v[i]);
         }
     }
 
-    void add(int x, T mul, T add) {
+    void modify(int x, T mul, T add) {
         for (int i = x; i < n; i = i | (i + 1)) {
             f_mul[i] += mul;
             f_add[i] += add;
         }
     }
-    void modify(int l, int r, const T &v) {
+    void add(int l, int r, const T& v) {
         assert(l >= 0 && l <= r && r < n);
-        add(l, v, -v * (l - 1));
-        add(r, -v, v * r);
+        modify(l, v, -v * (l - 1));
+        modify(r, -v, v * r);
     }
-    T get(int x) {
+    T get(int x) const {
         T mul{}, add{};
         for (int i = x; i >= 0; i = (i & (i + 1)) - 1) {
             mul += f_mul[i];
@@ -40,7 +40,7 @@ struct FenwickTree {
         }
         return mul * x + add;
     }
-    T get(int l, int r) {
+    T get(int l, int r) const {
         assert(l >= 0 && l <= r && r < n);
         return get(r) - get(l - 1);
     }
@@ -63,9 +63,8 @@ void solve() {
             int l, r, v;
             cin >> l >> r >> v;
             l--, r--;
-            fen.modify(l, r, v);
-        }
-        else if (op == 2) {
+            fen.add(l, r, v);
+        } else if (op == 2) {
             int l, r;
             cin >> l >> r;
             l--, r--;
