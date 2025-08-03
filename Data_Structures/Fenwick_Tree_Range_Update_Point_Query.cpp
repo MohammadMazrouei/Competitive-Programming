@@ -11,23 +11,31 @@ struct FenwickTree {
     FenwickTree(int _n) : n(_n) {
         f.assign(n, T{});
     }
+    // O(n) Construction
     FenwickTree(const vector<T>& v) {
         n = v.size();
-        f.assign(n, T{});
+        f.resize(n);
+        f[0] = v[0];
+        for (int i = 1; i < n; i++) {
+            f[i] = v[i] - v[i - 1];
+        }
         for (int i = 0; i < n; i++) {
-            modify(i, i, v[i]);
+            int r = i | (i + 1);
+            if (r < n) {
+                f[r] += f[i];
+            }
         }
     }
 
-    void modify(int x, const T& v) {
+    void add(int x, const T& v) {
         for (int i = x; i < n; i = i | (i + 1)) {
             f[i] += v;
         }
     }
-    void modify(int l, int r, const T& v) {
+    void add(int l, int r, const T& v) {
         assert(l >= 0 && l <= r && r < n);
-        modify(l, v);
-        modify(r + 1, -v);
+        add(l, v);
+        add(r + 1, -v);
     }
     T get(int x) const {
         assert(x >= 0 && x < n);
@@ -56,7 +64,7 @@ void solve() {
             int l, r, v;
             cin >> l >> r >> v;
             l--, r--;
-            fen.modify(l, r, v);
+            fen.add(l, r, v);
         } else if (op == 2) {
             int x;
             cin >> x;
